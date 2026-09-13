@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Self study - Session 1 – Industrial Data Science</title>
+<title>10&nbsp; Self study - Session 1 – Industrial Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../1_act1/2_self_study_session2.html" rel="next">
-<link href="../1_act1/0_0_predictive_maintenance.html" rel="prev">
+<link href="../1_act1/7_self_study_session2.html" rel="next">
+<link href="../1_act1/5_1_timeseries_regression.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -255,7 +290,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_act1/0_0_predictive_maintenance.html">Act 1: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../1_act1/1_self_study_session1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_act1/0_nature_of_timeseries.html">Act 1: Time series – A Curated Collection</a></li><li class="breadcrumb-item"><a href="../1_act1/6_self_study_session1.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -327,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Act 1: Polished Machine Data</span></a>
+ <span class="menu-text">Act 1: Time series – A Curated Collection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -335,32 +370,50 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_act1/0_0_predictive_maintenance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
+  <a href="../1_act1/0_nature_of_timeseries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Nature of Time Series</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_act1/1_self_study_session1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+  <a href="../1_act1/1_0_data_imputation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data imputation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_act1/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+  <a href="../1_act1/2_1_timeseries_decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Time Series Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_act1/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+  <a href="../1_act1/3_1_timeseries_clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Time Series Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_act1/4_self_study_session4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></span></a>
+  <a href="../1_act1/4_1_timeseries_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Time Series Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_act1/5_1_timeseries_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Time Series Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_act1/6_self_study_session1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_act1/7_self_study_session2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
       </ul>
@@ -368,7 +421,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Act 2: Time series – A Curated Collection</span></a>
+ <span class="menu-text">Act 2: Polished Machine Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -376,50 +429,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_act2/0_nature_of_timeseries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Nature of Time Series</span></span></a>
+  <a href="../2_act2/0_0_predictive_maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_act2/1_0_data_imputation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data imputation</span></span></a>
+  <a href="../2_act2/1_self_study_session1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_act2/2_1_timeseries_decomposition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time Series Decomposition</span></span></a>
+  <a href="../2_act2/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_act2/3_1_timeseries_clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Time Series Clustering</span></span></a>
+  <a href="../2_act2/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_act2/4_1_timeseries_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Time Series Classification</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_act2/5_1_timeseries_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Time Series Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_act2/6_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_act2/7_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+  <a href="../2_act2/4_self_study_session4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></span></a>
   </div>
 </li>
       </ul>
@@ -536,9 +571,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content column-page-right" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_act1/0_0_predictive_maintenance.html">Act 1: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../1_act1/1_self_study_session1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_act1/0_nature_of_timeseries.html">Act 1: Time series – A Curated Collection</a></li><li class="breadcrumb-item"><a href="../1_act1/6_self_study_session1.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-act1-selfstudy1" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></h1>
+<h1 class="title"><span id="sec-2-selfstudy1" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></h1>
 </div>
 
 
@@ -555,8 +590,139 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This class contains self-study sessions to reinforce your understanding of the material and explore other aspects of the topic in a self-guided manner. This session introduces <a href="https://docs.jupyter.org/en/latest/">JupyterLab and Jupyter Notebook</a>.</p>
-<p>Jupyter Notebook is an open-source web application that allows users to create and share documents containing live code (supports over 40 programming languages including <code>Python</code>, <code>Julia</code>, <code>R</code>), visualizations, and narrative text. JupyterLab is a web-based <em>interactive development environment</em> (IDE) for Jupyter Notebook. The Jupyter ecosystem is widely used for interactive exploration and reporting purposes.</p>
+<p>In this session, we will revisit <a href="1_0_data_imputation.html" class="quarto-xref"><span>Chapter 5</span></a> and <a href="2_1_timeseries_decomposition.html" class="quarto-xref"><span>Chapter 6</span></a>.</p>
+<p>In <a href="1_0_data_imputation.html" class="quarto-xref"><span>Chapter 5</span></a>, we have explored different methods to handle missing data in time series and have seen that the choice of imputation method can significantly affect the results.</p>
+<p>The data set we will rely on in this session is a synthetic time series that simulates weekly production data of a manufacturing plant over 20 years. Unfortunately, some data points are missing due to frequent outages in the data collection system and sometimes we observe huge outliers due to temporary errors in the counting process.</p>
+<p>Your task is to impute the missing values and handle the outliers appropriately to prepare the data for a 20 years jubilee management report.</p>
+<p>First, download the data set from <a href="../data/assets/act1/selfstudysessions/sss1_production_data.csv">here</a>.</p>
+<p>Here are some useful helper functions:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_production_data(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    orig_data_column,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    gap_column,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    imp_column<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots production data with and without gaps using Plotly.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    df (DataFrame): DataFrame containing the production data.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    orig_data_column (str): Column name for the original data.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    gap_column (str): Column name for the data with gaps.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    imp_column (str): Column name for the imputed data.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> imp_column <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        dff <span class="op">=</span> df[[gap_column, imp_column]].copy()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        dff.loc[<span class="op">~</span>df[gap_column].isna(), imp_column] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Only create the upper subplot (single plot)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> go.Figure()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Original data</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        fig.add_trace(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            go.Scatter(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span>df.index,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span>df[orig_data_column],</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                mode<span class="op">=</span><span class="st">"lines"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                name<span class="op">=</span><span class="st">"Original"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">"lightgrey"</span>),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># With gaps</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        fig.add_trace(</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            go.Scatter(</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span>df.index,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span>df[gap_column],</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                mode<span class="op">=</span><span class="st">"lines"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                name<span class="op">=</span><span class="st">"With Gaps"</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Imputed</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        fig.add_trace(</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            go.Scatter(</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span>dff.index,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span>dff[imp_column],</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>                mode<span class="op">=</span><span class="st">"lines"</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>                name<span class="op">=</span><span class="st">"Imputed"</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>                line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">"blue"</span>),</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        fig.update_layout(</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            height<span class="op">=</span><span class="dv">400</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>            title_text<span class="op">=</span><span class="st">"#pieces with and without Gaps"</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>            xaxis_title<span class="op">=</span><span class="st">"date"</span>,</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>            yaxis_title<span class="op">=</span><span class="st">"pieces"</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        fig.update_yaxes(title_text<span class="op">=</span><span class="st">"pieces"</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> go.Figure()</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        fig.add_trace(</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>            go.Scatter(</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span>df.index,</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span>df[orig_data_column],</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>                mode<span class="op">=</span><span class="st">"lines"</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>                name<span class="op">=</span><span class="st">"Original"</span>,</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>                line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">"lightgrey"</span>),</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>        fig.add_trace(</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>            go.Scatter(</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span>df.index,</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span>df[gap_column],</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>                mode<span class="op">=</span><span class="st">"lines"</span>,</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>                name<span class="op">=</span><span class="st">"With Gaps"</span>,</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>        fig.update_layout(</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">"#pieces with and without gaps"</span>,</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>            xaxis_title<span class="op">=</span><span class="st">"Date"</span>,</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>            yaxis_title<span class="op">=</span><span class="st">"pieces"</span>,</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>    fig.show()</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seasonal_decompose_plotly(decomposed_ts, title):</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots a time series decomposition using Plotly.</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co">    decomposed_ts (DecomposeResult): Decomposed time series result.</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="co">    plotly object</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract components</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    observed <span class="op">=</span> decomposed_ts.observed</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    trend <span class="op">=</span> decomposed_ts.trend</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    seasonal <span class="op">=</span> decomposed_ts.seasonal</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    resid <span class="op">=</span> decomposed_ts.resid</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create subplots</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>    fig_decomp <span class="op">=</span> sp.make_subplots(</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>        rows<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>        cols<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>        shared_xaxes<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>        subplot_titles<span class="op">=</span>[<span class="st">"Observed"</span>, <span class="st">"Trend"</span>, <span class="st">"Seasonal"</span>, <span class="st">"Residual"</span>],</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>    fig_decomp.add_trace(</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>        go.Scatter(x<span class="op">=</span>observed.index, y<span class="op">=</span>observed.values.flatten(), name<span class="op">=</span><span class="st">"Observed"</span>),</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>        row<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>        col<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    fig_decomp.add_trace(go.Scatter(x<span class="op">=</span>trend.index, y<span class="op">=</span>trend, name<span class="op">=</span><span class="st">"Trend"</span>), row<span class="op">=</span><span class="dv">2</span>, col<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    fig_decomp.add_trace(go.Scatter(x<span class="op">=</span>seasonal.index, y<span class="op">=</span>seasonal, name<span class="op">=</span><span class="st">"Seasonal"</span>), row<span class="op">=</span><span class="dv">3</span>, col<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    fig_decomp.add_trace(go.Scatter(x<span class="op">=</span>resid.index, y<span class="op">=</span>resid, name<span class="op">=</span><span class="st">"Residual"</span>), row<span class="op">=</span><span class="dv">4</span>, col<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>    fig_decomp.update_layout(height<span class="op">=</span><span class="dv">900</span>, title_text<span class="op">=</span>title)</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig_decomp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In a first step, we will focus on getting rid of the outliers.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -564,44 +730,18 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.1 (Introducing JupyterLab)</strong></span> &nbsp;</p>
-</div>
-<p>Study the <a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html">JupyterLab documentation</a> to learn about its features and capabilities and experiment with them using your JupyterLab environment.</p>
-<p>Use <a href="https://docs.astral.sh/uv/"><code>uv</code></a> to create a new environment and install <a href="https://jupyter.org/install"><code>jupyterlab</code></a>.</p>
-<p>After this exercise you should be able to answer the following questions:</p>
-<ol type="1">
-<li>What is a Jupyter Notebook?</li>
-<li>What is JupyterLab?</li>
-<li>What are the different types of cells in a Jupyter notebook?</li>
-</ol>
-<p>And you should be able to do the following:</p>
-<ol type="1">
-<li>Create notebooks.</li>
-<li>Export notebooks to other file formats (like e.g.&nbsp;HTML and PDF).</li>
-<li>Create and run code cells</li>
-<li>Create and format markdown cells</li>
-<li>Use raw cells for unformatted text</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.2 (Using JupyterLab)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 10.1 (Load the data with gaps and get rid of outliers)</strong></span> &nbsp;</p>
 </div>
 <ul>
-<li>Create a notebook from the code provided in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 4</span></a>. Be sure to divide the code into separate cells for each logical step.</li>
-<li>Use markdown cells to explain and structure the code.</li>
-<li>Ideally, each code cell is self-contained and focuses on a single task or concept. E.g. it is good practice to define and alter variables only within the same cell; especially multiple calls of a cell should not cause different results.</li>
+<li>Download and load the dataset. It has three columns: <code>Date</code>, <code>pieces</code> and <code>pieces_gaps</code>. The column <code>pieces</code> contains the full data set without gaps, while <code>pieces_gaps</code> contains the same data set with several missing values (NaNs). The period covered by the data set is from 2005-01-01 to 2024-12-31 in weekly frequency.</li>
+<li>Visualize both time series (<code>pieces</code> and <code>pieces_gaps</code>) using the provided <code>plot_production_data</code> function.</li>
+<li>Smooth the <code>pieces_gaps</code> time series using a rolling window with appropriate window size and decide whether it is better to use <code>mean</code> or <code>median</code> as aggregation function. Discuss your choice. Ideally the resulting smoothed time series should have the same gaps as the original <code>pieces_gaps</code> time series.</li>
+<li>Visualize the resulting smoothed time series.</li>
 </ul>
 </div>
 </div>
 </div>
+<p>Let us try to impute the missing values in a second step.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -609,9 +749,58 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.3 (Interactive plotting)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 10.2 (Impute the missing values with known methods)</strong></span> &nbsp;</p>
 </div>
-<p><code>seaborn</code> plots are not interactive by default. The package <code>ipympl</code> enables zooming and panning of plots in Jupyter notebooks. Start with the notebook from the previous exercise and activate the <code>ipympl</code> backend by following the <a href="https://matplotlib.org/ipympl/">documentation</a>.</p>
+<ul>
+<li>Use the smoothed time series with gaps from the previous exercise as input.</li>
+<li>Experiment with different imputation methods discussed in <a href="1_0_data_imputation.html" class="quarto-xref"><span>Chapter 5</span></a>.</li>
+<li>Visualize the results using the provided <code>plot_production_data</code> function.</li>
+<li>Discuss the results.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Of course, we have only seen the tip of the iceberg when it comes to imputation methods for time series. Especially for seasonal data, more advanced methods such as STL can be very effective. We have had a look at STL in <a href="2_1_timeseries_decomposition.html" class="quarto-xref"><span>Chapter 6</span></a>, where we decomposed a time series into its components. Now we will use it for imputation to not lose the seasonal structure of the data while filling the gaps.</p>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10.3 (Impute the missing values with STL)</strong></span> &nbsp;</p>
+</div>
+<ul>
+<li>Use the smoothed time series with gaps from the first exercise as input.</li>
+<li>The STL needs data that is complete, i.e., without missing values. Therefore, first impute the missing values using a simple method of your choice (e.g., linear interpolation).</li>
+<li>Then, apply the STL decomposition to the imputed time series.</li>
+<li>Visualize the decomposed components (trend, seasonal, residual) using the provided <code>seasonal_decompose_plotly</code> function.</li>
+<li>The seasonal part of the decomposition can now be used to deseasonalize the smoothed time series with gaps.</li>
+<li>Now that we have a deseasonalized time series with missing values, we can again impute the missing values using a simple method of your choice.</li>
+<li>Finally, reseasonalize the imputed deseasonalized time series by adding back the seasonal component obtained from the STL decomposition.</li>
+<li>Visualize the final imputed time series using the provided <code>plot_production_data</code> function.</li>
+<li>Discuss the results.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Great job, you have provided the graphs in time for the management report and the board liked the results. In the meanwhile your colleagues have found the original data set without gaps on some old dusty server and would like to know the number of outliers in the data set.</p>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10.4 (Count the number of outliers in the original data set)</strong></span> &nbsp;</p>
+</div>
+<ul>
+<li>Use the original data set without gaps (<code>pieces</code> column) as input.</li>
+<li>Use an appropriate method to identify the outliers in the data set.</li>
+<li>Visualize the outliers and the original data set.</li>
+<li>Count the number of detected outliers.</li>
+<li>Discuss the results.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1034,13 +1223,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../1_act1/0_0_predictive_maintenance.html" class="pagination-link" aria-label="Predictive Maintenance via Exploratory Data Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span>
+      <a href="../1_act1/5_1_timeseries_regression.html" class="pagination-link" aria-label="Time Series Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Time Series Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../1_act1/2_self_study_session2.html" class="pagination-link" aria-label="Self study - Session 2">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../1_act1/7_self_study_session2.html" class="pagination-link" aria-label="Self study - Session 2">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1052,7 +1241,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p>Gregor Ehrensperger</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/edit/main/1_act1/1_self_study_session1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/edit/main/1_act1/6_self_study_session1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Manuscript designed with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
