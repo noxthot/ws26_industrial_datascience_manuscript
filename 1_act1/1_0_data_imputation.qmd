@@ -5,4 +5,4 @@ Handling these missing values is crucial for accurate analysis and modeling.
 
 In this section we will explore common techniques for imputing missing data in time series.
 
-{{< embed /2_act2/1_1_timeseries_imputation_examples.ipynb echo=true >}}
+{{< embed /1_act1/1_1_timeseries_imputation_examples.ipynb echo=true >}}

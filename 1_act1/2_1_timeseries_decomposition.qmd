@@ -21,4 +21,4 @@ Sometimes, also a fourth component, **Cyclic** ($C_t$), is considered, which rep
 
 ## Examples
 
-{{< embed /2_act2/2_2_timeseries_decomposition_example.ipynb echo=true >}}
+{{< embed /1_act1/2_2_timeseries_decomposition_example.ipynb echo=true >}}

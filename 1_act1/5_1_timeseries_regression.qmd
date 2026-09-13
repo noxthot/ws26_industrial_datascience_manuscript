@@ -37,4 +37,4 @@ The node with the highest value determines the predicted class.
 For regression, `sktime` provides [`CNNRegressor`](https://www.sktime.net/en/latest/api_reference/auto_generated/sktime.regression.deep_learning.cnn.CNNRegressor.html), which is based on the architecture described in @{zhao2017}.
 To adapt the architecture for regression tasks, the final layer is modified to have a single output node with a linear activation function that predicts a continuous value instead of class probabilities.
 
-{{< embed /2_act2/5_2_timeseries_regression_examples.ipynb echo=true >}}
+{{< embed /1_act1/5_2_timeseries_regression_examples.ipynb echo=true >}}

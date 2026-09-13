@@ -26,4 +26,4 @@ In this section we will have a brief look at time series forests (tree-based) in
 
 ## Time Series Forests
 
-{{< embed /2_act2/4_2_timeseries_classification_examples.ipynb echo=true >}}
+{{< embed /1_act1/4_2_timeseries_classification_examples.ipynb echo=true >}}
