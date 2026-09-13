@@ -1,107 +1,185 @@
 # Self study - Session 2 {#sec-act1-selfstudy2}
 
-In this session, we will revisit the chapters @{sec-act1-clustering}, @{sec-act1-classification}, and @{sec-act1-regression}.
+In this session, we will revisit @{sec-act1-imputation} and @{sec-act1-decomposition}.
 
-We have seen that the algorithms for all three tasks more or less can be categorized into the same categories:
+In @{sec-act1-imputation}, we have explored different methods to handle missing data in time series and have seen that the choice of imputation method can significantly affect the results.
 
-- Based on distances or metrics: E.g. trees and forests
-- Based on distributions, kernels: E.g. Gaussian Mixture Models, SVMs
-- Based on subsequences, shapelets: E.g. bags of words, shapelet-based methods
-- Based on deep learning: E.g. recurrent neural networks, or treating the time series as images using CNNs
-- Based on random convolutions: E.g. _Random Convolutional Kernel Transform_ (ROCKET)
-- Based on ensembles of the above.
+The data set we will rely on in this session is the synthetic time series from the previous section which simulates weekly production data of a manufacturing plant over 20 years.
+Unfortunately, some data points are missing due to frequent outages in the data collection system and sometimes we observe huge outliers due to temporary errors in the counting process.
 
-We have implemented nearest neighbors (distance-based) for clustering, time series forests (distance-based) for classification, and convolutional neural networks for regression (deep learning-based).
+Your task is to impute the missing values and handle the outliers appropriately to prepare the data for a 20 years jubilee management report.
 
-Let us have a look at one additional algorithm for each task.
+Again, you can download the data set from [here](../data/assets/act1/selfstudysessions/sss1_production_data.csv).
 
-::: {.callout-note}
-You can use `sktime`'s `load_UCR_UEA_dataset` function to load the data sets mentioned below, e.g.
+Additionally, here are some useful helper functions:
+
 ```python
-from sktime.datasets import load_UCR_UEA_dataset
+import plotly.graph_objects as go
 
-ds_name = "UWaveGestureLibrary"
-ret_type = "numpy3d"
+def plot_production_data(
+    df,
+    orig_data_column,
+    gap_column,
+    imp_column=None,
+):
+    """
+    Plots production data with and without gaps using Plotly.
+    Parameters:
+      df (DataFrame): DataFrame containing the production data.
+      orig_data_column (str): Column name for the original data.
+      gap_column (str): Column name for the data with gaps.
+      imp_column (str): Column name for the imputed data.
+    """
+    if imp_column is not None:
+        dff = df[[gap_column, imp_column]].copy()
+        dff.loc[~df[gap_column].isna(), imp_column] = None
 
-X_train, y_train = load_UCR_UEA_dataset(
-    name=ds_name,
-    split="train",
-    return_type=ret_type,
-)
+        # Only create the upper subplot (single plot)
+        fig = go.Figure()
 
-X_test, y_test = load_UCR_UEA_dataset(
-    name=ds_name,
-    split="test",
-    return_type=ret_type,
-)
+        # Original data
+        fig.add_trace(
+            go.Scatter(
+                x=df.index,
+                y=df[orig_data_column],
+                mode="lines",
+                name="Original",
+                line=dict(color="lightgrey"),
+            )
+        )
+        # With gaps
+        fig.add_trace(
+            go.Scatter(
+                x=df.index,
+                y=df[gap_column],
+                mode="lines",
+                name="With Gaps",
+            )
+        )
+        # Imputed
+        fig.add_trace(
+            go.Scatter(
+                x=dff.index,
+                y=dff[imp_column],
+                mode="lines",
+                name="Imputed",
+                line=dict(color="blue"),
+            )
+        )
 
-# For classification, convert y to categorical
-y_train = pd.Series(y_train).astype("category")
-y_test = pd.Series(y_test).astype("category")
+        fig.update_layout(
+            height=400,
+            title_text="#pieces with and without Gaps",
+            xaxis_title="date",
+            yaxis_title="pieces",
+        )
+        fig.update_yaxes(title_text="pieces")
+    else:
+        fig = go.Figure()
+        fig.add_trace(
+            go.Scatter(
+                x=df.index,
+                y=df[orig_data_column],
+                mode="lines",
+                name="Original",
+                line=dict(color="lightgrey"),
+            )
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=df.index,
+                y=df[gap_column],
+                mode="lines",
+                name="With Gaps",
+            )
+        )
+
+        fig.update_layout(
+            title="#pieces with and without gaps",
+            xaxis_title="Date",
+            yaxis_title="pieces",
+        )
+
+    fig.show()
+
+
+def seasonal_decompose_plotly(decomposed_ts, title):
+    """
+    Plots a decomposed time series using Plotly.
+    Parameters:
+      decomposed_ts (DecomposeResult): Result of STL or seasonal_decompose.
+      title (str): Title for the plot.
+    """
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+
+    fig = make_subplots(rows=4, cols=1, subplot_titles=("Observed", "Trend", "Seasonal", "Residual"))
+    fig.add_trace(go.Scatter(y=decomposed_ts.observed, name="Observed"), row=1, col=1)
+    fig.add_trace(go.Scatter(y=decomposed_ts.trend, name="Trend"), row=2, col=1)
+    fig.add_trace(go.Scatter(y=decomposed_ts.seasonal, name="Seasonal"), row=3, col=1)
+    fig.add_trace(go.Scatter(y=decomposed_ts.resid, name="Residual"), row=4, col=1)
+    fig.update_layout(height=800, title_text=title)
+    fig.show()
 ```
-:::
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Clustering with time series DBScan
+::::{#exr-basics-mv-space}
+## Load the data with gaps and get rid of outliers
 ::::
-- Load the [`GesturePebbleZ1`](https://timeseriesclassification.com/description.php?Dataset=GesturePebbleZ1) data set. Note that it is a variable-length time series dataset and you need to either use `ret_type="df-list"` or `ret_type="nested_univ"` to load it (using the example above).
-- Bring the data into a suitable format and explore the data set visually (using plots).
-- Use the Time Series $k$ means algorithm to cluster the data. Do you need to reshape the data for this algorithm?
-- Now, try to use the time series DBScan algorithm for clustering. Do you need to reshape the data for this algorithm?
-- How do the results compare?
+- Download and load the dataset.
+  It has three columns: `Date`, `pieces` and `pieces_gaps`.
+  The column `pieces` contains the full data set without gaps, while `pieces_gaps` contains the same data set with several missing values (NaNs).
+  The period covered by the data set is from 2005-01-01 to 2024-12-31 in weekly frequency.
+- Visualize both time series (`pieces` and `pieces_gaps`) using the provided `plot_production_data` function.
+- Smooth the `pieces_gaps` time series using a rolling window with appropriate window size and decide whether it is better to use `mean` or `median` as aggregation function.
+  Discuss your choice.
+  Ideally the resulting smoothed time series should have the same gaps as the original `pieces_gaps` time series.
+- Visualize the resulting smoothed time series.
 :::
 
-In @{sec-act1-classification} and @{sec-act1-regression}, our input was univariate, meaning each sample consisted of exactly one time series.
-Now, we will work with multivariate time series, which are more common in real-world scenarios since typically multiple sensors are available.
+Let us try to impute the missing values in a second step.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Classification of multivariate time series
+::::{#exr-basics-mv-space}
+## Impute the missing values with known methods
 ::::
-- Load the [`UWaveGestureLibrary`](https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary) data set.
-- Use the time series $k$ nearest neighbour algorithm to classify the time series.
-- Use the CNN classifier to classify the time series (make sure to have `sktime>=0.40.0` installed).
-- How do the results compare?
+- Use the smoothed time series with gaps from the previous exercise as input.
+- Experiment with different imputation methods discussed in @{sec-act1-imputation}.
+- Visualize the results using the provided `plot_production_data` function.
+- Discuss the results.
 :::
 
-Note that not all of the algorithms have implementations for multivariate time series, e.g. `sktime`'s `TimeSeriesForestClassifier` only works for univariate time series (and raises an exception when used with a multivariate series).
-Luckily, there are other implementations available, e.g. `aeon` offers a `TimeSeriesForestClassifier` that is compatible with multivariate time series.
-
-
-::: {.callout-note}
-`aeon` is quite strict about dependencies.
-In case you have problems installing it, consider to initialize a new project and first install `aeon` before adding further packages.
-:::
+Of course, we have only seen the tip of the iceberg when it comes to imputation methods for time series.
+Especially for seasonal data, more advanced methods such as STL can be very effective.
+We have had a look at STL in @{sec-act1-decomposition}, where we decomposed a time series into its components.
+Now we will use it for imputation to not lose the seasonal structure of the data while filling the gaps.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Classification using aeon's Time Series Forest Classifier
+::::{#exr-basics-mv-space}
+## Impute the missing values with STL
 ::::
-- Load the [`UWaveGestureLibrary`](https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary) data set.
-- Use `aeon`'s `TimeSeriesForestClassifier` to classify the data set.
-- Are you able to achieve better results than with the previous algorithms?
+- Use the smoothed time series with gaps from the first exercise as input.
+- The STL needs data that is complete, i.e., without missing values.
+  Therefore, first impute the missing values using a simple method of your choice (e.g., linear interpolation).
+- Then, apply the STL decomposition to the imputed time series.
+- Visualize the decomposed components (trend, seasonal, residual) using the provided `seasonal_decompose_plotly` function.
+- The seasonal part of the decomposition can now be used to deseasonalize the smoothed time series with gaps.
+- Now that we have a deseasonalized time series with missing values, we can again impute the missing values using a simple method of your choice.
+- Finally, reseasonalize the imputed deseasonalized time series by adding back the seasonal component obtained from the STL decomposition.
+- Visualize the final imputed time series using the provided `plot_production_data` function.
+- Discuss the results.
 :::
 
-::: {.callout-note}
-You can use `aeon`'s `load_regression` function to load the data set mentioned below, e.g.
-```python
-from aeon.datasets import load_regression
-
-ds_name = "AppliancesEnergy"
-
-X_train, y_train = load_regression(ds_name, split="train")
-X_test, y_test = load_regression(ds_name, split="test")
-```
-:::
+Great job, you have provided the graphs in time for the management report and the board liked the results.
+In the meanwhile your colleagues have found the original data set without gaps on some old dusty server and would like to know the number of outliers in the data set.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Regression of multivariate time series
+::::{#exr-basics-mv-space}
+## Count the number of outliers in the original data set
 ::::
-- Load the [`AppliancesEnergy`](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction) data set.
-- Use the time series $k$ nearest neighbour algorithm to predict the energy consumption of the appliances.
-- Use the time series random forest tree algorithm to predict the energy consumption of the appliances.
-- Use the CNN regressor to predict the energy consumption of the appliances (make sure to have `sktime>=0.40.0` installed).
-- How do the results compare?
+- Use the original data set without gaps (`pieces` column) as input.
+- Use an appropriate method to identify the outliers in the data set.
+- Visualize the outliers and the original data set.
+- Count the number of detected outliers.
+- Discuss the results.
 :::

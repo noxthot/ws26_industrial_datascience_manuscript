@@ -1,208 +1,117 @@
 # Self study - Session 1 {#sec-act1-selfstudy1}
 
-In this session, we will revisit @{sec-act1-imputation} and @{sec-act1-decomposition}.
+This class contains self-study sessions to reinforce your understanding of the material and explore other aspects of the topic in a self-guided manner.
 
-In @{sec-act1-imputation}, we have explored different methods to handle missing data in time series and have seen that the choice of imputation method can significantly affect the results.
+In this specific session, we will get hands-on with some essential tools for reporting: `uv`, `JupyterLab`, `seaborn`/`plotly`, and `Quarto`.
+
+Each exercise focuses on a single topic.
 
 The data set we will rely on in this session is a synthetic time series that simulates weekly production data of a manufacturing plant over 20 years.
-Unfortunately, some data points are missing due to frequent outages in the data collection system and sometimes we observe huge outliers due to temporary errors in the counting process.
-
-Your task is to impute the missing values and handle the outliers appropriately to prepare the data for a 20 years jubilee management report.
 
 First, download the data set from [here](../data/assets/act1/selfstudysessions/sss1_production_data.csv).
 
-Here are some useful helper functions:
-```python
-import plotly.graph_objects as go
+The data has three columns: `Date`, `pieces` and `pieces_gaps`. The column `pieces` contains the full data set without gaps, while `pieces_gaps` contains the same data set with several missing values (NaNs).
+The period covered by the data set is from 2005-01-01 to 2024-12-31 in weekly frequency.
 
-def plot_production_data(
-    df,
-    orig_data_column,
-    gap_column,
-    imp_column=None,
-):
-    """
-    Plots production data with and without gaps using Plotly.
-    Parameters:
-    df (DataFrame): DataFrame containing the production data.
-    orig_data_column (str): Column name for the original data.
-    gap_column (str): Column name for the data with gaps.
-    imp_column (str): Column name for the imputed data.
-    """
-    if imp_column is not None:
-        dff = df[[gap_column, imp_column]].copy()
-        dff.loc[~df[gap_column].isna(), imp_column] = None
-
-        # Only create the upper subplot (single plot)
-        fig = go.Figure()
-
-        # Original data
-        fig.add_trace(
-            go.Scatter(
-                x=df.index,
-                y=df[orig_data_column],
-                mode="lines",
-                name="Original",
-                line=dict(color="lightgrey"),
-            )
-        )
-        # With gaps
-        fig.add_trace(
-            go.Scatter(
-                x=df.index,
-                y=df[gap_column],
-                mode="lines",
-                name="With Gaps",
-            )
-        )
-        # Imputed
-        fig.add_trace(
-            go.Scatter(
-                x=dff.index,
-                y=dff[imp_column],
-                mode="lines",
-                name="Imputed",
-                line=dict(color="blue"),
-            )
-        )
-
-        fig.update_layout(
-            height=400,
-            title_text="#pieces with and without Gaps",
-            xaxis_title="date",
-            yaxis_title="pieces",
-        )
-        fig.update_yaxes(title_text="pieces")
-    else:
-        fig = go.Figure()
-        fig.add_trace(
-            go.Scatter(
-                x=df.index,
-                y=df[orig_data_column],
-                mode="lines",
-                name="Original",
-                line=dict(color="lightgrey"),
-            )
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=df.index,
-                y=df[gap_column],
-                mode="lines",
-                name="With Gaps",
-            )
-        )
-
-        fig.update_layout(
-            title="#pieces with and without gaps",
-            xaxis_title="Date",
-            yaxis_title="pieces",
-        )
-
-    fig.show()
-
-
-def seasonal_decompose_plotly(decomposed_ts, title):
-    """
-    Plots a time series decomposition using Plotly.
-
-    Parameters:
-    decomposed_ts (DecomposeResult): Decomposed time series result.
-
-    Returns:
-    plotly object
-    """
-
-    # Extract components
-    observed = decomposed_ts.observed
-    trend = decomposed_ts.trend
-    seasonal = decomposed_ts.seasonal
-    resid = decomposed_ts.resid
-
-    # Create subplots
-    fig_decomp = sp.make_subplots(
-        rows=4,
-        cols=1,
-        shared_xaxes=True,
-        subplot_titles=["Observed", "Trend", "Seasonal", "Residual"],
-    )
-
-    fig_decomp.add_trace(
-        go.Scatter(x=observed.index, y=observed.values.flatten(), name="Observed"),
-        row=1,
-        col=1,
-    )
-    fig_decomp.add_trace(go.Scatter(x=trend.index, y=trend, name="Trend"), row=2, col=1)
-    fig_decomp.add_trace(go.Scatter(x=seasonal.index, y=seasonal, name="Seasonal"), row=3, col=1)
-    fig_decomp.add_trace(go.Scatter(x=resid.index, y=resid, name="Residual"), row=4, col=1)
-
-    fig_decomp.update_layout(height=900, title_text=title)
-
-    return fig_decomp
-```
-
-
-
-In a first step, we will focus on getting rid of the outliers.
+## Exercise A: `uv` — Environment Management
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Load the data with gaps and get rid of outliers
+::::{#exr-basics-mv-space}
+## Setting up an isolated environment with `uv`
 ::::
-- Download and load the dataset.
-  It has three columns: `Date`, `pieces` and `pieces_gaps`.
-  The column `pieces` contains the full data set without gaps, while `pieces_gaps` contains the same data set with several missing values (NaNs).
-  The period covered by the data set is from 2005-01-01 to 2024-12-31 in weekly frequency.
-- Visualize both time series (`pieces` and `pieces_gaps`) using the provided `plot_production_data` function.
-- Smooth the `pieces_gaps` time series using a rolling window with appropriate window size and decide whether it is better to use `mean` or `median` as aggregation function.
-Discuss your choice.
-Ideally the resulting smoothed time series should have the same gaps as the original `pieces_gaps` time series.
-- Visualize the resulting smoothed time series.
+
+[`uv`](https://docs.astral.sh/uv/) is a fast, modern package and environment manager.
+It installs and manages Python versions and packages in isolated environments (`venv`).
+
+
+1. Install `uv` following the [official instructions](https://docs.astral.sh/uv/getting-started/installation/).
+2. In the project directory, initialize a new project and create a virtual environment using `uv`.
+3. Install the following packages into the environment: `numpy`, `matplotlib`.
+4. Verify the environment works by creating a simple Python script that creates a simple plot of $f(t) = (16 (\sin(t))^3, 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t))$ using the `numpy` and `matplotlib` package. (Hint: Use `numpy.linspace` to create a range of values for `t`, the function produces the $x$ and $y$ coordinates of the plot.)
+
+After this exercise you should be able to
+1. Create and manage isolated Python environments using `uv`.
+2. Install and manage Python packages within these environments.
+3. Additionally be able to explain what `uv` does and why it is useful.
 :::
 
-Let us try to impute the missing values in a second step.
+Now that you have a working environment, you can use it to install additional packages as needed for the exercises below.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Impute the missing values with known methods
+::::{#exr-basics-mv-space}
+## Working with JupyterLab
 ::::
-- Use the smoothed time series with gaps from the previous exercise as input.
-- Experiment with different imputation methods discussed in @{sec-act1-imputation}.
-- Visualize the results using the provided `plot_production_data` function.
-- Discuss the results.
+
+[JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html) is a web-based interactive development environment (IDE) for Jupyter Notebooks. It provides a flexible interface for interactive data exploration and reporting.
+
+1. Launch JupyterLab from your `uv` environment by adding it to your environment first or alternatively, using VS Code, you can also use the Jupyter extension instead.
+2. Create a new notebook called `production_explore.ipynb`.
+3. Load the production data set (the CSV with `Date`, `pieces`, `pieces_gaps`) into a `pandas` DataFrame using a code cell.
+4. Display the first 10 rows and print basic statistics.
+5. Create a line plot of `pieces` over time using `matplotlib`.
+6. Experiment with different cell types: code, markdown, and raw cells.
+7. Export the notebook as HTML and PDF.
+
+After this exercise you should be able to:
+
+1. Create and organize notebooks in JupyterLab.
+2. Differentiate between code, markdown, and raw cells.
+3. Export notebooks to other formats (HTML, PDF).
+4. Structure a notebook with self-contained, readable code cells.
 :::
 
-Of course, we have only seen the tip of the iceberg when it comes to imputation methods for time series.
-Especially for seasonal data, more advanced methods such as STL can be very effective.
-We have had a look at STL in @{sec-act1-decomposition}, where we decomposed a time series into its components.
-Now we will use it for imputation to not lose the seasonal structure of the data while filling the gaps.
+
+`matplotlib` is a widely used Python library for creating static visualizations.
+`seaborn` is a statistical data visualization library built on top of `matplotlib`, providing a high-level interface for drawing attractive and informative statistical graphics and 
+`plotly` is an interactive data visualization library that allows you to create dynamic, web-based visualizations.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Impute the missing values with STL
-::::
-- Use the smoothed time series with gaps from the first exercise as input.
-- The STL needs data that is complete, i.e., without missing values.
-  Therefore, first impute the missing values using a simple method of your choice (e.g., linear interpolation).
-- Then, apply the STL decomposition to the imputed time series.
-- Visualize the decomposed components (trend, seasonal, residual) using the provided `seasonal_decompose_plotly` function.
-- The seasonal part of the decomposition can now be used to deseasonalize the smoothed time series with gaps.
-- Now that we have a deseasonalized time series with missing values, we can again impute the missing values using a simple method of your choice.
-- Finally, reseasonalize the imputed deseasonalized time series by adding back the seasonal component obtained from the STL decomposition.
-- Visualize the final imputed time series using the provided `plot_production_data` function.
-- Discuss the results.
+:::{#exr-basics-mv-space}
+## Visualizing the production data
 :::
 
-Great job, you have provided the graphs in time for the management report and the board liked the results.
-In the meanwhile your colleagues have found the original data set without gaps on some old dusty server and would like to know the number of outliers in the data set.
+In this exercise you will visualize the production data using both `seaborn` (static, statistical plots) and `plotly` (interactive plots).
+
+**Using seaborn:**
+1. Load the production data set and use `seaborn` to create:
+   - A line plot of `pieces` over time.
+   - A pair plot of the numeric columns.
+   - A box plot of `pieces` by year (extract the year from the `Date` column).
+2. Observe patterns and note any anomalies visually.
+
+**Using plotly:**
+3. Recreate the line plot of `pieces` using `plotly` as an interactive figure.
+4. Use the provided `plot_production_data` function to visualize both `pieces` and `pieces_gaps` together.
+
+After this exercise you should be able to:
+
+1. Create basic static statistical plots with `seaborn`.
+2. Create basic interactive plots with `plotly`.
+3. Explore the interactive features of `plotly`: zoom in on specific time periods, hover over data points to see exact values.
+4. Compare and discuss the strengths and weaknesses of each library.
+:::
+
+
+Congratulations, you are now able to create and manage isolated Python environments, work with JupyterLab, and visualize data using both static and interactive plotting libraries.
+The next step is to integrate your code and visualizations into a comprehensive report which you can hand over to stakeholders using Quarto.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Count the number of outliers in the original data set
+::::{#exr-basics-mv-space}
+## Generating a report with Quarto
 ::::
-- Use the original data set without gaps (`pieces` column) as input.
-- Use an appropriate method to identify the outliers in the data set.
-- Visualize the outliers and the original data set.
-- Count the number of detected outliers.
-- Discuss the results.
+
+[Quarto](https://quarto.org/) is an open-source scientific and technical publishing system.
+It allows you to create dynamic documents, reports, and presentations from your code and narrative text.
+The material of this course itself is rendered using Quarto.
+
+1. Create a Quarto Markdown (`.qmd`) file in your project.
+2. Embed the code and plots from the previous two exercises into the Quarto document.
+3. Use code chunk options to control output (e.g., `echo=FALSE` to hide code, `fig-width` to set figure dimensions).
+4. Render the document as HTML and PDF.
+5. Explore collapsing code chunks in your document (see [Quarto docs](https://quarto.org/docs/jupyter/authoring.html#code-chunk-options)).
+
+After this exercise you should be able to:
+
+1. Create a Quarto document that integrates code, output, and narrative.
+2. Render Quarto documents to HTML and PDF formats.
 :::

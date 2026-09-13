@@ -33,6 +33,7 @@ book:
         - 1_act1/5_1_timeseries_regression.qmd
         - 1_act1/6_self_study_session1.qmd
         - 1_act1/7_self_study_session2.qmd
+        - 1_act1/8_self_study_session3.qmd
     - part: "Act 2: Polished Machine Data"
       chapters: 
         - 2_act2/0_0_predictive_maintenance.qmd
