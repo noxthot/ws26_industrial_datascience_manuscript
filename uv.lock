@@ -2896,7 +2896,7 @@ wheels = [
 ]
 
 [[package]]
-name = "ws25-industrial-datascience-manuscript"
+name = "ws2-industrial-datascience-manuscript"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
