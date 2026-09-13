@@ -22,9 +22,9 @@ Unlike typical courses that use clean, polished datasets, in this lecture we wil
 
 In @{sec-act0-intro} to @{sec-act0-applications}, we will start with an introduction to Industrial Data Science, its significance, its history, and its applications.
 
-In @{sec-act1} to @{sec-act1-selfstudy4}, we will prepare ourselves by exploring time series data, including common applications and methods.
+In @{sec-act1} to @{sec-act1-selfstudy2}, we will prepare ourselves by exploring time series data, including common applications and methods.
 
-@{sec-act2} to @{sec-act2-selfstudy2} provide an overview of curated datasets of machine sensors.
+@{sec-act2} to @{sec-act2-selfstudy4} provide an overview of curated datasets of machine sensors.
 
 In @{sec-act3} to @{sec-act3-selfstudy2}, we will work directly with simple simulated machines.
 

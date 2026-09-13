@@ -1,4 +1,4 @@
-# Self study - Session 1 {#sec-2-selfstudy1}
+# Self study - Session 1 {#sec-act1-selfstudy1}
 
 In this session, we will revisit @{sec-act1-imputation} and @{sec-act1-decomposition}.
 
