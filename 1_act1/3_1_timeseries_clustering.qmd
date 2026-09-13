@@ -1,0 +1,35 @@
+# Time Series Clustering {#sec-act1-clustering}
+
+The goal of clustering is to group similar time series together based on their characteristics or patterns.
+
+But what does **similar** mean in the context of time series data?
+Defining **similarity** is not straight forward due to the inherent subjectivity involved.
+
+**Difficulties are**:
+
+- **Context-Dependent**: Similarity can vary based on the specific application or domain.
+- **Human Bias**: Metrics are often chosen based on human intuition, which can introduce bias.
+- **Inconsistent Interpretations**: Different experts may have different perspectives on what constitutes similarity.
+- **Parameter Sensitivity**: Many similarity measures come with tunable parameters that can significantly affect the results.
+
+## Clustering algorithms {#sec-act1-cluster-algorithms}
+Time series clustering algorithms can be broadly categorized into four main types:
+
+- **Distance-Based**: These algorithms rely on a distance measure to quantify the similarity between time series. Examples include $k$-means and $k$-median.
+- **Distribution-Based**: These methods model the distribution (in a very general sense) of the time series data and cluster based on statistical properties or descriptive features that represent the characteristics of the time series. Examples include _Gaussian Mixture Models_ (GMM) and DBSCAN.
+- **Subsequence-Based**: These algorithms focus on clustering representative subsequences of time series data rather than the entire series. Examples include methods based on shapelets and sliding windows.
+- **Representation-Learning-Based**: These methods use techniques like autoencoders or recurrent neural networks to learn a lower-dimensional representation of the time series data, which is then clustered using traditional clustering algorithms.
+
+@{paparrizos2024} gives a good overview of different time series clustering methods.
+
+In the following, we will briefly introduce distance-based clustering using two common similarity measures: Euclidean distance and _Dynamic Time Warping_ (DTW).
+
+
+## Similarity Measures {#sec-act1-cluster-similaritymeasures}
+
+{{< embed /2_act2/3_2_timeseries_similaritymeasures_examples.ipynb echo=true >}}
+
+
+## k-Means Clustering {#sec-act1-cluster-examples}
+
+{{< embed /2_act2/3_3_timeseries_clustering_examples.ipynb echo=true >}}

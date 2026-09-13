@@ -23,23 +23,23 @@ book:
         - 0_introduction/0_introduction.qmd
         - 0_introduction/1_history.qmd
         - 0_introduction/2_applications.qmd
-    - part: "Act 1: Polished Machine Data"
+    - part: "Act 1: Time series -- A Curated Collection"
       chapters: 
-        - 1_act1/0_0_predictive_maintenance.qmd
-        - 1_act1/1_self_study_session1.qmd
-        - 1_act1/2_self_study_session2.qmd
-        - 1_act1/3_self_study_session3.qmd
-        - 1_act1/4_self_study_session4.qmd
-    - part: "Act 2: Time series -- A Curated Collection"
+        - 1_act1/0_nature_of_timeseries.qmd
+        - 1_act1/1_0_data_imputation.qmd
+        - 1_act1/2_1_timeseries_decomposition.qmd
+        - 1_act1/3_1_timeseries_clustering.qmd
+        - 1_act1/4_1_timeseries_classification.qmd
+        - 1_act1/5_1_timeseries_regression.qmd
+        - 1_act1/6_self_study_session1.qmd
+        - 1_act1/7_self_study_session2.qmd
+    - part: "Act 2: Polished Machine Data"
       chapters: 
-        - 2_act2/0_nature_of_timeseries.qmd
-        - 2_act2/1_0_data_imputation.qmd
-        - 2_act2/2_1_timeseries_decomposition.qmd
-        - 2_act2/3_1_timeseries_clustering.qmd
-        - 2_act2/4_1_timeseries_classification.qmd
-        - 2_act2/5_1_timeseries_regression.qmd
-        - 2_act2/6_self_study_session1.qmd
-        - 2_act2/7_self_study_session2.qmd
+        - 2_act2/0_0_predictive_maintenance.qmd
+        - 2_act2/1_self_study_session1.qmd
+        - 2_act2/2_self_study_session2.qmd
+        - 2_act2/3_self_study_session3.qmd
+        - 2_act2/4_self_study_session4.qmd
     - part: "Act 3: Real Machine Data"
       chapters: 
         - 3_act3/0_challenges.qmd

@@ -1,8 +1,0 @@
-# Data imputation {#sec-act2-imputation}
-
-Real datasets often contain missing values or gaps due to various reasons such as sensor malfunctions, data corruption, or transmission errors.
-Handling these missing values is crucial for accurate analysis and modeling.
-
-In this section we will explore common techniques for imputing missing data in time series.
-
-{{< embed /2_act2/1_1_timeseries_imputation_examples.ipynb echo=true >}}

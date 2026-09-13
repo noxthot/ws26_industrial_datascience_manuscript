@@ -1,0 +1,15 @@
+# Self study - Session 3 {#sec-act2-selfstudy3}
+In this session, we will have a look at another dataset.
+[Kaggle](https://www.kaggle.com) is a data science competition platform under Google LLC where you can find a variety of datasets to work with.
+We will have a look at the [**Explainable AI (XAI) Drilling Dataset**](https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/) by @{wallsberger2023}.
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+:::: {#exr-basics-mv-space}
+## Exploratory data analysis
+::::
+1. Register on [Kaggle](https://www.kaggle.com).
+1. Read the description of the [**Explainable AI (XAI) Drilling Dataset**](https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/).
+1. Download the dataset.
+1. First, pretend that you did not read the _Subgroup failures_ paragraph in the description, explore the dataset and find insights related to the different failure types.
+1. Do your findings align with the description given in the _Subgroup failures_ paragraph?
+:::

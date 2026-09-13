@@ -1,0 +1,40 @@
+# Predictive Maintenance via Exploratory Data Analysis {#sec-act2}
+
+In this section, we will explore the concept of predictive maintenance using a synthetic dataset that reflects real predictive maintenance data encountered in industry.
+
+You can download the dataset @{ai4i2020} at [this link](https://doi.org/10.24432/C5HS5C).
+
+Here is a summary of the variables present in the dataset:
+
+| Variable Name       | Role     | Type        | Units | Description                                                                                                            | Target |
+|---------------------|----------|-------------|:-----:|------------------------------------------------------------------------------------------------------------------------|:------:|
+| UID                 | ID       | Integer     |       | Unique identifier                                                                                                      |        |
+| Product ID          | ID       | Categorical |       | Consists of Type and a variant-specific serial number                                                                  |        |
+| Type                | Feature  | Categorical |       | Product quality variant given by letter L (low), M (medium), or H (high) variants                                      |        |
+| Air temperature     | Feature  | Continuous  | K     |                                                                                                                        |        |
+| Process temperature | Feature  | Continuous  | K     |                                                                                                                        |        |
+| Rotational speed    | Feature  | Integer     | rpm   |                                                                                                                        |        |
+| Torque              | Feature  | Continuous  | Nm    |                                                                                                                        |        |
+| Tool wear           | Feature  | Integer     | min   |                                                                                                                        |        |
+| Machine failure     | Target   | Integer     |       | Equals 1 if at least one of the following failures occurs                                                              | x      |
+| TWF                 | Target   | Integer     |       | Tool wear failure                                                                                                      | x      |
+| HDF                 | Target   | Integer     |       | Heat dissipation failure                                                                                               | x      |
+| PWF                 | Target   | Integer     |       | Power failure                                                                                                          | x      |
+| OSF                 | Target   | Integer     |       | Overstrain failure                                                                                                     | x      |
+| RNF                 | Target   | Integer     |       | Random failure                                                                                                         | x      |
+: {.striped .hover tbl-colwidths="[15,10,15,10,40,10]"} 
+
+::: {.callout-note}
+Unfortunately the documentation neither provides details on the type of machine that is simulated nor the product it is thought to produce.
+For the sake of imagination, we will think of a very simple milling machine that produces parts in three quality variants: low, medium, and high.
+:::
+
+The table shows various error types and our task is to gain insights on when they occur.
+
+::: {.callout-note}
+This is a warmup task with a polished, synthetic dataset and luckily we are provided with a description of the nature of the different failures.
+:::
+
+## Notebook
+
+{{< embed /1_act1/0_1_ai4i.ipynb echo=true >}}

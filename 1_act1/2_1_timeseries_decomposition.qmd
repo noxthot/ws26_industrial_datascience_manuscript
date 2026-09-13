@@ -1,0 +1,24 @@
+# Time Series Decomposition {#sec-act1-decomposition}
+
+Time series data often exhibits patterns such as trends, seasonality, and cycles.
+Decomposing a time series into its components can help to better understand the underlying processes.
+
+Time series are usually decomposed into three components:
+
+- **Trend**: $T_t$, long-term progression of the series (e.g., increasing or decreasing).
+- **Seasonality**: $S_t$, regular patterns that repeat over a fixed period (e.g., daily, weekly, yearly).
+- **Residual**: $I_t$, random noise or irregular component.
+
+Additive models assume that the components add together to form the time series:
+$$ Y_t = T_t + S_t + I_t $$
+
+Multiplicative models assume that the components multiply together to form the time series:
+$$ Y_t = T_t \times S_t \times I_t $$
+
+:::{.callout-note}
+Sometimes, also a fourth component, **Cyclic** ($C_t$), is considered, which represents long-term oscillations that are not of fixed period.
+:::
+
+## Examples
+
+{{< embed /2_act2/2_2_timeseries_decomposition_example.ipynb echo=true >}}
