@@ -2,7 +2,7 @@
 
 In this module we will explore _Industrial Data Science_, a term that is not widely used, defined or standardized (yet).
 
-Generally, it refers to the application of data science techniques within industrial and business domains.
+Generally, it refers to the application of Data Science techniques within industrial and business domains.
 This includes optimizing processes, predictive maintenance, quality control, supply chain management and automation by leveraging large volumes of sensor and process data.
 
 The term _Industrial Artificial Intelligence_ (Industrial AI) is more common in literature and appears to be used interchangeably with the fuzzy definition of Industrial Data Science.
