@@ -1,50 +1,60 @@
 # Self study - Session 1 {#sec-act2-selfstudy1}
-This class contains self-study sessions to reinforce your understanding of the material and explore other aspects of the topic in a self-guided manner.
-This session introduces [JupyterLab and Jupyter Notebook](https://docs.jupyter.org/en/latest/).
 
-Jupyter Notebook is an open-source web application that allows users to create and share documents containing live code (supports over 40 programming languages including `Python`, `Julia`, `R`), visualizations, and narrative text.
-JupyterLab is a web-based _interactive development environment_ (IDE) for Jupyter Notebook.
-The Jupyter ecosystem is widely used for interactive exploration and reporting purposes.
+In this session, we will explore the dataset in @{sec-act2} further.
+
+When comparing our findings in @{sec-act2-1-int-pp} and @{sec-act2-1-int-dt} with the failure description in @{sec-act2-1-reveal}, we can see that we did a pretty good job in identifying failure reasons.
+However, we could have done better for `OSF`.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Introducing JupyterLab
+::::{#exr-basics-mv-space}
+## Overstrain failure
 ::::
-Study the [JupyterLab documentation](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html) to learn about its features and capabilities and experiment with them using your JupyterLab environment.
+According to @{sec-act2-1-reveal}, the failure type _overstrain failure_ (`OSF`) occurs when the machine is subjected to excessive torque when a worn-out tool is used.
+Also the product variant is associated to the failure rate: When the product of torque and tool wear exceeds 11.000 minNm for the L product variant (12.000 for M, 13.000 for H), the process fails due to overstrain.
 
-Use [`uv`](https://docs.astral.sh/uv/) to create a new environment and install [`jupyterlab`](https://jupyter.org/install).
-
-After this exercise you should be able to answer the following questions:
-
-1. What is a Jupyter Notebook?
-1. What is JupyterLab?
-1. What are the different types of cells in a Jupyter notebook?
-
-And you should be able to do the following:
-
-1. Create notebooks.
-1. Export notebooks to other file formats (like e.g. HTML and PDF).
-1. Create and run code cells
-1. Create and format markdown cells
-1. Use raw cells for unformatted text
+Are you able to verify this relationship by visualizations?
 :::
 
-::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Using JupyterLab
-::::
-- Create a notebook from the code provided in @{sec-act2}.
-  Be sure to divide the code into separate cells for each logical step.
-- Use markdown cells to explain and structure the code.
-- Ideally, each code cell is self-contained and focuses on a single task or concept.
-E.g. it is good practice to define and alter variables only within the same cell; especially multiple calls of a cell should not cause different results.
-:::
+Also, it seems that the description of `TWF` in @{sec-act2-1-reveal} is contradicting our observations.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Interactive plotting
+::::{#exr-basics-mv-space}
+## Tool wear failure
 ::::
-`seaborn` plots are not interactive by default.
-The package `ipympl` enables zooming and panning of plots in Jupyter notebooks.
-Start with the notebook from the previous exercise and activate the `ipympl` backend by following the [documentation](https://matplotlib.org/ipympl/).
+Identify where the description of `TWF` in @{sec-act2-1-reveal} does not align with your findings.
+:::
+
+So far we have used `seaborn` to visualize the data.
+`seaborn` is based on `matplotlib` and provides a high-level interface for drawing statistical graphics.
+While `matplotlib` supports interactive figures that can zoom, pan and update (see [here](https://mybinder.org/v2/gh/matplotlib/mpl-brochure-binder/main?labpath=MatplotlibExample.ipynb)), for richer interactive visualizations we can use `plotly`.
+`plotly` is open-source and built on top of the Plotly JavaScript library `plotly.js`.
+It enables users to create interactive web-based visualizations that can be displayed in `Jupyter` notebooks as well as in standalone HTML files.
+Especially for explorative data analysis, `plotly` offers a more user-friendly and flexible approach to create and explore complex visualizations.
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+::::{#exr-basics-mv-space}
+## Introducing Plotly
+::::
+Consult the [Plotly documentation](https://plotly.com/python/) for more information on how to use the library.
+Start with the notebook from @{sec-act1-selfstudy1}, recreate the visualizations from @{sec-act2} using `plotly`, and explore the data interactively.
+:::
+
+In @{sec-act2-1-machinefailures}, we used pair plots, boxplots, and decision trees to investigate the relationship between different features and the machine failure types.
+Another approach could be to use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/).
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+::::{#exr-basics-mv-space}
+## Parallel coordinates plots
+::::
+Use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/) to visualize the relationships between multiple features and the machine failure types:
+
+1. Display every available continuous variable along with one selected failure type.
+2. Also add `Type` as a categorical variable to the plot.
+3. Make the failure type categorical.
+4. Color the lines according to the selected failure type.
+5. Allow for choosing the failure type interactively using a Dropdown widget (see [Jupyter widgets](https://ipywidgets.readthedocs.io/en/stable/)) with the available failure types.
+6. The parallel coordinate plot allows for dragging columns (just click and drag the title of a column) and reordering them.
+   It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points.
+   Use these two features to get insights into the relationships between different features and the selected failure type.
+   Can you identify the patterns which we have exploited in our previous analyses?
 :::
