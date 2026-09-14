@@ -40,7 +40,6 @@ book:
         - 2_act2/1_self_study_session1.qmd
         - 2_act2/2_self_study_session2.qmd
         - 2_act2/3_self_study_session3.qmd
-        - 2_act2/4_self_study_session4.qmd
     - part: "Act 3: Real Machine Data"
       chapters: 
         - 3_act3/0_challenges.qmd
