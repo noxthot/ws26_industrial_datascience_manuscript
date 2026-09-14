@@ -8,7 +8,7 @@ Here is a summary of the variables present in the dataset:
 
 | Variable Name       | Role     | Type        | Units | Description                                                                                                            | Target |
 |---------------------|----------|-------------|:-----:|------------------------------------------------------------------------------------------------------------------------|:------:|
-| UID                 | ID       | Integer     |       | Unique identifier                                                                                                      |        |
+| UDI                 | ID       | Integer     |       | Unique identifier                                                                                                      |        |
 | Product ID          | ID       | Categorical |       | Consists of Type and a variant-specific serial number                                                                  |        |
 | Type                | Feature  | Categorical |       | Product quality variant given by letter L (low), M (medium), or H (high) variants                                      |        |
 | Air temperature     | Feature  | Continuous  | K     |                                                                                                                        |        |
