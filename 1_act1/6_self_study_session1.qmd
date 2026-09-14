@@ -2,18 +2,9 @@
 
 This class contains self-study sessions to reinforce your understanding of the material and explore other aspects of the topic in a self-guided manner.
 
-In this specific session, we will get hands-on with some essential tools for reporting: `uv`, `JupyterLab`, `seaborn`/`plotly`, and `Quarto`.
+In this specific session, we will get hands-on with some essential tools for reporting: `uv`, `JupyterLab`, `seaborn`, and `Quarto`.
 
 Each exercise focuses on a single topic.
-
-The data set we will rely on in this session is a synthetic time series that simulates weekly production data of a manufacturing plant over 20 years.
-
-First, download the data set from [here](../data/assets/act1/selfstudysessions/sss1_production_data.csv).
-
-The data has three columns: `Date`, `pieces` and `pieces_gaps`. The column `pieces` contains the full data set without gaps, while `pieces_gaps` contains the same data set with several missing values (NaNs).
-The period covered by the data set is from 2005-01-01 to 2024-12-31 in weekly frequency.
-
-## Exercise A: `uv` — Environment Management
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
@@ -25,17 +16,21 @@ It installs and manages Python versions and packages in isolated environments (`
 
 
 1. Install `uv` following the [official instructions](https://docs.astral.sh/uv/getting-started/installation/).
-2. In the project directory, initialize a new project and create a virtual environment using `uv`.
-3. Install the following packages into the environment: `numpy`, `matplotlib`.
-4. Verify the environment works by creating a simple Python script that creates a simple plot of $f(t) = (16 (\sin(t))^3, 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t))$ using the `numpy` and `matplotlib` package. (Hint: Use `numpy.linspace` to create a range of values for `t`, the function produces the $x$ and $y$ coordinates of the plot.)
+1. In the project directory, initialize a new project and create a virtual environment using `uv`.
+1. Install the following packages into the environment: `numpy`, `matplotlib`.
+1. Verify the environment works by creating a simple Python script that creates a simple plot of $f(t) = (16 (\sin(t))^3, 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t))$ using the `numpy` and `matplotlib` package. (Hint: Use `numpy.linspace` to create a range of values for `t`, the function produces the $x$ and $y$ coordinates of the plot.)
 
 After this exercise you should be able to
 1. Create and manage isolated Python environments using `uv`.
-2. Install and manage Python packages within these environments.
-3. Additionally be able to explain what `uv` does and why it is useful.
+1. Install and manage Python packages within these environments.
+1. Additionally be able to explain what `uv` does and why it is useful.
 :::
 
 Now that you have a working environment, you can use it to install additional packages as needed for the exercises below.
+
+The data set we will rely on for this session is the [AI4I predictive maintenance dataset](https://doi.org/10.24432/C5HS5C), which is a synthetic dataset that tries to mirror real predictive maintenance data encountered in industry.
+
+As we are only using the data to explore a couple of libraries and tools, we are not going into the details of the dataset itself in this session.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
@@ -45,12 +40,12 @@ Now that you have a working environment, you can use it to install additional pa
 [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html) is a web-based interactive development environment (IDE) for Jupyter Notebooks. It provides a flexible interface for interactive data exploration and reporting.
 
 1. Launch JupyterLab from your `uv` environment by adding it to your environment first or alternatively, using VS Code, you can also use the Jupyter extension instead.
-2. Create a new notebook called `production_explore.ipynb`.
-3. Load the production data set (the CSV with `Date`, `pieces`, `pieces_gaps`) into a `pandas` DataFrame using a code cell.
-4. Display the first 10 rows and print basic statistics.
-5. Create a line plot of `pieces` over time using `matplotlib`.
-6. Experiment with different cell types: code, markdown, and raw cells.
-7. Export the notebook as HTML and PDF.
+1. Create a new notebook called `ai4i_explore.ipynb`.
+1. Load the AI4I dataset into a `pandas` DataFrame using a code cell. Keep only the columns `UDI` (unique identifier which can be used as $x-$axis for plotting), `Torque`, `Rotational speed` and `Air temperature`.
+1. Display the first 10 rows and print basic statistics.
+1. Create a line plot of `Torque` over `UDI` using `matplotlib`.
+1. Experiment with different cell types: code, markdown, and raw cells.
+1. Export the notebook as HTML and PDF.
 
 After this exercise you should be able to:
 
@@ -62,37 +57,48 @@ After this exercise you should be able to:
 
 
 `matplotlib` is a widely used Python library for creating static visualizations.
-`seaborn` is a statistical data visualization library built on top of `matplotlib`, providing a high-level interface for drawing attractive and informative statistical graphics and 
-`plotly` is an interactive data visualization library that allows you to create dynamic, web-based visualizations.
+Now we will introduce `seaborn`, which is a statistical data visualization library built on top of `matplotlib`, providing a high-level interface for drawing attractive and informative statistical graphics.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 :::{#exr-basics-mv-space}
-## Visualizing the production data
+## Visualizing the AI4I data with seaborn
 :::
 
-In this exercise you will visualize the production data using both `seaborn` (static, statistical plots) and `plotly` (interactive plots).
+In this exercise you will explore the AI4I dataset (columns `UDI`, `Torque`, `Rotational speed` and `Air temperature`) using `seaborn`.
 
-**Using seaborn:**
-1. Load the production data set and use `seaborn` to create:
-   - A line plot of `pieces` over time.
-   - A pair plot of the numeric columns.
-   - A box plot of `pieces` by year (extract the year from the `Date` column).
-2. Observe patterns and note any anomalies visually.
+### Basic plots
+1. Load the AI4I dataset (keeping only `Torque`, `Rotational speed` and `Air temperature`).
+1. Create a **line plot** of `Torque` over `UDI`.
+1. Create a **histogram** of each column to observe the distribution of values.
+1. Create **box plots** of each column to identify outliers and understand the spread of the data.
+1. Create **violin plots** of each column and discuss how they differ from box plots.
 
-**Using plotly:**
-3. Recreate the line plot of `pieces` using `plotly` as an interactive figure.
-4. Use the provided `plot_production_data` function to visualize both `pieces` and `pieces_gaps` together.
+### Relationships between variables
+1. Create a **scatter plot** of `Torque` vs `Rotational speed` using `sns.scatterplot`. Add `Air temperature` as the `hue` parameter to see how the third variable influences the relationship.
+1. Create a **pair plot** (`sns.pairplot`) of all three numeric columns to observe pairwise relationships and distributions on the diagonal.
+1. Create a **correlation heatmap** using `sns.heatmap` on the correlation matrix of the three columns. Discuss which variables are most strongly correlated.
+
+### Advanced plots
+1. Create a **joint plot** of `Torque` vs `Air temperature` with a regression line overlay.
+1. Create a **strip plot** or **swarm plot** of `Torque` colored by a binned version of `Rotational speed` (e.g., low/medium/high using `pd.cut`).
+1. Create a **count plot** showing the distribution of data points across bins of `Torque` (e.g., binned into 10 intervals).
+
+### Observations
+1. Based on all the plots above, answer the following:
+   - Are there any obvious outliers in the data?
+   - Which two variables seem most related?
+   - Are there any non-linear patterns visible?
+   - How are the distributions shaped?
 
 After this exercise you should be able to:
 
-1. Create basic static statistical plots with `seaborn`.
-2. Create basic interactive plots with `plotly`.
-3. Explore the interactive features of `plotly`: zoom in on specific time periods, hover over data points to see exact values.
-4. Compare and discuss the strengths and weaknesses of each library.
+1. Create a wide range of static statistical plots with `seaborn`.
+1. Use parameters to add additional dimensions to your plots.
+1. Compare and discuss different plot types for different analytical questions.
+1. Draw meaningful observations from statistical visualizations.
 :::
 
-
-Congratulations, you are now able to create and manage isolated Python environments, work with JupyterLab, and visualize data using both static and interactive plotting libraries.
+Congratulations, you are now able to create and manage isolated Python environments, work with JupyterLab, and visualize data using `seaborn`.
 The next step is to integrate your code and visualizations into a comprehensive report which you can hand over to stakeholders using Quarto.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
@@ -105,13 +111,16 @@ It allows you to create dynamic documents, reports, and presentations from your 
 The material of this course itself is rendered using Quarto.
 
 1. Create a Quarto Markdown (`.qmd`) file in your project.
-2. Embed the code and plots from the previous two exercises into the Quarto document.
-3. Use code chunk options to control output (e.g., `echo=FALSE` to hide code, `fig-width` to set figure dimensions).
-4. Render the document as HTML and PDF.
-5. Explore collapsing code chunks in your document (see [Quarto docs](https://quarto.org/docs/jupyter/authoring.html#code-chunk-options)).
+1. Embed the code and plots from the previous exercise into the Quarto document.
+1. Use code chunk options to control output (e.g., `echo=FALSE` to hide code, `fig-width` to set figure dimensions).
+1. Render the document as HTML and PDF.
+1. Explore collapsing code chunks in your document (see [Quarto docs](https://quarto.org/docs/jupyter/authoring.html#code-chunk-options)).
+1. Quarto also allows to render Jupyter notebook files (`.ipynb`) directly to HTML and PDF (see [Quarto docs](https://quarto.org/docs/tools/jupyter-lab.html)):
+   - Prepare the notebook you created in the previous exercise for rendering with Quarto by adding additional information that makes a nice presentation.
+   - Render the notebook you created as HTML and PDF using Quarto.
 
 After this exercise you should be able to:
 
 1. Create a Quarto document that integrates code, output, and narrative.
-2. Render Quarto documents to HTML and PDF formats.
+1. Render Quarto documents to HTML and PDF formats.
 :::
