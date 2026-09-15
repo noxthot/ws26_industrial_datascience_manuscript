@@ -2355,6 +2355,29 @@ wheels = [
 ]
 
 [[package]]
+name = "types-protobuf"
+version = "7.35.1.20260906"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e1/6c/e3e5b3e10bc328126a39637c138f9ebfd734bf14342b9f3540039b4ab995/types_protobuf-7.35.1.20260906.tar.gz", hash = "sha256:efd1a3862d4c967dad5512ef8d56b1530ac84f182c41735b94004756518c4998", size = 69895, upload-time = "2026-09-06T06:35:28.308Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/44/4e/f63e826c68f77ef875506d72f225918800346545ee99847bc28f3394f18d/types_protobuf-7.35.1.20260906-py3-none-any.whl", hash = "sha256:5155e48569e0dabff303fdf578db96cd31ea9a4a63b18018a4ceac6b0ae17462", size = 86419, upload-time = "2026-09-06T06:35:27.247Z" },
+]
+
+[[package]]
+name = "types-tensorflow"
+version = "2.18.0.20260827"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "requests" },
+    { name = "types-protobuf" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/48/13/73880d3cc2051f33552423032832da0933ee21d818c5aecb2bcef624c488/types_tensorflow-2.18.0.20260827.tar.gz", hash = "sha256:c520bca32249a59ed0259987a95bb6ab4cb9a0d492b1a9604437630edc433398", size = 260668, upload-time = "2026-08-27T12:07:29.206Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/03/c6/21ae388b27968b7b8adef052b82a9bcbf6ca44c417eaa6991edb45dde1c9/types_tensorflow-2.18.0.20260827-py3-none-any.whl", hash = "sha256:3cdd6b57feafca966f4c839edfe29602772c8301c4aa493c379eef38e3b7f0da", size = 330854, upload-time = "2026-08-27T12:07:28.166Z" },
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2518,6 +2541,7 @@ dev = [
     { name = "tensorflow" },
     { name = "torch" },
     { name = "tslearn" },
+    { name = "types-tensorflow" },
     { name = "yfinance" },
 ]
 
@@ -2538,6 +2562,7 @@ dev = [
     { name = "tensorflow", specifier = ">=2.21.0" },
     { name = "torch", specifier = ">=2.14.0" },
     { name = "tslearn", specifier = ">=0.9.0" },
+    { name = "types-tensorflow", specifier = ">=2.18.0.20260827" },
     { name = "yfinance", specifier = ">=1.7.0" },
 ]
 
