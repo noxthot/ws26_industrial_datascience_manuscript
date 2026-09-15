@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Predictive Maintenance via Exploratory Data Analysis – Industrial Data Science</title>
+<title>13&nbsp; Predictive Maintenance via Exploratory Data Analysis – Industrial Data Science</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -59,7 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -86,22 +91,21 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../2_act2/1_self_study_session1.html" rel="next">
-<link href="../1_act1/7_self_study_session2.html" rel="prev">
+<link href="../1_act1/8_self_study_session3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e80614c04c16c891bf141dbe51f02ead.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9fdc78584ba78a378fa1fe9aba7b6c75.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -140,7 +144,7 @@ div.csl-indent {
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -342,7 +346,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -359,7 +363,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Industrial Data Science</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -468,6 +472,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_act1/8_self_study_session3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -482,31 +492,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/0_0_predictive_maintenance.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/1_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_act2/4_self_study_session4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -621,17 +625,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#notebook" id="toc-notebook" class="nav-link active" data-scroll-target="#notebook"><span class="header-section-number">12.1</span> Notebook</a></li>
+  <li><a href="#notebook" id="toc-notebook" class="nav-link active" data-scroll-target="#notebook"><span class="header-section-number">13.1</span> Notebook</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/edit/main/2_act2/0_0_predictive_maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/0_0_predictive_maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-act2" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></h1>
+<h1 class="title"><span id="sec-act2" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></h1>
 </div>
 
 
@@ -649,7 +653,7 @@ window.Quarto = {
 
 
 <p>In this section, we will explore the concept of predictive maintenance using a synthetic dataset that reflects real predictive maintenance data encountered in industry.</p>
-<p>You can download the dataset <span class="citation" data-cites="ai4i2020"><span>“<span>AI4I 2020 Predictive Maintenance Dataset</span>”</span> (<a href="../5_references.html#ref-ai4i2020" role="doc-biblioref">2020</a>)</span> at <a href="https://doi.org/10.24432/C5HS5C">this link</a>.</p>
+<p>You can download the dataset <span class="citation" data-cites="ai4i2020"><em><span>AI4I 2020 Predictive Maintenance Dataset</span></em> (<a href="../5_references.html#ref-ai4i2020" role="doc-biblioref">2020</a>)</span> at <a href="https://doi.org/10.24432/C5HS5C">this link</a>.</p>
 <p>Here is a summary of the variables present in the dataset:</p>
 <table class="table-striped table-hover caption-top table">
 <colgroup>
@@ -672,7 +676,7 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>UID</td>
+<td>UDI</td>
 <td>ID</td>
 <td>Integer</td>
 <td style="text-align: center;"></td>
@@ -812,11 +816,11 @@ Note
 <p>This is a warmup task with a polished, synthetic dataset and luckily we are provided with a description of the nature of the different failures.</p>
 </div>
 </div>
-<section id="notebook" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="notebook"><span class="header-section-number">12.1</span> Notebook</h2>
+<section id="notebook" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="notebook"><span class="header-section-number">13.1</span> Notebook</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/ws26_industrial_datascience_manuscript/ws26_industrial_datascience_manuscript/2_act2/0_1_ai4i.ipynb" data-notebook-title="Loading packages" data-notebook-cellid="ed0f92a3">
-<section id="loading-packages" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="loading-packages"><span class="header-section-number">12.1.1</span> Loading packages</h3>
+<section id="loading-packages" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="loading-packages"><span class="header-section-number">13.1.1</span> Loading packages</h3>
 <div id="ef3b093e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings  <span class="co"># used to ignore warnings</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -826,22 +830,27 @@ Note
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns  <span class="co"># used for plotting</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.tree <span class="im">as</span> skt  <span class="co"># used for decision tree modeling</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ignore"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># ignore warnings for cleaner output (seeing warnings is important, but for sake of a clean manuscript, they are removed here)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)  <span class="co"># for reproducibility</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ignore"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># ignore warnings for cleaner output (seeing warnings is important, but for sake of a clean manuscript, they are removed here)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="loading-the-dataset" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="loading-the-dataset"><span class="header-section-number">12.1.2</span> Loading the dataset</h3>
+<section id="loading-the-dataset" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="loading-the-dataset"><span class="header-section-number">13.1.2</span> Loading the dataset</h3>
 <p>The dataset is available online in the form of a zipped <code>csv</code> file.</p>
-<div id="20e5ab43" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://archive.ics.uci.edu/static/public/601/ai4i+2020+predictive+maintenance+dataset.zip"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="20e5ab43" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://archive.ics.uci.edu/static/public/601/ai4i+2020+predictive+maintenance+dataset.zip"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="quick-check-data-integrity" class="level3" data-number="12.1.3">
-<h3 data-number="12.1.3" class="anchored" data-anchor-id="quick-check-data-integrity"><span class="header-section-number">12.1.3</span> Quick check data integrity</h3>
+<section id="quick-check-data-integrity" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="quick-check-data-integrity"><span class="header-section-number">13.1.3</span> Quick check data integrity</h3>
 <p>It is always good practice to check the integrity of the dataset before performing any analysis. This includes checking for missing values, duplicate entries, ensuring that the data types are appropriate for each feature, and looking at simple statistics.</p>
-<div id="ff2affe1" class="cell" data-execution_count="3">
+<div id="ff2affe1" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -1071,7 +1080,7 @@ Note
 <li>The target variables are binary indicators of failure types, represented as integers (<span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>).</li>
 <li>The dataset contains 10.000 rows and 14 columns.</li>
 </ul>
-<div id="74e29194" class="cell" data-execution_count="4">
+<div id="74e29194" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>UDI                        0
@@ -1091,14 +1100,14 @@ RNF                        0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="6713f0e9" class="cell" data-execution_count="5">
+<div id="6713f0e9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.duplicated().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>np.int64(0)</code></pre>
 </div>
 </div>
 <p><code>isna</code> detects missing values in the dataframe and <code>duplicated</code> checks for duplicate entries. The dataset appears to be clean, with no missing values or duplicates detected.</p>
-<div id="6b7dbc40" class="cell" data-execution_count="6">
+<div id="6b7dbc40" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.describe().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -1259,7 +1268,7 @@ dtype: int64</code></pre>
 </div>
 <p><code>describe</code> provides a summary of the numerical features in the dataset, including count, mean, standard deviation, minimum, maximum, and quartiles.</p>
 <p>There are no obvious outliers or anomalies in the data based on this summary.</p>
-<div id="377c1633" class="cell" data-execution_count="7">
+<div id="377c1633" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>UDI                          int64
@@ -1281,7 +1290,7 @@ dtype: object</code></pre>
 </div>
 <p><code>dtypes</code> provides the data types of each feature in the dataset.</p>
 <p><code>object</code> types are typically storing <code>text data</code> in <code>pandas 2.x</code>. Here are no additional surprises, as we already noticed the oddities previously.</p>
-<div id="c14c59b2" class="cell" data-execution_count="8">
+<div id="c14c59b2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.nunique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>UDI                        10000
@@ -1304,7 +1313,7 @@ dtype: int64</code></pre>
 <p><code>nunique</code> counts the number of unique values in each feature.</p>
 <p>We can clearly see that <code>UDI</code> is a unique identifier indeed, as it has a count equal to the number of rows in the dataset. Obviously <code>Product ID</code> is another unique identifier, which most likely does not add anything useful for the analysis. We also observe that <code>Type</code> indeed only contains <code>L</code>, <code>M</code>, and <code>H</code>. And last, we observe that all the error types are indeed binary (as expected).</p>
 <p>For digging deeper, we now define two global lists for accessing continuous and error variables more easily throughout the notebook.</p>
-<div id="cf16830a" class="cell" data-execution_count="9">
+<div id="cf16830a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>CONTINUOUS_VARS <span class="op">=</span> [</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Air temperature [K]"</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Process temperature [K]"</span>,</span>
@@ -1314,7 +1323,7 @@ dtype: int64</code></pre>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ERROR_VARS <span class="op">=</span> [<span class="st">"Machine failure"</span>, <span class="st">"TWF"</span>, <span class="st">"HDF"</span>, <span class="st">"PWF"</span>, <span class="st">"OSF"</span>, <span class="st">"RNF"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="fc314977" class="cell" data-execution_count="10">
+<div id="fc314977" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df[ERROR_VARS].<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>Machine failure    339
@@ -1329,10 +1338,10 @@ dtype: int64</code></pre>
 <p>Out of 10.000 rows, we have 339 rows that correspond to machine failures. This corresponds to 3.39% of the dataset and is a clear indication of class imbalance.</p>
 <p>Luckily we also have access to information of specific error types, which makes it easier to explore.</p>
 </section>
-<section id="exploring-continuous-variables-by-simple-plots" class="level3" data-number="12.1.4">
-<h3 data-number="12.1.4" class="anchored" data-anchor-id="exploring-continuous-variables-by-simple-plots"><span class="header-section-number">12.1.4</span> Exploring continuous variables by simple plots</h3>
+<section id="exploring-continuous-variables-by-simple-plots" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="exploring-continuous-variables-by-simple-plots"><span class="header-section-number">13.1.4</span> Exploring continuous variables by simple plots</h3>
 <p>Here, we visualize the continuous variables (one by one) against the <em>Unique Device Identifier</em> (UDI) to get an idea of their temporal behavior.</p>
-<div id="ef53b66c" class="cell" data-execution_count="11">
+<div id="ef53b66c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">15</span>))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(CONTINUOUS_VARS, <span class="dv">1</span>):</span>
@@ -1348,7 +1357,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Remember that we are working with a dataset that contains three process types? Let us explore, whether the distributions of the continuous variables differ across these process types.</p>
-<div id="78767f6d" class="cell" data-execution_count="12">
+<div id="78767f6d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">15</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(CONTINUOUS_VARS, <span class="dv">1</span>):</span>
@@ -1365,7 +1374,7 @@ dtype: int64</code></pre>
 </div>
 <p>Apparently, there are only very little differences between the three process types.</p>
 <p>Last, we will check for correlations between the variables.</p>
-<div id="f90574e8" class="cell" data-execution_count="13">
+<div id="f90574e8" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> df[CONTINUOUS_VARS].corr()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation_matrix, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation Matrix"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1384,7 +1393,7 @@ dtype: int64</code></pre>
 </ul>
 <p><code>seaborn</code> provides a convenient way to visualize important characteristics of the dataset using the <code>pairplot</code> function. The diagonal subplots show the distribution of each variable, while the off-diagonal subplots show the relationships between variables.</p>
 <p>We included the <code>UDI</code> to have a temporal reference, allowing us to observe how the variables change over time (compare to the previous time series plots). We can also clearly see the correlating variables in this pairplots.</p>
-<div id="a79db5eb" class="cell" data-execution_count="14">
+<div id="a79db5eb" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(df, <span class="bu">vars</span><span class="op">=</span>[<span class="st">"UDI"</span>] <span class="op">+</span> CONTINUOUS_VARS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1395,23 +1404,23 @@ dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="feature-engineering" class="level3" data-number="12.1.5">
-<h3 data-number="12.1.5" class="anchored" data-anchor-id="feature-engineering"><span class="header-section-number">12.1.5</span> Feature Engineering</h3>
+<section id="feature-engineering" class="level3" data-number="13.1.5">
+<h3 data-number="13.1.5" class="anchored" data-anchor-id="feature-engineering"><span class="header-section-number">13.1.5</span> Feature Engineering</h3>
 <p>Sometimes, it is easy to create new, meaningful features from the existing ones. Often, process engineers have a deep understanding of the domain and can identify potential new features that may improve model performance. So talking is key!</p>
 <p>We will engineer two new features:</p>
 <ul>
 <li><strong>Temperature difference</strong> between process and ambient temperature.</li>
 <li><strong>Power</strong> is calculated as <code>Torque * Rotational Speed * 2 * pi</code>, where torque comes in Nm and rotational speed should be in revolutions per second.</li>
 </ul>
-<div id="532d9b18" class="cell" data-execution_count="15">
+<div id="532d9b18" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df.loc[:, <span class="st">"temp_diff"</span>] <span class="op">=</span> df[<span class="st">"Process temperature [K]"</span>] <span class="op">-</span> df[<span class="st">"Air temperature [K]"</span>]</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df.loc[:, <span class="st">"power"</span>] <span class="op">=</span> df[<span class="st">"Torque [Nm]"</span>] <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> (df[<span class="st">"Rotational speed [rpm]"</span>] <span class="op">/</span> <span class="dv">60</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="sec-act2-1-machinefailures" class="level3" data-number="12.1.6">
-<h3 data-number="12.1.6" class="anchored" data-anchor-id="sec-act2-1-machinefailures"><span class="header-section-number">12.1.6</span> Investigating machine failures</h3>
+<section id="sec-act2-1-machinefailures" class="level3" data-number="13.1.6">
+<h3 data-number="13.1.6" class="anchored" data-anchor-id="sec-act2-1-machinefailures"><span class="header-section-number">13.1.6</span> Investigating machine failures</h3>
 <p>It is easily possible to add another dimension to the visualizations. For example, let us compare the distribution of the continuous variables by machine failures.</p>
-<div id="90f966e3" class="cell" data-execution_count="16">
+<div id="90f966e3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>CONTINUOUS_VARS_ENG <span class="op">=</span> CONTINUOUS_VARS <span class="op">+</span> [<span class="st">"power"</span>, <span class="st">"temp_diff"</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">15</span>))</span>
@@ -1436,9 +1445,9 @@ dtype: int64</code></pre>
 <li>Smaller temperature difference between machine and ambient temperature increases the likelihood of failure.</li>
 </ul>
 <p>Luckily, we have more detailed failure information available. Next, we will look at every failure type separately and plot pairplots for each. Check the title of each plot and try to find patterns. Sorry for the plot overload and discussion follows below.</p>
-<section id="sec-act2-1-int-pp" class="level4" data-number="12.1.6.1">
-<h4 data-number="12.1.6.1" class="anchored" data-anchor-id="sec-act2-1-int-pp"><span class="header-section-number">12.1.6.1</span> Pairplots</h4>
-<div id="6966965c" class="cell" data-execution_count="17">
+<section id="sec-act2-1-int-pp" class="level4" data-number="13.1.6.1">
+<h4 data-number="13.1.6.1" class="anchored" data-anchor-id="sec-act2-1-int-pp"><span class="header-section-number">13.1.6.1</span> Pairplots</h4>
+<div id="6966965c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> ERROR_VARS:</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    pp <span class="op">=</span> sns.pairplot(df.sort_values(col), <span class="bu">vars</span><span class="op">=</span>[<span class="st">"UDI"</span>] <span class="op">+</span> CONTINUOUS_VARS_ENG, hue<span class="op">=</span>col)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    pp.figure.suptitle(<span class="ss">f"Pair plot stratified by error type '</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">'"</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
@@ -1496,44 +1505,10 @@ dtype: int64</code></pre>
 </ul>
 <p>Alternatively, we could also use a simple explainable AI model to identify the key factors contributing to each failure type. Let us explore this approach with decision trees. Check the titles of the plots and interpret the results.</p>
 </section>
-<section id="sec-act2-1-int-dt" class="level4" data-number="12.1.6.2">
-<h4 data-number="12.1.6.2" class="anchored" data-anchor-id="sec-act2-1-int-dt"><span class="header-section-number">12.1.6.2</span> Decision Trees</h4>
-<div id="0f7cac82" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_decision_tree(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    target_col,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    feature_cols<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> feature_cols <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        feature_cols <span class="op">=</span> [</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Air temperature [K]"</span>,</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Process temperature [K]"</span>,</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Rotational speed [rpm]"</span>,</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Torque [Nm]"</span>,</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Tool wear [min]"</span>,</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"temp_diff"</span>,</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"power"</span>,</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> df[feature_cols]</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> df[target_col]</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    tree <span class="op">=</span> skt.DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, min_samples_split<span class="op">=</span><span class="dv">5</span>, min_samples_leaf<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    tree.fit(X, y)</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">20</span>))</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    skt.plot_tree(</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        tree,</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>        feature_names<span class="op">=</span>feature_cols,</span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>        class_names<span class="op">=</span>[<span class="st">"OK"</span>, <span class="st">"ERR"</span>],</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>        filled<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>        rounded<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"Decision Tree for </span><span class="sc">{</span>target_col<span class="sc">}</span><span class="ss"> -- Samples with error: </span><span class="sc">{</span>y<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> ERROR_VARS:</span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    plot_decision_tree(df, col)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="sec-act2-1-int-dt" class="level4" data-number="13.1.6.2">
+<h4 data-number="13.1.6.2" class="anchored" data-anchor-id="sec-act2-1-int-dt"><span class="header-section-number">13.1.6.2</span> Decision Trees</h4>
+<div id="0f7cac82" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_decision_tree(    df: pd.DataFrame,    target_col: <span class="bu">str</span>,    feature_cols: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="va">None</span> <span class="op">=</span> <span class="va">None</span>,) <span class="op">-&gt;</span> <span class="va">None</span>:    <span class="st">"""Train and visualize a decision tree classifier.    Args:        df: DataFrame with features and target.        target_col: Name of the target column.        feature_cols: List of feature columns to use (default: all available).    """</span>    <span class="cf">if</span> feature_cols <span class="kw">is</span> <span class="va">None</span>:        feature_cols <span class="op">=</span> [            <span class="st">"Air temperature [K]"</span>,            <span class="st">"Process temperature [K]"</span>,            <span class="st">"Rotational speed [rpm]"</span>,            <span class="st">"Torque [Nm]"</span>,            <span class="st">"Tool wear [min]"</span>,            <span class="st">"temp_diff"</span>,            <span class="st">"power"</span>,        ]    X <span class="op">=</span> df[feature_cols]    y <span class="op">=</span> df[target_col]    tree <span class="op">=</span> skt.DecisionTreeClassifier(        max_depth<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, min_samples_split<span class="op">=</span><span class="dv">5</span>, min_samples_leaf<span class="op">=</span><span class="dv">5</span>    )    tree.fit(X, y)    plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">20</span>))    skt.plot_tree(        tree,        feature_names<span class="op">=</span>feature_cols,        class_names<span class="op">=</span>[<span class="st">"OK"</span>, <span class="st">"ERR"</span>],        filled<span class="op">=</span><span class="va">True</span>,        rounded<span class="op">=</span><span class="va">True</span>,    )    plt.title(<span class="ss">f"Decision Tree for </span><span class="sc">{</span>target_col<span class="sc">}</span><span class="ss"> -- Samples with error: </span><span class="sc">{</span>y<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)    plt.show()<span class="cf">for</span> col <span class="kw">in</span> ERROR_VARS:    plot_decision_tree(df, col)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1588,8 +1563,8 @@ dtype: int64</code></pre>
 <p>Please note that the conclusions are quite similar to the ones we made on base of the pairplots.</p>
 </section>
 </section>
-<section id="sec-act2-1-reveal" class="level3" data-number="12.1.7">
-<h3 data-number="12.1.7" class="anchored" data-anchor-id="sec-act2-1-reveal"><span class="header-section-number">12.1.7</span> The great reveal</h3>
+<section id="sec-act2-1-reveal" class="level3" data-number="13.1.7">
+<h3 data-number="13.1.7" class="anchored" data-anchor-id="sec-act2-1-reveal"><span class="header-section-number">13.1.7</span> The great reveal</h3>
 <p>The documentation of the dataset also describes the error types as follows:</p>
 <ul>
 <li><p>Tool wear failure (<code>TWF</code>): The tool will be replaced of fail at a randomly selected tool wear time between 200 and 240 mins (120 times in our dataset). At this point in time, the tool is replaced 69 times, and fails 51 times (randomly assigned).</p></li>
@@ -1599,8 +1574,8 @@ dtype: int64</code></pre>
 <li><p>Random failures (<code>RNF</code>): Each process has a chance of 0.1 % to fail regardless of its process parameters. This is the case for only 5 datapoints, less than could be expected for 10,000 datapoints in our dataset.</p></li>
 </ul>
 </section>
-<section id="conclusion" class="level3" data-number="12.1.8">
-<h3 data-number="12.1.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">12.1.8</span> Conclusion</h3>
+<section id="conclusion" class="level3" data-number="13.1.8">
+<h3 data-number="13.1.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">13.1.8</span> Conclusion</h3>
 <p>Many roads lead to Rome. We successfully recovered most of the key factors for failure from the dataset, using clever visualizations and making use of an interpretable machine learning algorithm.</p>
 <p>These insights can help improving the reliability of the processes and reduce the likelihood of failures in the future:</p>
 <ul>
@@ -1613,9 +1588,9 @@ dtype: int64</code></pre>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-ai4i2020" class="csl-entry" role="listitem">
-<span>“<span>AI4I 2020 Predictive Maintenance Dataset</span>.”</span> 2020. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C5HS5C">https://doi.org/10.24432/C5HS5C</a>.
+<em><span>AI4I 2020 Predictive Maintenance Dataset</span></em>. 2020. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C5HS5C">https://doi.org/10.24432/C5HS5C</a>.
 </div>
 </div>
 </section>
@@ -2036,13 +2011,13 @@ dtype: int64</code></pre>
   </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../1_act1/7_self_study_session2.html" class="pagination-link" aria-label="Self study - Session 2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span>
+      <a href="../1_act1/8_self_study_session3.html" class="pagination-link" aria-label="Self study - Session 3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../2_act2/1_self_study_session1.html" class="pagination-link" aria-label="Self study - Session 1">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -2054,7 +2029,7 @@ dtype: int64</code></pre>
 </div>   
     <div class="nav-footer-center">
 <p>Gregor Ehrensperger</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/edit/main/2_act2/0_0_predictive_maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/0_0_predictive_maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Manuscript designed with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

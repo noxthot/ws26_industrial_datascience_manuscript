@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>11&nbsp; Self study - Session 2 – Industrial Data Science</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -65,23 +71,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../2_act2/0_0_predictive_maintenance.html" rel="next">
+<link href="../1_act1/8_self_study_session3.html" rel="next">
 <link href="../1_act1/6_self_study_session1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e80614c04c16c891bf141dbe51f02ead.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9fdc78584ba78a378fa1fe9aba7b6c75.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -116,35 +121,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -336,7 +312,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Industrial Data Science</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -445,6 +421,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_act1/8_self_study_session3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -459,31 +441,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/0_0_predictive_maintenance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/1_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_act2/4_self_study_session4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -619,51 +595,81 @@ window.Quarto = {
 </header>
 
 
-<p>In this session, we will revisit the chapters <a href="3_1_timeseries_clustering.html" class="quarto-xref"><span>Chapter 7</span></a>, <a href="4_1_timeseries_classification.html" class="quarto-xref"><span>Chapter 8</span></a>, and <a href="5_1_timeseries_regression.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
-<p>We have seen that the algorithms for all three tasks more or less can be categorized into the same categories:</p>
-<ul>
-<li>Based on distances or metrics: E.g. trees and forests</li>
-<li>Based on distributions, kernels: E.g. Gaussian Mixture Models, SVMs</li>
-<li>Based on subsequences, shapelets: E.g. bags of words, shapelet-based methods</li>
-<li>Based on deep learning: E.g. recurrent neural networks, or treating the time series as images using CNNs</li>
-<li>Based on random convolutions: E.g. <em>Random Convolutional Kernel Transform</em> (ROCKET)</li>
-<li>Based on ensembles of the above.</li>
-</ul>
-<p>We have implemented nearest neighbors (distance-based) for clustering, time series forests (distance-based) for classification, and convolutional neural networks for regression (deep learning-based).</p>
-<p>Let us have a look at one additional algorithm for each task.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can use <code>sktime</code>’s <code>load_UCR_UEA_dataset</code> function to load the data sets mentioned below, e.g.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.datasets <span class="im">import</span> load_UCR_UEA_dataset</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ds_name <span class="op">=</span> <span class="st">"UWaveGestureLibrary"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ret_type <span class="op">=</span> <span class="st">"numpy3d"</span></span>
+<p>In this session, we will revisit <a href="1_0_data_imputation.html" class="quarto-xref"><span>Chapter 5</span></a> and <a href="2_1_timeseries_decomposition.html" class="quarto-xref"><span>Chapter 6</span></a>.</p>
+<p>In <a href="1_0_data_imputation.html" class="quarto-xref"><span>Chapter 5</span></a>, we have explored different methods to handle missing data in time series and have seen that the choice of imputation method can significantly affect the results.</p>
+<p>The data set we will rely on in this session is the synthetic time series from the previous section which simulates weekly production data of a manufacturing plant over 20 years. Unfortunately, some data points are missing due to frequent outages in the data collection system and sometimes we observe huge outliers due to temporary errors in the counting process.</p>
+<p>Your task is to impute the missing values and handle the outliers appropriately to prepare the data for a 20 years jubilee management report.</p>
+<p>Again, you can download the data set from <a href="../data/assets/act1/selfstudysessions/sss1_production_data.csv">here</a>.</p>
+<p>Additionally, here are some useful helper functions:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> load_UCR_UEA_dataset(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span>ds_name,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    split<span class="op">=</span><span class="st">"train"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    return_type<span class="op">=</span>ret_type,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>X_test, y_test <span class="op">=</span> load_UCR_UEA_dataset(</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span>ds_name,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    split<span class="op">=</span><span class="st">"test"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    return_type<span class="op">=</span>ret_type,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># For classification, convert y to categorical</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> pd.Series(y_train).astype(<span class="st">"category"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> pd.Series(y_test).astype(<span class="st">"category"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_production_data(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    orig_data_column,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    gap_column,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    imp_column<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots production data with and without gaps using seaborn.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">      df (DataFrame): DataFrame containing the production data.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">      orig_data_column (str): Column name for the original data.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">      gap_column (str): Column name for the data with gaps.</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">      imp_column (str): Column name for the imputed data.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span> <span class="cf">if</span> imp_column <span class="cf">else</span> <span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Original data</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    sns.lineplot(x<span class="op">=</span>df.index, y<span class="op">=</span>df[orig_data_column], ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">"grey"</span>, label<span class="op">=</span><span class="st">"Original"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(<span class="st">"Original Data"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_ylabel(<span class="st">"pieces"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># With gaps</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    sns.lineplot(x<span class="op">=</span>df.index, y<span class="op">=</span>df[gap_column], ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>, label<span class="op">=</span><span class="st">"With Gaps"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(<span class="st">"Data with Gaps"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_ylabel(<span class="st">"pieces"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> imp_column <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        dff <span class="op">=</span> df[[gap_column, imp_column]].copy()</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        dff.loc[<span class="op">~</span>df[gap_column].isna(), imp_column] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        sns.lineplot(x<span class="op">=</span>dff.index, y<span class="op">=</span>dff[imp_column], ax<span class="op">=</span>axes[<span class="dv">2</span>], color<span class="op">=</span><span class="st">"blue"</span>, label<span class="op">=</span><span class="st">"Imputed"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">2</span>].set_title(<span class="st">"Imputed Data"</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">2</span>].set_ylabel(<span class="st">"pieces"</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seasonal_decompose_seaborn(decomposed_ts, title):</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots a decomposed time series using seaborn.</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">      decomposed_ts (DecomposeResult): Result of STL or seasonal_decompose.</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co">      title (str): Title for the plot.</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    sns.lineplot(x<span class="op">=</span>decomposed_ts.observed.index, y<span class="op">=</span>decomposed_ts.observed.values, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(<span class="st">"Observed"</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_ylabel(<span class="st">"pieces"</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    sns.lineplot(x<span class="op">=</span>decomposed_ts.trend.index, y<span class="op">=</span>decomposed_ts.trend.values, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(<span class="st">"Trend"</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_ylabel(<span class="st">"pieces"</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    sns.lineplot(x<span class="op">=</span>decomposed_ts.seasonal.index, y<span class="op">=</span>decomposed_ts.seasonal.values, ax<span class="op">=</span>axes[<span class="dv">2</span>])</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].set_title(<span class="st">"Seasonal"</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].set_ylabel(<span class="st">"pieces"</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    sns.lineplot(x<span class="op">=</span>decomposed_ts.resid.index, y<span class="op">=</span>decomposed_ts.resid.values, ax<span class="op">=</span>axes[<span class="dv">3</span>])</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">3</span>].set_title(<span class="st">"Residual"</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">3</span>].set_ylabel(<span class="st">"pieces"</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(title)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -671,19 +677,18 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 11.1 (Clustering with time series DBScan)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 11.1 (Load the data with gaps and get rid of outliers)</strong></span> &nbsp;</p>
 </div>
 <ul>
-<li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=GesturePebbleZ1"><code>GesturePebbleZ1</code></a> data set. Note that it is a variable-length time series dataset and you need to either use <code>ret_type="df-list"</code> or <code>ret_type="nested_univ"</code> to load it (using the example above).</li>
-<li>Bring the data into a suitable format and explore the data set visually (using plots).</li>
-<li>Use the Time Series <span class="math inline">\(k\)</span> means algorithm to cluster the data. Do you need to reshape the data for this algorithm?</li>
-<li>Now, try to use the time series DBScan algorithm for clustering. Do you need to reshape the data for this algorithm?</li>
-<li>How do the results compare?</li>
+<li>Download and load the dataset. It has three columns: <code>Date</code>, <code>pieces</code> and <code>pieces_gaps</code>. The column <code>pieces</code> contains the full data set without gaps, while <code>pieces_gaps</code> contains the same data set with several missing values (NaNs). The period covered by the data set is from 2005-01-01 to 2024-12-31 in weekly frequency.</li>
+<li>Visualize both time series (<code>pieces</code> and <code>pieces_gaps</code>) using the provided <code>plot_production_data</code> function.</li>
+<li>Smooth the <code>pieces_gaps</code> time series using a rolling window with appropriate window size and decide whether it is better to use <code>mean</code> or <code>median</code> as aggregation function. Discuss your choice. Ideally the resulting smoothed time series should have the same gaps as the original <code>pieces_gaps</code> time series.</li>
+<li>Visualize the resulting smoothed time series using <code>seaborn</code>.</li>
 </ul>
 </div>
 </div>
 </div>
-<p>In <a href="4_1_timeseries_classification.html" class="quarto-xref"><span>Chapter 8</span></a> and <a href="5_1_timeseries_regression.html" class="quarto-xref"><span>Chapter 9</span></a>, our input was univariate, meaning each sample consisted of exactly one time series. Now, we will work with multivariate time series, which are more common in real-world scenarios since typically multiple sensors are available.</p>
+<p>Let us try to impute the missing values in a second step.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -691,31 +696,18 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 11.2 (Classification of multivariate time series)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 11.2 (Impute the missing values with known methods)</strong></span> &nbsp;</p>
 </div>
 <ul>
-<li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary"><code>UWaveGestureLibrary</code></a> data set.</li>
-<li>Use the time series <span class="math inline">\(k\)</span> nearest neighbour algorithm to classify the time series.</li>
-<li>Use the CNN classifier to classify the time series (make sure to have <code>sktime&gt;=0.40.0</code> installed).</li>
-<li>How do the results compare?</li>
+<li>Use the smoothed time series with gaps from the previous exercise as input.</li>
+<li>Experiment with different imputation methods discussed in <a href="1_0_data_imputation.html" class="quarto-xref"><span>Chapter 5</span></a>.</li>
+<li>Visualize the results using the provided <code>plot_production_data</code> function.</li>
+<li>Discuss the results.</li>
 </ul>
 </div>
 </div>
 </div>
-<p>Note that not all of the algorithms have implementations for multivariate time series, e.g.&nbsp;<code>sktime</code>’s <code>TimeSeriesForestClassifier</code> only works for univariate time series (and raises an exception when used with a multivariate series). Luckily, there are other implementations available, e.g.&nbsp;<code>aeon</code> offers a <code>TimeSeriesForestClassifier</code> that is compatible with multivariate time series.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>aeon</code> is quite strict about dependencies. In case you have problems installing it, consider to initialize a new project and first install <code>aeon</code> before adding further packages.</p>
-</div>
-</div>
+<p>Of course, we have only seen the tip of the iceberg when it comes to imputation methods for time series. Especially for seasonal data, more advanced methods such as STL can be very effective. We have had a look at STL in <a href="2_1_timeseries_decomposition.html" class="quarto-xref"><span>Chapter 6</span></a>, where we decomposed a time series into its components. Now we will use it for imputation to not lose the seasonal structure of the data while filling the gaps.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -723,35 +715,23 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 11.3 (Classification using aeon’s Time Series Forest Classifier)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 11.3 (Impute the missing values with STL)</strong></span> &nbsp;</p>
 </div>
 <ul>
-<li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary"><code>UWaveGestureLibrary</code></a> data set.</li>
-<li>Use <code>aeon</code>’s <code>TimeSeriesForestClassifier</code> to classify the data set.</li>
-<li>Are you able to achieve better results than with the previous algorithms?</li>
+<li>Use the smoothed time series with gaps from the first exercise as input.</li>
+<li>The STL needs data that is complete, i.e., without missing values. Therefore, first impute the missing values using a simple method of your choice (e.g., linear interpolation).</li>
+<li>Then, apply the STL decomposition to the imputed time series.</li>
+<li>Visualize the decomposed components (trend, seasonal, residual) using the provided <code>seasonal_decompose_seaborn</code> function.</li>
+<li>The seasonal part of the decomposition can now be used to deseasonalize the smoothed time series with gaps.</li>
+<li>Now that we have a deseasonalized time series with missing values, we can again impute the missing values using a simple method of your choice.</li>
+<li>Finally, reseasonalize the imputed deseasonalized time series by adding back the seasonal component obtained from the STL decomposition.</li>
+<li>Visualize the final imputed time series using the provided <code>plot_production_data</code> function.</li>
+<li>Discuss the results.</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can use <code>aeon</code>’s <code>load_regression</code> function to load the data set mentioned below, e.g.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> aeon.datasets <span class="im">import</span> load_regression</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ds_name <span class="op">=</span> <span class="st">"AppliancesEnergy"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> load_regression(ds_name, split<span class="op">=</span><span class="st">"train"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>X_test, y_test <span class="op">=</span> load_regression(ds_name, split<span class="op">=</span><span class="st">"test"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
+<p>Great job, you have provided the graphs in time for the management report and the board liked the results. In the meanwhile your colleagues have found the original data set without gaps on some old dusty server and would like to know the number of outliers in the data set.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -759,14 +739,14 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 11.4 (Regression of multivariate time series)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 11.4 (Count the number of outliers in the original data set)</strong></span> &nbsp;</p>
 </div>
 <ul>
-<li>Load the <a href="https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction"><code>AppliancesEnergy</code></a> data set.</li>
-<li>Use the time series <span class="math inline">\(k\)</span> nearest neighbour algorithm to predict the energy consumption of the appliances.</li>
-<li>Use the time series random forest tree algorithm to predict the energy consumption of the appliances.</li>
-<li>Use the CNN regressor to predict the energy consumption of the appliances (make sure to have <code>sktime&gt;=0.40.0</code> installed).</li>
-<li>How do the results compare?</li>
+<li>Use the original data set without gaps (<code>pieces</code> column) as input.</li>
+<li>Use an appropriate method to identify the outliers in the data set.</li>
+<li>Visualize the outliers and the original data set using <code>seaborn</code>.</li>
+<li>Count the number of detected outliers.</li>
+<li>Discuss the results.</li>
 </ul>
 </div>
 </div>
@@ -1195,8 +1175,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../2_act2/0_0_predictive_maintenance.html" class="pagination-link" aria-label="Predictive Maintenance via Exploratory Data Analysis">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../1_act1/8_self_study_session3.html" class="pagination-link" aria-label="Self study - Session 3">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1208,7 +1188,7 @@ Note
 </div>   
     <div class="nav-footer-center">
 <p>Gregor Ehrensperger</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/edit/main/1_act1/7_self_study_session2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/1_act1/7_self_study_session2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Manuscript designed with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

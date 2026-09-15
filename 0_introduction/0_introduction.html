@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>1&nbsp; Introduction – Industrial Data Science</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -54,19 +59,18 @@ div.csl-indent {
 <link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e80614c04c16c891bf141dbe51f02ead.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9fdc78584ba78a378fa1fe9aba7b6c75.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -292,7 +296,7 @@ div.csl-indent {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Industrial Data Science</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -401,6 +405,12 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_act1/8_self_study_session3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -415,31 +425,25 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/0_0_predictive_maintenance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/1_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_act2/4_self_study_session4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -576,7 +580,7 @@ div.csl-indent {
 
 
 <p>In this module we will explore <em>Industrial Data Science</em>, a term that is not widely used, defined or standardized (yet).</p>
-<p>Generally, it refers to the application of data science techniques within industrial and business domains. This includes optimizing processes, predictive maintenance, quality control, supply chain management and automation by leveraging large volumes of sensor and process data.</p>
+<p>Generally, it refers to the application of Data Science techniques within industrial and business domains. This includes optimizing processes, predictive maintenance, quality control, supply chain management and automation by leveraging large volumes of sensor and process data.</p>
 <p>The term <em>Industrial Artificial Intelligence</em> (Industrial AI) is more common in literature and appears to be used interchangeably with the fuzzy definition of Industrial Data Science. According to <span class="citation" data-cites="peres2020">Peres et al. (<a href="../5_references.html#ref-peres2020" role="doc-biblioref">2020</a>)</span>, Industrial AI distinguishes itself within the field of AI in five dimensions:</p>
 <ul>
 <li><p><strong>Algorithms</strong>: Combines physical, digital, and heuristic models, requiring complex management and deployment.</p></li>
@@ -588,13 +592,13 @@ div.csl-indent {
 <p>Unlike typical courses that use clean, polished datasets, in this lecture we will get our hands dirty and work with (synthetic) raw machine data with the ultimate goal of setting up a data science product on a simulated machine using live data.</p>
 <p>In <a href="#sec-act0-intro" class="quarto-xref"><span>Chapter 1</span></a> to <a href="2_applications.html" class="quarto-xref"><span>Chapter 3</span></a>, we will start with an introduction to Industrial Data Science, its significance, its history, and its applications.</p>
 <p>In <a href="../1_act1/0_nature_of_timeseries.html" class="quarto-xref"><span>Chapter 4</span></a> to <a href="../1_act1/7_self_study_session2.html" class="quarto-xref"><span>Chapter 11</span></a>, we will prepare ourselves by exploring time series data, including common applications and methods.</p>
-<p><a href="../2_act2/0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 12</span></a> to <a href="../2_act2/4_self_study_session4.html" class="quarto-xref"><span>Chapter 16</span></a> provide an overview of curated datasets of machine sensors.</p>
+<p><a href="../2_act2/0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> to <a href="../2_act2/3_self_study_session3.html" class="quarto-xref"><span>Chapter 16</span></a> provide an overview of curated datasets of machine sensors.</p>
 <p>In <a href="../3_act3/0_challenges.html" class="quarto-xref"><span>Chapter 17</span></a> to <a href="../3_act3/6_self_study_session2.html" class="quarto-xref"><span>Chapter 23</span></a>, we will work directly with simple simulated machines.</p>
 <p>Finally, <a href="../4_act4/0_index.html" class="quarto-xref"><span>Chapter 24</span></a> to <a href="../4_act4/4_self_study_session.html" class="quarto-xref"><span>Chapter 28</span></a> will give a brief outlook on selected topics in Industrial Data Science.</p>
 <p>Please note that Industrial Data Science is a vast and rapidly evolving field, encompassing a wide range of industries, technologies, and specialized methods. Each industrial context presents unique challenges and data architectures. Covering more of the relevant tools, algorithms, and real-world scenarios in depth would require far more time and resources than a single module allows. The focus of this material, therefore, is to introduce key concepts and practical skills, laying a foundation for further exploration.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-peres2020" class="csl-entry" role="listitem">
 Peres, Ricardo Silva, Xiaodong Jia, Jay Lee, Keyi Sun, Armando Walter Colombo, and Jose Barata. 2020. <span>“Industrial Artificial Intelligence in Industry 4.0 - Systematic Review, Challenges and Outlook.”</span> <em>IEEE Access</em> 8: 220121–39. <a href="https://doi.org/10.1109/ACCESS.2020.3042874">https://doi.org/10.1109/ACCESS.2020.3042874</a>.
 </div>
@@ -1034,7 +1038,7 @@ Peres, Ricardo Silva, Xiaodong Jia, Jay Lee, Keyi Sun, Armando Walter Colombo, a
 </div>   
     <div class="nav-footer-center">
 <p>Gregor Ehrensperger</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/edit/main/0_introduction/0_introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/0_introduction/0_introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Manuscript designed with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

@@ -2,23 +2,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Self study - Session 4 – Industrial Data Science</title>
+<title>12&nbsp; Self study - Session 3 – Industrial Data Science</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -30,23 +71,22 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_act3/0_challenges.html" rel="next">
-<link href="../2_act2/3_self_study_session3.html" rel="prev">
+<link href="../2_act2/0_0_predictive_maintenance.html" rel="next">
+<link href="../1_act1/7_self_study_session2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e80614c04c16c891bf141dbe51f02ead.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8ed013dfc02587135391d8403b56e420.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9fdc78584ba78a378fa1fe9aba7b6c75.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1863ba1fd308c4e2ed246a7f7244b87d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -81,6 +121,35 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -255,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/4_self_study_session4.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_act1/0_nature_of_timeseries.html">Act 1: Time series – A Curated Collection</a></li><li class="breadcrumb-item"><a href="../1_act1/8_self_study_session3.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -272,7 +341,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Industrial Data Science</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -381,6 +450,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_act1/8_self_study_session3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -395,31 +470,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/0_0_predictive_maintenance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/1_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_act2/4_self_study_session4.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -536,9 +605,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content column-page-right" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/4_self_study_session4.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_act1/0_nature_of_timeseries.html">Act 1: Time series – A Curated Collection</a></li><li class="breadcrumb-item"><a href="../1_act1/8_self_study_session3.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-act2-selfstudy4" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 4</span></span></h1>
+<h1 class="title"><span id="sec-act1-selfstudy3" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></h1>
 </div>
 
 
@@ -555,8 +624,51 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this session, we will generate a report from our findings.</p>
-<p>During the exploratory data analysis in <a href="3_self_study_session3.html" class="quarto-xref"><span>Chapter 15</span></a>, we have looked at a large number of visualizations and identified key patterns and insights using different approaches. This is nice, but you want to report your results to your management in a concise manner, focus on key findings and make it easily digestible.</p>
+<p>In this session, we will revisit the chapters <a href="3_1_timeseries_clustering.html" class="quarto-xref"><span>Chapter 7</span></a>, <a href="4_1_timeseries_classification.html" class="quarto-xref"><span>Chapter 8</span></a>, and <a href="5_1_timeseries_regression.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+<p>We have seen that the algorithms for all three tasks more or less can be categorized into the same categories:</p>
+<ul>
+<li>Based on distances or metrics: E.g. trees and forests</li>
+<li>Based on distributions, kernels: E.g. Gaussian Mixture Models, SVMs</li>
+<li>Based on subsequences, shapelets: E.g. bags of words, shapelet-based methods</li>
+<li>Based on deep learning: E.g. recurrent neural networks, or treating the time series as images using CNNs</li>
+<li>Based on random convolutions: E.g. <em>Random Convolutional Kernel Transform</em> (ROCKET)</li>
+<li>Based on ensembles of the above.</li>
+</ul>
+<p>We have implemented nearest neighbors (distance-based) for clustering, time series forests (distance-based) for classification, and convolutional neural networks for regression (deep learning-based).</p>
+<p>Let us have a look at one additional algorithm for each task.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can use <code>sktime</code>’s <code>load_UCR_UEA_dataset</code> function to load the data sets mentioned below, e.g.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.datasets <span class="im">import</span> load_UCR_UEA_dataset</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ds_name <span class="op">=</span> <span class="st">"UWaveGestureLibrary"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ret_type <span class="op">=</span> <span class="st">"numpy3d"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> load_UCR_UEA_dataset(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span>ds_name,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    split<span class="op">=</span><span class="st">"train"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    return_type<span class="op">=</span>ret_type,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>X_test, y_test <span class="op">=</span> load_UCR_UEA_dataset(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span>ds_name,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    split<span class="op">=</span><span class="st">"test"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    return_type<span class="op">=</span>ret_type,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># For classification, convert y to categorical</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> pd.Series(y_train).astype(<span class="st">"category"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> pd.Series(y_test).astype(<span class="st">"category"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -564,17 +676,19 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.1 (Jupyter Notebook Report)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 12.1 (Clustering with time series DBScan)</strong></span> &nbsp;</p>
 </div>
-<p>Polish your document, only keep relevant insights, remove unnecessary details, focus on key findings, document with markdown cells and export the result as HTML or PDF (since your management most likely will not have JupyterLab installed).</p>
-<ol type="1">
-<li>PDF: The document will be a static version of your notebook, so make sure to include all relevant information and insights directly in the document.</li>
-<li>HTML: The document will also be a static version of your notebook (the Dropdown would not work e.g.), but the interactivity of the <code>plotly</code> plots will still be available, since the HTML export retains the JavaScript functionality.</li>
-</ol>
+<ul>
+<li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=GesturePebbleZ1"><code>GesturePebbleZ1</code></a> data set. Note that it is a variable-length time series dataset and you need to either use <code>ret_type="df-list"</code> or <code>ret_type="nested_univ"</code> to load it (using the example above).</li>
+<li>Bring the data into a suitable format and explore the data set visually (using plots).</li>
+<li>Use the Time Series <span class="math inline">\(k\)</span> means algorithm to cluster the data. Do you need to reshape the data for this algorithm?</li>
+<li>Now, try to use the time series DBScan algorithm for clustering. Do you need to reshape the data for this algorithm?</li>
+<li>How do the results compare?</li>
+</ul>
 </div>
 </div>
 </div>
-<p>The resulting exports are a good start, but you may want to enhance them further using <a href="https://quarto.org/"><code>Quarto</code></a>. Quarto is an open-source scientific and technical publishing system allowing to generate and configure dynamic documents, reports, presentations, and more. It is even compatible with Jupyter notebooks and e.g.&nbsp;allows to collapse code chunks.</p>
+<p>In <a href="4_1_timeseries_classification.html" class="quarto-xref"><span>Chapter 8</span></a> and <a href="5_1_timeseries_regression.html" class="quarto-xref"><span>Chapter 9</span></a>, our input was univariate, meaning each sample consisted of exactly one time series. Now, we will work with multivariate time series, which are more common in real-world scenarios since typically multiple sensors are available.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -582,14 +696,86 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.2 (Quarto)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 12.2 (Classification of multivariate time series)</strong></span> &nbsp;</p>
 </div>
-<p>In the previous exercise, you have cleaned up your notebook and prepared for reporting. Use Quarto to generate a more polished report of your findings. Export your report as a PDF and HTML document</p>
-<p>Use <a href="https://quarto.org/docs/tools/jupyter-lab.html">this documentation</a> as a starting point.</p>
+<ul>
+<li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary"><code>UWaveGestureLibrary</code></a> data set.</li>
+<li>Use the time series <span class="math inline">\(k\)</span> nearest neighbour algorithm to classify the time series.</li>
+<li>Use the CNN classifier to classify the time series (make sure to have <code>sktime&gt;=0.40.0</code> installed).</li>
+<li>How do the results compare?</li>
+</ul>
 </div>
 </div>
 </div>
-<p>Also the material of this course is rendered using Quarto.</p>
+<p>Note that not all of the algorithms have implementations for multivariate time series, e.g.&nbsp;<code>sktime</code>’s <code>TimeSeriesForestClassifier</code> only works for univariate time series (and raises an exception when used with a multivariate series). Luckily, there are other implementations available, e.g.&nbsp;<code>aeon</code> offers a <code>TimeSeriesForestClassifier</code> that is compatible with multivariate time series.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>aeon</code> is quite strict about dependencies. In case you have problems installing it, consider to initialize a new project and first install <code>aeon</code> before adding further packages.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 12.3 (Classification using aeon’s Time Series Forest Classifier)</strong></span> &nbsp;</p>
+</div>
+<ul>
+<li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary"><code>UWaveGestureLibrary</code></a> data set.</li>
+<li>Use <code>aeon</code>’s <code>TimeSeriesForestClassifier</code> to classify the data set.</li>
+<li>Are you able to achieve better results than with the previous algorithms?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can use <code>aeon</code>’s <code>load_regression</code> function to load the data set mentioned below, e.g.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> aeon.datasets <span class="im">import</span> load_regression</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ds_name <span class="op">=</span> <span class="st">"AppliancesEnergy"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> load_regression(ds_name, split<span class="op">=</span><span class="st">"train"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>X_test, y_test <span class="op">=</span> load_regression(ds_name, split<span class="op">=</span><span class="st">"test"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 12.4 (Regression of multivariate time series)</strong></span> &nbsp;</p>
+</div>
+<ul>
+<li>Load the <a href="https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction"><code>AppliancesEnergy</code></a> data set.</li>
+<li>Use the time series <span class="math inline">\(k\)</span> nearest neighbour algorithm to predict the energy consumption of the appliances.</li>
+<li>Use the time series random forest tree algorithm to predict the energy consumption of the appliances.</li>
+<li>Use the CNN regressor to predict the energy consumption of the appliances (make sure to have <code>sktime&gt;=0.40.0</code> installed).</li>
+<li>How do the results compare?</li>
+</ul>
+</div>
+</div>
+</div>
 
 
 
@@ -1009,13 +1195,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../2_act2/3_self_study_session3.html" class="pagination-link" aria-label="Self study - Session 3">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span>
+      <a href="../1_act1/7_self_study_session2.html" class="pagination-link" aria-label="Self study - Session 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_act3/0_challenges.html" class="pagination-link" aria-label="Challenges">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Challenges</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2_act2/0_0_predictive_maintenance.html" class="pagination-link" aria-label="Predictive Maintenance via Exploratory Data Analysis">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Predictive Maintenance via Exploratory Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1027,7 +1213,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p>Gregor Ehrensperger</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/edit/main/2_act2/4_self_study_session4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws25_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/1_act1/8_self_study_session3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Manuscript designed with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
