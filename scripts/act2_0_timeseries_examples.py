@@ -14,7 +14,9 @@ from statsmodels.datasets import get_rdataset
 # AirPassengers (from statsmodels)
 try:
     air = get_rdataset("AirPassengers").data
-    air_series = pd.Series(air["value"].values, index=pd.date_range("1949-01", periods=len(air), freq="MS"))
+    air_series = pd.Series(
+        air["value"].values, index=pd.date_range("1949-01", periods=len(air), freq="MS")
+    )
 except OSError:
     air_series = pd.Series()
 
