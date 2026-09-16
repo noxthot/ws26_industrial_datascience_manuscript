@@ -66,31 +66,35 @@ Now we will introduce `seaborn`, which is a statistical data visualization libra
 
 In this exercise you will explore the AI4I dataset (columns `UDI`, `Torque`, `Rotational speed` and `Air temperature`) using `seaborn`.
 
-### Basic plots
+*Basic plots*
+
 1. Load the AI4I dataset (keeping only `Torque`, `Rotational speed` and `Air temperature`).
 1. Create a **line plot** of `Torque` over `UDI`.
 1. Create a **histogram** of each column to observe the distribution of values.
 1. Create **box plots** of each column to identify outliers and understand the spread of the data.
 1. Create **violin plots** of each column and discuss how they differ from box plots.
 
-### Relationships between variables
+*Relationships between variables*
+
 1. Create a **scatter plot** of `Torque` vs `Rotational speed` using `sns.scatterplot`. Add `Air temperature` as the `hue` parameter to see how the third variable influences the relationship.
 1. Create a **pair plot** (`sns.pairplot`) of all three numeric columns to observe pairwise relationships and distributions on the diagonal.
 1. Create a **correlation heatmap** using `sns.heatmap` on the correlation matrix of the three columns. Discuss which variables are most strongly correlated.
 
-### Advanced plots
+*Advanced plots*
+
 1. Create a **joint plot** of `Torque` vs `Air temperature` with a regression line overlay.
 1. Create a **strip plot** or **swarm plot** of `Torque` colored by a binned version of `Rotational speed` (e.g., low/medium/high using `pd.cut`).
 1. Create a **count plot** showing the distribution of data points across bins of `Torque` (e.g., binned into 10 intervals).
 
-### Observations
+*Observations*
+
 1. Based on all the plots above, answer the following:
    - Are there any obvious outliers in the data?
    - Which two variables seem most related?
    - Are there any non-linear patterns visible?
    - How are the distributions shaped?
 
-After this exercise you should be able to:
+*After this exercise you should be able to:*
 
 1. Create a wide range of static statistical plots with `seaborn`.
 1. Use parameters to add additional dimensions to your plots.
