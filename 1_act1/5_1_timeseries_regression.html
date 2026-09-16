@@ -83,7 +83,7 @@ div.csl-indent {
 }</style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -139,9 +139,6 @@ div.csl-indent {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
@@ -735,1053 +732,165 @@ window.Quarto = {
 <p>First we look at the raw training data. Each row corresponds to one sample in the dataset. The data comes in five columns, where each column represents a different signal source (PPG or acceleration signal). Note that each entry in the DataFrame is itself a time series.</p>
 <div id="a5dc7052" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X_train_raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">dim_0</th>
-<th data-quarto-table-cell-role="th">dim_1</th>
-<th data-quarto-table-cell-role="th">dim_2</th>
-<th data-quarto-table-cell-role="th">dim_3</th>
-<th data-quarto-table-cell-role="th">dim_4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>0 -23.0 1 -24.0 2 -26.5 3 -27....</td>
-<td>0 4.0 1 6.0 2 3.0 3 3....</td>
-<td>0 -0.0702 1 -0.0702 2 -0.0546 3 ...</td>
-<td>0 0.3432 1 0.3588 2 0.3666 3 ...</td>
-<td>0 0.9594 1 0.9438 2 0.9360 3 ...</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>0 -20.5 1 -19.0 2 -20.0 3 -19....</td>
-<td>0 -37.0 1 -38.5 2 -40.5 3 -41....</td>
-<td>0 0.4056 1 0.4212 2 0.4368 3 ...</td>
-<td>0 0.6084 1 0.6162 2 0.6084 3 ...</td>
-<td>0 0.5148 1 0.4992 2 0.4758 3 ...</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>0 22.0 1 23.5 2 22.5 3 23....</td>
-<td>0 12.5 1 13.5 2 11.5 3 13....</td>
-<td>0 0.4758 1 0.4758 2 0.4758 3 ...</td>
-<td>0 0.6864 1 0.6864 2 0.6864 3 ...</td>
-<td>0 0.3900 1 0.3900 2 0.3978 3 ...</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>0 -5.5 1 -5.5 2 -6.5 3 -6....</td>
-<td>0 -1.0 1 -0.5 2 -1.5 3 -1....</td>
-<td>0 0.4602 1 0.4602 2 0.4602 3 ...</td>
-<td>0 0.6708 1 0.6786 2 0.6708 3 ...</td>
-<td>0 0.3978 1 0.4134 2 0.4056 3 ...</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>0 30.5 1 27.0 2 26.0 3 24....</td>
-<td>0 74.5 1 70.0 2 67.0 3 62....</td>
-<td>0 0.6162 1 0.6162 2 0.6240 3 ...</td>
-<td>0 0.7098 1 0.6942 2 0.6786 3 ...</td>
-<td>0 0.3978 1 0.3900 2 0.3744 3 ...</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">...</th>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">1763</th>
-<td>0 130.0 1 142.5 2 148.0 3 ...</td>
-<td>0 68.0 1 86.0 2 100.5 3 ...</td>
-<td>0 -0.0858 1 -0.0936 2 -0.1092 3 ...</td>
-<td>0 0.6084 1 0.6240 2 0.6162 3 ...</td>
-<td>0 0.2340 1 0.2418 2 0.2418 3 ...</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1764</th>
-<td>0 -33.5 1 -36.0 2 -38.0 3 -38....</td>
-<td>0 32.0 1 26.0 2 21.0 3 18....</td>
-<td>0 -0.2340 1 -0.2418 2 -0.2262 3 ...</td>
-<td>0 0.2496 1 0.2340 2 0.1872 3 ...</td>
-<td>0 1.0998 1 1.1154 2 1.1076 3 ...</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">1765</th>
-<td>0 -38.0 1 -41.5 2 -43.5 3 -44....</td>
-<td>0 21.5 1 15.5 2 11.0 3 7....</td>
-<td>0 -0.1716 1 -0.1638 2 -0.1560 3 ...</td>
-<td>0 0.0156 1 0.0312 2 0.0546 3 ...</td>
-<td>0 0.8034 1 0.8034 2 0.8034 3 ...</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1766</th>
-<td>0 111.5 1 100.5 2 85.5 3 ...</td>
-<td>0 155.5 1 147.0 2 134.0 3 ...</td>
-<td>0 -0.0780 1 -0.1092 2 -0.1326 3 ...</td>
-<td>0 0.1794 1 0.1170 2 0.0624 3 ...</td>
-<td>0 0.9594 1 0.9672 2 0.9438 3 ...</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">1767</th>
-<td>0 66.5 1 59.5 2 51.5 3 44....</td>
-<td>0 95.5 1 90.0 2 84.0 3 77....</td>
-<td>0 0.1638 1 0.1716 2 0.1794 3 ...</td>
-<td>0 0.3978 1 0.4134 2 0.4290 3 ...</td>
-<td>0 0.7956 1 0.7800 2 0.7566 3 ...</td>
-</tr>
-</tbody>
-</table>
-
-<p>1768 rows × 5 columns</p>
-</div>
-</div>
 </div>
 <div id="39a62c18" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y_train_raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([ 74.33920705,  76.35746606,  77.14285714, ..., 156.25      ,
-       155.4404    , 154.0041    ], shape=(1768,))</code></pre>
-</div>
 </div>
 <p>To get a clearer picture, we can plot the signals of some of the training samples.</p>
 <div id="950e0597" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sampled <span class="op">=</span> X_train_raw.sample(<span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">1337</span>).sort_index()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    nrows<span class="op">=</span>sampled.shape[<span class="dv">1</span>], ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">3</span> <span class="op">*</span> sampled.shape[<span class="dv">1</span>]), sharex<span class="op">=</span><span class="va">True</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row_idx, col <span class="kw">in</span> <span class="bu">enumerate</span>(sampled.columns):</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col_idx, (i, row) <span class="kw">in</span> <span class="bu">enumerate</span>(sampled.iterrows()):</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        axes[row_idx, col_idx].plot(row[col].values, label<span class="op">=</span><span class="ss">f"Sample </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        axes[row_idx, col_idx].set_title(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> - Heart rate </span><span class="sc">{</span>y_train_raw[i]<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        axes[row_idx, col_idx].set_xlabel(<span class="st">"Time"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    axes[row_idx, <span class="dv">0</span>].set_ylabel(<span class="st">"Value"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="5_1_timeseries_regression_files/figure-html/-1_act1-5_2_timeseries_regression_examples-cell-6-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sampled <span class="op">=</span> X_train_raw.sample(<span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">1337</span>).sort_index()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    nrows<span class="op">=</span>sampled.shape[<span class="dv">1</span>], ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">3</span> <span class="op">*</span> sampled.shape[<span class="dv">1</span>]), sharex<span class="op">=</span><span class="va">True</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row_idx, col <span class="kw">in</span> <span class="bu">enumerate</span>(sampled.columns):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col_idx, (i, row) <span class="kw">in</span> <span class="bu">enumerate</span>(sampled.iterrows()):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        axes[row_idx, col_idx].plot(row[col].values, label<span class="op">=</span><span class="ss">f"Sample </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        axes[row_idx, col_idx].set_title(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> - Heart rate </span><span class="sc">{</span>y_train_raw[i]<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        axes[row_idx, col_idx].set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    axes[row_idx, <span class="dv">0</span>].set_ylabel(<span class="st">"Value"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The following plot shows the distribution of the target values in the training set.</p>
 <div id="425a6e15" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.hist(y_train_raw, bins<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Target Value"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogram of y_train"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="5_1_timeseries_regression_files/figure-html/-1_act1-5_2_timeseries_regression_examples-cell-7-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.hist(y_train_raw, bins<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Target Value"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogram of y_train"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To feed the data into the CNN, we first need to convert the dataframe into a so-called tensor (in this case a 3D array).</p>
 <div id="8582c0ff" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_df_to_tensor(df: pd.DataFrame) <span class="op">-&gt;</span> np.ndarray:</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convert a DataFrame of time series to a 3D numpy tensor.</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">        df: DataFrame where each cell contains a time series.</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">        3D array of shape (n_samples, ts_length, n_features).</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    tensor <span class="op">=</span> np.array(</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        [[df.iloc[i, j].values <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(df.shape[<span class="dv">1</span>])] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df))]</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    tensor <span class="op">=</span> np.transpose(tensor, (<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(<span class="bu">range</span>(<span class="bu">len</span>(df)), <span class="bu">range</span>(<span class="bu">len</span>(df.columns))):</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> np.array_equal(df.iloc[i, j].values, tensor[i, :, j])</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>X_train_tensor <span class="op">=</span> convert_df_to_tensor(X_train_raw)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>X_test_tensor <span class="op">=</span> convert_df_to_tensor(X_test_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_df_to_tensor(df: pd.DataFrame) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convert a DataFrame of time series to a 3D numpy tensor.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">        df: DataFrame where each cell contains a time series.</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">        3D array of shape (n_samples, ts_length, n_features).</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    tensor <span class="op">=</span> np.array(</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        [[df.iloc[i, j].values <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(df.shape[<span class="dv">1</span>])] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df))]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    tensor <span class="op">=</span> np.transpose(tensor, (<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(<span class="bu">range</span>(<span class="bu">len</span>(df)), <span class="bu">range</span>(<span class="bu">len</span>(df.columns))):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> np.array_equal(df.iloc[i, j].values, tensor[i, :, j])</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>X_train_tensor <span class="op">=</span> convert_df_to_tensor(X_train_raw)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>X_test_tensor <span class="op">=</span> convert_df_to_tensor(X_test_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let us check the shapes orf the resulting tensors.</p>
 <div id="976f0230" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_tensor.shape)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_test_tensor.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>(1768, 1000, 5)
-(1328, 1000, 5)</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_tensor.shape)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_test_tensor.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The training data set has 1768 samples, each consisting of 5 channels (PPG and acceleration signals) with a length of 1000 time steps (which are 8 seconds at 125 Hz).</p>
 <p>Neural networks are generally trained on normalized data. We will use a leaky ReLU activation function in our CNN, which works best with input data within a [0, 1] range.</p>
 <p>Unfortunately the <code>TimeSeriesScalerMinMax</code> from <code>tslearn</code> needs the data in the shape (n_samples, n_timestamps, n_channels), while the CNN expects (n_samples, n_channels, n_timestamps), so we need to swap the last two axes again after scaling.</p>
 <div id="9617574d" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>scaler_x <span class="op">=</span> TimeSeriesScalerMinMax()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> scaler_x.fit_transform(X_train_tensor, per_feature<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> scaler_x.transform(X_test_tensor, per_feature<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>scaler_y <span class="op">=</span> MinMaxScaler()</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> scaler_y.fit_transform(y_train_raw.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> scaler_y.transform(y_test_raw.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> np.transpose(X_train, (<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> np.transpose(X_test, (<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scaler_x <span class="op">=</span> TimeSeriesScalerMinMax()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> scaler_x.fit_transform(X_train_tensor, per_feature<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> scaler_x.transform(X_test_tensor, per_feature<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>scaler_y <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> scaler_y.fit_transform(y_train_raw.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> scaler_y.transform(y_test_raw.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> np.transpose(X_train, (<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> np.transpose(X_test, (<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="e36ae53e" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.shape)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_test.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>(1768, 5, 1000)
-(1328, 5, 1000)</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.shape)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_test.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="regressor" class="level3" data-number="9.1.3">
 <h3 data-number="9.1.3" class="anchored" data-anchor-id="regressor"><span class="header-section-number">9.1.3</span> Regressor</h3>
 <p>The <code>CNNRegressor</code> from <code>sktime</code> can now be used to create and train the convolutional neural network for time series regression.</p>
 <div id="d605d9bc" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>regressor <span class="op">=</span> CNNRegressor(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    activation<span class="op">=</span><span class="st">"linear"</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    activation_hidden<span class="op">=</span><span class="st">"leaky_relu"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">64</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[],</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    n_conv_layers<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    n_epochs<span class="op">=</span><span class="dv">80</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span>Adam(),</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>regressor.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional"</span>
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
-┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ input_layer (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)        │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1000</span>, <span style="color: #00af00; text-decoration-color: #00af00">5</span>)        │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv1d (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv1D</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">994</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>)         │           <span style="color: #00af00; text-decoration-color: #00af00">216</span> │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ average_pooling1d               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">331</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>)         │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
-│ (<span style="color: #0087ff; text-decoration-color: #0087ff">AveragePooling1D</span>)              │                        │               │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv1d_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv1D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">325</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)        │           <span style="color: #00af00; text-decoration-color: #00af00">516</span> │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ average_pooling1d_1             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">108</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)        │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
-│ (<span style="color: #0087ff; text-decoration-color: #0087ff">AveragePooling1D</span>)              │                        │               │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv1d_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv1D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">102</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)        │         <span style="color: #00af00; text-decoration-color: #00af00">1,020</span> │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ average_pooling1d_2             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">34</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)         │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
-│ (<span style="color: #0087ff; text-decoration-color: #0087ff">AveragePooling1D</span>)              │                        │               │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv1d_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv1D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">28</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)         │         <span style="color: #00af00; text-decoration-color: #00af00">1,020</span> │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ average_pooling1d_3             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">9</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)          │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
-│ (<span style="color: #0087ff; text-decoration-color: #0087ff">AveragePooling1D</span>)              │                        │               │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv1d_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv1D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">3</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)          │         <span style="color: #00af00; text-decoration-color: #00af00">1,020</span> │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ average_pooling1d_4             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)          │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
-│ (<span style="color: #0087ff; text-decoration-color: #0087ff">AveragePooling1D</span>)              │                        │               │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ flatten (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)              │            <span style="color: #00af00; text-decoration-color: #00af00">13</span> │
-└─────────────────────────────────┴────────────────────────┴───────────────┘
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">3,805</span> (14.86 KB)
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">3,805</span> (14.86 KB)
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
-</pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Epoch 1/80</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">3s</span> 21ms/step - loss: 0.1305
-
-Epoch 2/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 17ms/step - loss: 0.0494
-
-Epoch 3/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0450
-
-Epoch 4/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0428
-
-Epoch 5/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 39ms/step - loss: 0.0409
-
-Epoch 6/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0392
-
-Epoch 7/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 23ms/step - loss: 0.0373
-
-Epoch 8/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0350
-
-Epoch 9/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0328
-
-Epoch 10/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0305
-
-Epoch 11/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0283
-
-Epoch 12/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0262
-
-Epoch 13/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0246
-
-Epoch 14/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0233
-
-Epoch 15/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 22ms/step - loss: 0.0223
-
-Epoch 16/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0217
-
-Epoch 17/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0214
-
-Epoch 18/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 24ms/step - loss: 0.0209
-
-Epoch 19/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 22ms/step - loss: 0.0205
-
-Epoch 20/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0202
-
-Epoch 21/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0199
-
-Epoch 22/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0195
-
-Epoch 23/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 23ms/step - loss: 0.0192
-
-Epoch 24/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0189
-
-Epoch 25/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0186
-
-Epoch 26/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0183
-
-Epoch 27/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0179
-
-Epoch 28/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 22ms/step - loss: 0.0176
-
-Epoch 29/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0172
-
-Epoch 30/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0169
-
-Epoch 31/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0165
-
-Epoch 32/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 22ms/step - loss: 0.0162
-
-Epoch 33/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0159
-
-Epoch 34/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0157
-
-Epoch 35/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0152
-
-Epoch 36/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0148
-
-Epoch 37/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0144
-
-Epoch 38/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 17ms/step - loss: 0.0140
-
-Epoch 39/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0137
-
-Epoch 40/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0134
-
-Epoch 41/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0131
-
-Epoch 42/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0128
-
-Epoch 43/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0126
-
-Epoch 44/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0123
-
-Epoch 45/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 17ms/step - loss: 0.0120
-
-Epoch 46/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0118
-
-Epoch 47/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0115
-
-Epoch 48/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0112
-
-Epoch 49/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 29ms/step - loss: 0.0109
-
-Epoch 50/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0106
-
-Epoch 51/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0103
-
-Epoch 52/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0100
-
-Epoch 53/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0097
-
-Epoch 54/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 23ms/step - loss: 0.0095
-
-Epoch 55/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 24ms/step - loss: 0.0092
-
-Epoch 56/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 25ms/step - loss: 0.0090
-
-Epoch 57/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 26ms/step - loss: 0.0088
-
-Epoch 58/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 29ms/step - loss: 0.0085
-
-Epoch 59/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 25ms/step - loss: 0.0083
-
-Epoch 60/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0081
-
-Epoch 61/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0079
-
-Epoch 62/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0077
-
-Epoch 63/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0076
-
-Epoch 64/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0074
-
-Epoch 65/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0073
-
-Epoch 66/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0072
-
-Epoch 67/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0071
-
-Epoch 68/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 29ms/step - loss: 0.0070
-
-Epoch 69/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0068
-
-Epoch 70/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0067
-
-Epoch 71/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0067
-
-Epoch 72/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 20ms/step - loss: 0.0066
-
-Epoch 73/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0066
-
-Epoch 74/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0065
-
-Epoch 75/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 19ms/step - loss: 0.0064
-
-Epoch 76/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 21ms/step - loss: 0.0063
-
-Epoch 77/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0062
-
-Epoch 78/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 17ms/step - loss: 0.0061
-
-Epoch 79/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0061
-
-Epoch 80/80
-
-<span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 18ms/step - loss: 0.0060
-</pre>
-</div>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<style>#sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 {
-    /* Definition of color scheme common for light and dark mode */
-    --sklearn-color-text: black;
-    --sklearn-color-line: gray;
-    /* Definition of color scheme for objects */
-    --sklearn-color-level-0: #fff5e6;
-    --sklearn-color-level-1: #f6e4d2;
-    --sklearn-color-level-2: #ffe0b3;
-    --sklearn-color-level-3: chocolate;
-
-    /* Specific color for light theme */
-    --sklearn-color-text-on-default-background: var(--theme-code-foreground, var(--jp-content-font-color1, black));
-    --sklearn-color-background: var(--theme-background, var(--jp-layout-color0, white));
-    --sklearn-color-border-box: var(--theme-code-foreground, var(--jp-content-font-color1, black));
-    --sklearn-color-icon: #696969;
-
-    @media (prefers-color-scheme: dark) {
-      /* Redefinition of color scheme for dark theme */
-      --sklearn-color-text-on-default-background: var(--theme-code-foreground, var(--jp-content-font-color1, white));
-      --sklearn-color-background: var(--theme-background, var(--jp-layout-color0, #111));
-      --sklearn-color-border-box: var(--theme-code-foreground, var(--jp-content-font-color1, white));
-      --sklearn-color-icon: #878787;
-    }
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 {
-    color: var(--sklearn-color-text);
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 pre {
-    padding: 0;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 input.sk-hidden--visually {
-    border: 0;
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-dashed-wrapped {
-    border: 1px dashed var(--sklearn-color-line);
-    margin: 0 0.4em 0.5em 0.4em;
-    box-sizing: border-box;
-    padding-bottom: 0.4em;
-    background-color: var(--sklearn-color-background);
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-container {
-    /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-       but bootstrap.min.css set `[hidden] { display: none !important; }`
-       so we also need the `!important` here to be able to override the
-       default hidden behavior on the sphinx rendered scikit-learn.org.
-       See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-    display: inline-block !important;
-    position: relative;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-text-repr-fallback {
-    display: none;
-  }
-
-  div.sk-parallel-item,
-  div.sk-serial,
-  div.sk-item {
-    /* draw centered vertical line to link estimators */
-    background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-    background-size: 2px 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-
-  /* Parallel-specific style estimator block */
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-parallel-item::after {
-    content: "";
-    width: 100%;
-    border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-    flex-grow: 1;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-parallel {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    background-color: var(--sklearn-color-background);
-    position: relative;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-parallel-item {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-parallel-item:first-child::after {
-    align-self: flex-end;
-    width: 50%;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-parallel-item:last-child::after {
-    align-self: flex-start;
-    width: 50%;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-parallel-item:only-child::after {
-    width: 0;
-  }
-
-  /* Serial-specific style estimator block */
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-serial {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--sklearn-color-background);
-    padding-right: 1em;
-    padding-left: 1em;
-  }
-
-
-  /* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-  clickable and can be expanded/collapsed.
-  - Pipeline and ColumnTransformer use this feature and define the default style
-  - Estimators will overwrite some part of the style using the `sk-estimator` class
-  */
-
-  /* Pipeline and ColumnTransformer style (default) */
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-toggleable {
-    /* Default theme specific background. It is overwritten whether we have a
-    specific estimator or a Pipeline/ColumnTransformer */
-    background-color: var(--sklearn-color-background);
-  }
-
-  /* Toggleable label */
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 label.sk-toggleable__label {
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    margin-bottom: 0;
-    padding: 0.5em;
-    box-sizing: border-box;
-    text-align: center;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 label.sk-toggleable__label-arrow:before {
-    /* Arrow on the left of the label */
-    content: "▸";
-    float: left;
-    margin-right: 0.25em;
-    color: var(--sklearn-color-icon);
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 label.sk-toggleable__label-arrow:hover:before {
-    color: var(--sklearn-color-text);
-  }
-
-  /* Toggleable content - dropdown */
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-toggleable__content {
-    max-height: 0;
-    max-width: 0;
-    overflow: hidden;
-    text-align: left;
-    background-color: var(--sklearn-color-level-0);
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-toggleable__content pre {
-    margin: 0.2em;
-    border-radius: 0.25em;
-    color: var(--sklearn-color-text);
-    background-color: var(--sklearn-color-level-0);
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-    /* Expand drop-down */
-    max-height: 200px;
-    max-width: 100%;
-    overflow: auto;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-    content: "▾";
-  }
-
-  /* Pipeline/ColumnTransformer-specific style */
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-    color: var(--sklearn-color-text);
-    background-color: var(--sklearn-color-level-2);
-  }
-
-  /* Estimator-specific style */
-
-  /* Colorize estimator box */
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-    /* unfitted */
-    background-color: var(--sklearn-color-level-2);
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-label label.sk-toggleable__label,
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-label label {
-    /* The background is the default theme color */
-    color: var(--sklearn-color-text-on-default-background);
-  }
-
-  /* On hover, darken the color of the background */
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-label:hover label.sk-toggleable__label {
-    color: var(--sklearn-color-text);
-    background-color: var(--sklearn-color-level-2);
-  }
-
-  /* Estimator label */
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-label label {
-    font-family: monospace;
-    font-weight: bold;
-    display: inline-block;
-    line-height: 1.2em;
-  }
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-label-container {
-    text-align: center;
-  }
-
-  /* Estimator-specific */
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-estimator {
-    font-family: monospace;
-    border: 1px dotted var(--sklearn-color-border-box);
-    border-radius: 0.25em;
-    box-sizing: border-box;
-    margin-bottom: 0.5em;
-    background-color: var(--sklearn-color-level-0);
-  }
-
-  /* on hover */
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 div.sk-estimator:hover {
-    background-color: var(--sklearn-color-level-2);
-  }
-
-  /* Specification for estimator info */
-
-  .sk-estimator-doc-link,
-  a:link.sk-estimator-doc-link,
-  a:visited.sk-estimator-doc-link {
-    float: right;
-    font-size: smaller;
-    line-height: 1em;
-    font-family: monospace;
-    background-color: var(--sklearn-color-background);
-    border-radius: 1em;
-    height: 1em;
-    width: 1em;
-    text-decoration: none !important;
-    margin-left: 1ex;
-    border: var(--sklearn-color-level-1) 1pt solid;
-    color: var(--sklearn-color-level-1);
-  }
-
-  /* On hover */
-  div.sk-estimator:hover .sk-estimator-doc-link:hover,
-  .sk-estimator-doc-link:hover,
-  div.sk-label-container:hover .sk-estimator-doc-link:hover,
-  .sk-estimator-doc-link:hover {
-    background-color: var(--sklearn-color-level-3);
-    color: var(--sklearn-color-background);
-    text-decoration: none;
-  }
-
-  /* Span, style for the box shown on hovering the info icon */
-  .sk-estimator-doc-link span {
-    display: none;
-    z-index: 9999;
-    position: relative;
-    font-weight: normal;
-    right: .2ex;
-    padding: .5ex;
-    margin: .5ex;
-    width: min-content;
-    min-width: 20ex;
-    max-width: 50ex;
-    color: var(--sklearn-color-text);
-    box-shadow: 2pt 2pt 4pt #999;
-    background: var(--sklearn-color-level-0);
-    border: .5pt solid var(--sklearn-color-level-3);
-  }
-
-  .sk-estimator-doc-link:hover span {
-    display: block;
-  }
-
-  /* "?"-specific style due to the `<a>` HTML tag */
-
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 a.estimator_doc_link {
-    float: right;
-    font-size: 1rem;
-    line-height: 1em;
-    font-family: monospace;
-    background-color: var(--sklearn-color-background);
-    border-radius: 1rem;
-    height: 1rem;
-    width: 1rem;
-    text-decoration: none;
-    color: var(--sklearn-color-level-1);
-    border: var(--sklearn-color-level-1) 1pt solid;
-  }
-
-  /* On hover */
-  #sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69 a.estimator_doc_link:hover {
-    background-color: var(--sklearn-color-level-3);
-    color: var(--sklearn-color-background);
-    text-decoration: none;
-  }
-</style><div id="sk-8a9f2364-4b59-473c-917e-09b4f3eaaf69" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>CNNRegressor(activation_hidden='leaky_relu', batch_size=64, metrics=[],
-             n_conv_layers=5, n_epochs=80,
-             optimizer=&lt;keras.src.optimizers.adam.Adam object at 0x7897321d27b0&gt;,
-             random_state=42, verbose=True)</pre><b>Please rerun this cell to show the HTML repr or trust the notebook.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="UUID('e7047cbd-7c36-4718-bb77-5b69e74abfa2')" type="checkbox" checked=""><label for="UUID('e7047cbd-7c36-4718-bb77-5b69e74abfa2')" class="sk-toggleable__label sk-toggleable__label-arrow">CNNRegressor<a class="sk-estimator-doc-link" rel="noreferrer" target="_blank" href="https://www.sktime.net/en/v1.1.0/api_reference/auto_generated/sktime.regression.deep_learning.cnn.CNNRegressor.html">?<span>Documentation for CNNRegressor</span></a></label><div class="sk-toggleable__content"><pre>CNNRegressor(activation_hidden='leaky_relu', batch_size=64, metrics=[],
-             n_conv_layers=5, n_epochs=80,
-             optimizer=&lt;keras.src.optimizers.adam.Adam object at 0x7897321d27b0&gt;,
-             random_state=42, verbose=True)</pre></div></div></div></div></div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>regressor <span class="op">=</span> CNNRegressor(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    activation<span class="op">=</span><span class="st">"linear"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    activation_hidden<span class="op">=</span><span class="st">"leaky_relu"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">64</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[],</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    n_conv_layers<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    n_epochs<span class="op">=</span><span class="dv">80</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span>Adam(),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>regressor.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To verify the performance of the trained model, we now predict the target values for the test set and compute the <em>root mean squared error</em> (RMSE) between the predicted and true target values.</p>
 <p>Keep in mind, that we have to inverse transform the predicted target values back to the original scale before computing the RMSE.</p>
 <div id="d87d31ab" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>y_pred_scaled <span class="op">=</span> regressor.predict(X_test)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> scaler_y.inverse_transform(y_pred_scaled.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> root_mean_squared_error(y_test_raw, y_pred)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bold">21/21</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step
-
-RMSE: 28.2229
-</pre>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>y_pred_scaled <span class="op">=</span> regressor.predict(X_test)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> scaler_y.inverse_transform(y_pred_scaled.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> root_mean_squared_error(y_test_raw, y_pred)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The RMSE indicates that the model is not performing very well on this task.</p>
 <p>Let us visualize the residuals (the difference between the true and predicted target values) to get a better understanding of the model’s performance.</p>
 <div id="37f0148f" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.hist(y_test_raw <span class="op">-</span> y_pred.flatten(), bins<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Residual (True - Predicted)"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogram of Prediction Residuals"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="5_1_timeseries_regression_files/figure-html/-1_act1-5_2_timeseries_regression_examples-cell-14-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.hist(y_test_raw <span class="op">-</span> y_pred.flatten(), bins<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Residual (True - Predicted)"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogram of Prediction Residuals"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A scatter plot showing true against predicted values reveals that the model tends to overestimate smaller values and underestimate larger values.</p>
 <div id="e8b83a4f" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.hexbin(y_test_raw, y_pred.flatten(), gridsize<span class="op">=</span><span class="dv">40</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>, mincnt<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"True Values"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Predicted Values"</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hexbin Density Plot of True vs Predicted Values"</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    [y_test_raw.<span class="bu">min</span>(), y_test_raw.<span class="bu">max</span>()], [y_test_raw.<span class="bu">min</span>(), y_test_raw.<span class="bu">max</span>()], <span class="st">"r--"</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">"Counts"</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="5_1_timeseries_regression_files/figure-html/-1_act1-5_2_timeseries_regression_examples-cell-15-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.hexbin(y_test_raw, y_pred.flatten(), gridsize<span class="op">=</span><span class="dv">40</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>, mincnt<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"True Values"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Predicted Values"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hexbin Density Plot of True vs Predicted Values"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    [y_test_raw.<span class="bu">min</span>(), y_test_raw.<span class="bu">max</span>()], [y_test_raw.<span class="bu">min</span>(), y_test_raw.<span class="bu">max</span>()], <span class="st">"r--"</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">"Counts"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Especially when encountering a model that performs worse than expected, it is important to analyze potential reasons for this behavior.</p>
 <p>Here, we predict the training set using the trained model. Usually, the training error should be significantly lower than the test error. If this is not the case, we can suspect issues with the code, model (architecture) or with the data itself.</p>
 <p><em>Plotting the histogram of residuals on training set</em></p>
 <div id="b7cdcba1" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>y_pred_train_scaled <span class="op">=</span> regressor.predict(X_train)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>y_pred_train <span class="op">=</span> scaler_y.inverse_transform(y_pred_train_scaled.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plt.hist(y_train_raw <span class="op">-</span> y_pred_train.flatten(), bins<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Residual (True - Predicted)"</span>)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogram of Prediction Residuals"</span>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bold">26/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━</span><span class="ansi-white-fg">━━</span> <span class="ansi-bold">0s</span> 6ms/step</pre>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bold">28/28</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 7ms/step
-</pre>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="5_1_timeseries_regression_files/figure-html/-1_act1-5_2_timeseries_regression_examples-cell-16-output-3.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_pred_train_scaled <span class="op">=</span> regressor.predict(X_train)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_pred_train <span class="op">=</span> scaler_y.inverse_transform(y_pred_train_scaled.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.hist(y_train_raw <span class="op">-</span> y_pred_train.flatten(), bins<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Residual (True - Predicted)"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogram of Prediction Residuals"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>Plotting the scatter plot of true vs.&nbsp;predicted values on training set</em></p>
 <div id="7d4bf0b7" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.hexbin(y_train_raw, y_pred_train.flatten(), gridsize<span class="op">=</span><span class="dv">40</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>, mincnt<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"True Values"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Predicted Values"</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hexbin Density Plot of True vs Predicted Values (Train)"</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    [y_train_raw.<span class="bu">min</span>(), y_train_raw.<span class="bu">max</span>()],</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    [y_train_raw.<span class="bu">min</span>(), y_train_raw.<span class="bu">max</span>()],</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r--"</span>,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">"Counts"</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="5_1_timeseries_regression_files/figure-html/-1_act1-5_2_timeseries_regression_examples-cell-17-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.hexbin(y_train_raw, y_pred_train.flatten(), gridsize<span class="op">=</span><span class="dv">40</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>, mincnt<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"True Values"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Predicted Values"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hexbin Density Plot of True vs Predicted Values (Train)"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    [y_train_raw.<span class="bu">min</span>(), y_train_raw.<span class="bu">max</span>()],</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    [y_train_raw.<span class="bu">min</span>(), y_train_raw.<span class="bu">max</span>()],</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"r--"</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">"Counts"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The model is able to fit the training data quite well, indicating that the code is implemented correctly and the model architecture is complex enough to capture the underlying patterns in the data. Still, the performance on the test set is significantly worse than on the training set. This suggests that the model is likely overfitting the data, which could be due to various factors such as e.g.&nbsp;insufficient training data, or lack of regularization or that the test data distribution differs significantly from the training data distribution.</p>
 <p>While these results are not fully satisfying, the results align with those reported by <span class="citation" data-cites="tan2021">Tan et al. (<a href="../5_references.html#ref-tan2021" role="doc-biblioref">2021</a>)</span> for other simpler neural network architectures on this dataset.</p>
