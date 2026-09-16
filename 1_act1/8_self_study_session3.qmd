@@ -61,7 +61,7 @@ Now, we will work with multivariate time series, which are more common in real-w
 ::::
 - Load the [`UWaveGestureLibrary`](https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary) data set.
 - Use the time series $k$ nearest neighbour algorithm to classify the time series.
-- Use the CNN classifier to classify the time series (make sure to have `sktime>=0.40.0` installed).
+- Use the CNN classifier to classify the time series.
 - How do the results compare?
 :::
 
@@ -102,6 +102,6 @@ X_test, y_test = load_regression(ds_name, split="test")
 - Load the [`AppliancesEnergy`](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction) data set.
 - Use the time series $k$ nearest neighbour algorithm to predict the energy consumption of the appliances.
 - Use the time series random forest tree algorithm to predict the energy consumption of the appliances.
-- Use the CNN regressor to predict the energy consumption of the appliances (make sure to have `sktime>=0.40.0` installed).
+- Use the CNN regressor to predict the energy consumption of the appliances.
 - How do the results compare?
 :::
