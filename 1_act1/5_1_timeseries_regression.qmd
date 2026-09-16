@@ -2,7 +2,7 @@
 
 Time series regression belongs to the class of supervised learning and is defined as the task of predicting a continuous target variable based on time series input data.
 
-The [github repository of sktime (accessed: 16 11 25)](https://github.com/sktime/sktime/tree/main/sktime/regression) categorizes its implemented time series regression methods into the following categories:
+The [github repository of sktime (accessed: 16 09 26)](https://github.com/sktime/sktime/tree/main/sktime/regression) categorizes its implemented time series regression methods into the following categories:
 
 - **Distance-based**: Methods that use distance measures to compare time series (e.g., $k$-nearest neighbors).
 - **Interval-based**: Methods that extract features from intervals of the time series (e.g., time series forest regression).
@@ -18,7 +18,7 @@ This is implemented in `sktime` as [`KNeighborsTimeSeriesRegressor`](https://www
 
 Also tree-based methods like random forests can be adapted for time series regression by simply taking e.g. the mean value of the target variable of the samples in a leaf node as the predicted value.
 This is implemented in `sktime` as [`TimeSeriesForestRegressor`](https://www.sktime.net/en/latest/api_reference/auto_generated/sktime.regression.interval_based.TimeSeriesForestRegressor.html).
-Note that this is to date (16 11 2025) not a very parametrizable implementation; the only tunable parameter is the number of estimators (trees) and the minimum width of the intervals.
+Note that this is (as of `v1.1.0`) not a very parametrizable implementation; the only tunable parameter is the number of estimators (trees) and the minimum width of the intervals.
 
 In this section we will have a brief look at a deep-learning based method in the context of time series regression, namely a convolutional neural network (CNN) based regressor.
 
