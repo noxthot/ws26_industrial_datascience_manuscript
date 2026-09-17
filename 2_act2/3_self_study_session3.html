@@ -26,26 +26,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -553,11 +534,20 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#exercise-a-clustering-the-ai4i-dataset" id="toc-exercise-a-clustering-the-ai4i-dataset" class="nav-link active" data-scroll-target="#exercise-a-clustering-the-ai4i-dataset"><span class="header-section-number">16.1</span> Exercise A: Clustering the AI4I dataset</a></li>
+  <li><a href="#exercise-b-dbscan-and-density-based-clustering" id="toc-exercise-b-dbscan-and-density-based-clustering" class="nav-link" data-scroll-target="#exercise-b-dbscan-and-density-based-clustering"><span class="header-section-number">16.2</span> Exercise B: DBSCAN and density-based clustering</a></li>
+  <li><a href="#exercise-c-anomaly-detection" id="toc-exercise-c-anomaly-detection" class="nav-link" data-scroll-target="#exercise-c-anomaly-detection"><span class="header-section-number">16.3</span> Exercise C: Anomaly detection</a></li>
+  <li><a href="#exercise-d-reflection-and-reporting" id="toc-exercise-d-reflection-and-reporting" class="nav-link" data-scroll-target="#exercise-d-reflection-and-reporting"><span class="header-section-number">16.4</span> Exercise D: Reflection and reporting</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/3_self_study_session3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/3_self_study_session3.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></a></li></ol></nav>
@@ -567,7 +557,7 @@ div.csl-indent {
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -579,7 +569,37 @@ div.csl-indent {
 </header>
 
 
-<p>In this session, we will have a look at another dataset. <a href="https://www.kaggle.com">Kaggle</a> is a data science competition platform under Google LLC where you can find a variety of datasets to work with. We will have a look at the <a href="https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/"><strong>Explainable AI (XAI) Drilling Dataset</strong></a> by <span class="citation" data-cites="wallsberger2023">Wallsberger et al. (<a href="../5_references.html#ref-wallsberger2023" role="doc-biblioref">2023</a>)</span>.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Still under construction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This section is still under construction and will be completed in the near future. Please do not go beyond this point for now.</p>
+</div>
+</div>
+<p>In this session, we will have a look at clustering and anomaly detection applied to the AI4I predictive maintenance dataset from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
+<p>So far we have focused on supervised learning (classification and regression) for predicting failures. However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain. Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can load the AI4I dataset using the link provided in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>. The dataset contains features such as air temperature, process temperature, rotational speed, torque, and tool wear, along with multiple failure type labels.</p>
+</div>
+</div>
+<hr>
+<section id="exercise-a-clustering-the-ai4i-dataset" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="exercise-a-clustering-the-ai4i-dataset"><span class="header-section-number">16.1</span> Exercise A: Clustering the AI4I dataset</h2>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -587,25 +607,88 @@ div.csl-indent {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.1 (Exploratory data analysis)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 16.1 (k-Means clustering on machine data)</strong></span> &nbsp;</p>
 </div>
 <ol type="1">
-<li>Register on <a href="https://www.kaggle.com">Kaggle</a>.</li>
-<li>Read the description of the <a href="https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/"><strong>Explainable AI (XAI) Drilling Dataset</strong></a>.</li>
-<li>Download the dataset.</li>
-<li>First, pretend that you did not read the <em>Subgroup failures</em> paragraph in the description, explore the dataset and find insights related to the different failure types.</li>
-<li>Do your findings align with the description given in the <em>Subgroup failures</em> paragraph?</li>
+<li>Load the AI4I dataset and select the continuous sensor features (<code>Air temperature</code>, <code>Process temperature</code>, <code>Rotational speed</code>, <code>Torque</code>, <code>Tool wear</code>).</li>
+<li>Standardize the features using <code>StandardScaler</code> (important for distance-based methods).</li>
+<li>Apply k-Means clustering with different values of k (e.g., 2 to 8).</li>
+<li>Use the elbow method and silhouette scores to determine an appropriate k.</li>
+<li>Visualize the clusters using pair plots or a scatter plot of the first two principal components (PCA).</li>
+<li>Compare the resulting clusters with the known failure types. Do the clusters align with any specific failure?</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercise-b-dbscan-and-density-based-clustering" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="exercise-b-dbscan-and-density-based-clustering"><span class="header-section-number">16.2</span> Exercise B: DBSCAN and density-based clustering</h2>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.2 (Finding dense regions with DBSCAN)</strong></span> &nbsp;</p>
+</div>
+<ol type="1">
+<li>Apply DBSCAN to the standardized AI4I features. Experiment with different <code>eps</code> and <code>min_samples</code> values.</li>
+<li>DBSCAN can identify outliers as noise points. How many data points are classified as noise?</li>
+<li>Visualize the DBSCAN results alongside the k-Means results from the previous exercise.</li>
+<li>Discuss: Which algorithm better separates the different failure types? What are the limitations of each approach?</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercise-c-anomaly-detection" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="exercise-c-anomaly-detection"><span class="header-section-number">16.3</span> Exercise C: Anomaly detection</h2>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.3 (Detecting anomalous machine behavior)</strong></span> &nbsp;</p>
+</div>
+<ol type="1">
+<li>Train an isolation forest or one-class SVM on the AI4I data (you can use only the “normal” or non-failure samples as training data).</li>
+<li>Predict anomalies on the full dataset and visualize the results.</li>
+<li>Compare the detected anomalies with the known failure labels. Do anomalies correspond to specific failure types?</li>
+<li>What threshold would you set for an early warning system in a real manufacturing environment?</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercise-d-reflection-and-reporting" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="exercise-d-reflection-and-reporting"><span class="header-section-number">16.4</span> Exercise D: Reflection and reporting</h2>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.4 (Synthesizing unsupervised insights)</strong></span> &nbsp;</p>
+</div>
+<ol type="1">
+<li>Summarize your findings from all three exercises. Which clustering or anomaly detection approach performed best?</li>
+<li>How could unsupervised methods complement the supervised approaches we studied earlier in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>?</li>
+<li>In a real-world predictive maintenance scenario, what would be the practical value of these unsupervised techniques?</li>
+<li>Document your reflections in a short report (using Quarto or a Jupyter notebook export).</li>
 </ol>
 </div>
 </div>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-wallsberger2023" class="csl-entry" role="listitem">
-Wallsberger, Raphael, Ricardo Knauer, and Stephan Matzka. 2023. <span>“Explainable Artificial Intelligence in Mechanical Engineering: A Synthetic Dataset for Comprehensive Failure Mode Analysis.”</span> <em>2023 Fifth International Conference on Transdisciplinary AI (TransAI)</em>, 249–52. <a href="https://doi.org/10.1109/TransAI60598.2023.00032">https://doi.org/10.1109/TransAI60598.2023.00032</a>.
-</div>
-</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1021,7 +1104,7 @@ Wallsberger, Raphael, Ricardo Knauer, and Stephan Matzka. 2023. <span>“Explain
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../2_act2/2_self_study_session2.html" class="pagination-link" aria-label="Self study - Session 2">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span>
@@ -1041,7 +1124,7 @@ Wallsberger, Raphael, Ricardo Knauer, and Stephan Matzka. 2023. <span>“Explain
 </div>   
     <div class="nav-footer-center">
 <p>Gregor Ehrensperger</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/3_self_study_session3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/3_self_study_session3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Manuscript designed with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

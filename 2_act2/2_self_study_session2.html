@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -534,11 +553,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-act2-selfstudy2-m1" id="toc-sec-act2-selfstudy2-m1" class="nav-link active" data-scroll-target="#sec-act2-selfstudy2-m1"><span class="header-section-number">15.1</span> Milestone 1: Data Acquisition and Understanding</a></li>
+  <li><a href="#sec-act2-selfstudy2-m2" id="toc-sec-act2-selfstudy2-m2" class="nav-link" data-scroll-target="#sec-act2-selfstudy2-m2"><span class="header-section-number">15.2</span> Milestone 2: Exploratory Data Analysis</a></li>
+  <li><a href="#sec-act2-selfstudy2-m3" id="toc-sec-act2-selfstudy2-m3" class="nav-link" data-scroll-target="#sec-act2-selfstudy2-m3"><span class="header-section-number">15.3</span> Milestone 3: Deep Dive Visualization</a></li>
+  <li><a href="#sec-act2-selfstudy2-m4" id="toc-sec-act2-selfstudy2-m4" class="nav-link" data-scroll-target="#sec-act2-selfstudy2-m4"><span class="header-section-number">15.4</span> Milestone 4: Reporting Findings</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/2_self_study_session2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_act2/0_0_predictive_maintenance.html">Act 2: Polished Machine Data</a></li><li class="breadcrumb-item"><a href="../2_act2/2_self_study_session2.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></a></li></ol></nav>
@@ -548,7 +576,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -560,8 +588,23 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this session, we will explore the dataset in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> further.</p>
-<p>When comparing our findings in <a href="0_0_predictive_maintenance.html#sec-act2-1-int-pp" class="quarto-xref"><span>Section 13.1.6.1</span></a> and <a href="0_0_predictive_maintenance.html#sec-act2-1-int-dt" class="quarto-xref"><span>Section 13.1.6.2</span></a> with the failure description in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a>, we can see that we did a pretty good job in identifying failure reasons. However, we could have done better for <code>OSF</code>.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Still under construction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This section is still under construction and will be completed in the near future. Please do not go beyond this point for now.</p>
+</div>
+</div>
+<p>In this session, we will revisit the dataset from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>, the <strong>Explainable AI (XAI) Drilling Dataset</strong> by <span class="citation" data-cites="wallsberger2023">Wallsberger et al. (<a href="../5_references.html#ref-wallsberger2023" role="doc-biblioref">2023</a>)</span>. We will explore it in depth, splitting our analysis into four milestones, each building on the previous one.</p>
+<hr>
+<section id="sec-act2-selfstudy2-m1" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="sec-act2-selfstudy2-m1"><span class="header-section-number">15.1</span> Milestone 1: Data Acquisition and Understanding</h2>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -569,65 +612,96 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.1 (Overstrain failure)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 15.1 (Register and download the dataset)</strong></span> &nbsp;</p>
 </div>
-<p>According to <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a>, the failure type <em>overstrain failure</em> (<code>OSF</code>) occurs when the machine is subjected to excessive torque when a worn-out tool is used. Also the product variant is associated to the failure rate: When the product of torque and tool wear exceeds 11.000 minNm for the L product variant (12.000 for M, 13.000 for H), the process fails due to overstrain.</p>
-<p>Are you able to verify this relationship by visualizations?</p>
-</div>
-</div>
-</div>
-<p>Also, it seems that the description of <code>TWF</code> in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> is contradicting our observations.</p>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.2 (Tool wear failure)</strong></span> &nbsp;</p>
-</div>
-<p>Identify where the description of <code>TWF</code> in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> does not align with your findings.</p>
-</div>
-</div>
-</div>
-<p>So far we have used <code>seaborn</code> to visualize the data. <code>seaborn</code> is based on <code>matplotlib</code> and provides a high-level interface for drawing statistical graphics. While <code>matplotlib</code> supports interactive figures that can zoom, pan and update (see <a href="https://mybinder.org/v2/gh/matplotlib/mpl-brochure-binder/main?labpath=MatplotlibExample.ipynb">here</a>), for richer interactive visualizations we can use <code>plotly</code>. <code>plotly</code> is open-source and built on top of the Plotly JavaScript library <code>plotly.js</code>. It enables users to create interactive web-based visualizations that can be displayed in <code>Jupyter</code> notebooks as well as in standalone HTML files. Especially for explorative data analysis, <code>plotly</code> offers a more user-friendly and flexible approach to create and explore complex visualizations.</p>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.3 (Introducing Plotly)</strong></span> &nbsp;</p>
-</div>
-<p>Consult the <a href="https://plotly.com/python/">Plotly documentation</a> for more information on how to use the library. Start with the notebook from <a href="1_self_study_session1.html" class="quarto-xref"><span>Chapter 14</span></a>, recreate the visualizations from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> using <code>plotly</code>, and explore the data interactively.</p>
-</div>
-</div>
-</div>
-<p>In <a href="0_0_predictive_maintenance.html#sec-act2-1-machinefailures" class="quarto-xref"><span>Section 13.1.6</span></a>, we used pair plots, boxplots, and decision trees to investigate the relationship between different features and the machine failure types. Another approach could be to use <a href="https://plotly.com/python/parallel-coordinates-plot/">parallel coordinates plots</a>.</p>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.4 (Parallel coordinates plots)</strong></span> &nbsp;</p>
-</div>
-<p>Use <a href="https://plotly.com/python/parallel-coordinates-plot/">parallel coordinates plots</a> to visualize the relationships between multiple features and the machine failure types:</p>
 <ol type="1">
-<li>Display every available continuous variable along with one selected failure type.</li>
-<li>Also add <code>Type</code> as a categorical variable to the plot.</li>
-<li>Make the failure type categorical.</li>
-<li>Color the lines according to the selected failure type.</li>
-<li>Allow for choosing the failure type interactively using a Dropdown widget (see <a href="https://ipywidgets.readthedocs.io/en/stable/">Jupyter widgets</a>) with the available failure types.</li>
-<li>The parallel coordinate plot allows for dragging columns (just click and drag the title of a column) and reordering them. It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points. Use these two features to get insights into the relationships between different features and the selected failure type. Can you identify the patterns which we have exploited in our previous analyses?</li>
+<li>Register on <a href="https://www.kaggle.com">Kaggle</a>.</li>
+<li>Read the description of the <a href="https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/"><strong>Explainable AI (XAI) Drilling Dataset</strong></a>.</li>
+<li>Download the dataset.</li>
+<li>Load the dataset into your environment and inspect its structure: number of rows, columns, data types, and any obvious issues.</li>
+<li>Identify the target variable(s) and any class imbalances.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-act2-selfstudy2-m2" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="sec-act2-selfstudy2-m2"><span class="header-section-number">15.2</span> Milestone 2: Exploratory Data Analysis</h2>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 15.2 (Explore the dataset)</strong></span> &nbsp;</p>
+</div>
+<ol type="1">
+<li>Pretend that you did not read the <em>Subgroup failures</em> paragraph in the description. Explore the dataset and find insights related to the different failure types.</li>
+<li>Do your findings align with the description given in the <em>Subgroup failures</em> paragraph?</li>
+<li>Compute summary statistics for each feature grouped by failure type.</li>
+<li>Create at least two visualizations (e.g., histograms, box plots) that reveal differences between failure types.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-act2-selfstudy2-m3" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="sec-act2-selfstudy2-m3"><span class="header-section-number">15.3</span> Milestone 3: Deep Dive Visualization</h2>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 15.3 (Visualize failure patterns with plotly)</strong></span> &nbsp;</p>
+</div>
+<ol type="1">
+<li>Recreate the key visualizations from milestone 2 using <code>plotly</code> for interactivity.</li>
+<li>Create a parallel coordinates plot to explore relationships between multiple features and failure types.</li>
+<li>Use dropdown widgets to filter the plot by failure type and observe how feature relationships change.</li>
+<li>Document any new patterns or anomalies discovered through the interactive exploration.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-act2-selfstudy2-m4" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="sec-act2-selfstudy2-m4"><span class="header-section-number">15.4</span> Milestone 4: Reporting Findings</h2>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 15.4 (Generate a polished report with Quarto)</strong></span> &nbsp;</p>
+</div>
+<ol type="1">
+<li>Polish your document: keep relevant insights, remove unnecessary details, focus on key findings.</li>
+<li>Document with markdown cells and export the result as HTML or PDF (since your management most likely will not have JupyterLab installed).
+<ul>
+<li>PDF: The document will be a static version of your notebook, so make sure to include all relevant information and insights directly in the document.</li>
+<li>HTML: The document will also be a static version of your notebook (the Dropdown would not work e.g.), but the interactivity of the <code>plotly</code> plots will still be available, since the HTML export retains the JavaScript functionality.</li>
+</ul></li>
+<li>Use Quarto to generate a more polished report. Export your report as a PDF and HTML document. Use <a href="https://quarto.org/docs/tools/jupyter-lab.html">this documentation</a> as a starting point.</li>
+<li>Reflect on the entire analysis: What were the key findings? What surprised you? What would you investigate next?</li>
 </ol>
 </div>
 </div>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-wallsberger2023" class="csl-entry" role="listitem">
+Wallsberger, Raphael, Ricardo Knauer, and Stephan Matzka. 2023. <span>“Explainable Artificial Intelligence in Mechanical Engineering: A Synthetic Dataset for Comprehensive Failure Mode Analysis.”</span> <em>2023 Fifth International Conference on Transdisciplinary AI (TransAI)</em>, 249–52. <a href="https://doi.org/10.1109/TransAI60598.2023.00032">https://doi.org/10.1109/TransAI60598.2023.00032</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1043,7 +1117,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../2_act2/1_self_study_session1.html" class="pagination-link" aria-label="Self study - Session 1">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span>
@@ -1063,7 +1137,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p>Gregor Ehrensperger</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/2_self_study_session2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/2_self_study_session2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Manuscript designed with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
