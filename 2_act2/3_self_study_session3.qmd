@@ -1,15 +1,67 @@
 # Self study - Session 3 {#sec-act2-selfstudy3}
-In this session, we will have a look at another dataset.
-[Kaggle](https://www.kaggle.com) is a data science competition platform under Google LLC where you can find a variety of datasets to work with.
-We will have a look at the [**Explainable AI (XAI) Drilling Dataset**](https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/) by @{wallsberger2023}.
+
+In this session, we will have a look at clustering and anomaly detection applied to the AI4I predictive maintenance dataset from @{sec-act2}.
+
+So far we have focused on supervised learning (classification and regression) for predicting failures. However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain. Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.
+
+::: {.callout-note}
+You can load the AI4I dataset using the link provided in @{sec-act2}. The dataset contains features such as air temperature, process temperature, rotational speed, torque, and tool wear, along with multiple failure type labels.
+:::
+
+---
+
+## Exercise A: Clustering the AI4I dataset
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Exploratory data analysis
+::::{#exr-basics-mv-space}
+## k-Means clustering on machine data
 ::::
-1. Register on [Kaggle](https://www.kaggle.com).
-1. Read the description of the [**Explainable AI (XAI) Drilling Dataset**](https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/).
-1. Download the dataset.
-1. First, pretend that you did not read the _Subgroup failures_ paragraph in the description, explore the dataset and find insights related to the different failure types.
-1. Do your findings align with the description given in the _Subgroup failures_ paragraph?
+1. Load the AI4I dataset and select the continuous sensor features (`Air temperature`, `Process temperature`, `Rotational speed`, `Torque`, `Tool wear`).
+2. Standardize the features using `StandardScaler` (important for distance-based methods).
+3. Apply k-Means clustering with different values of k (e.g., 2 to 8).
+4. Use the elbow method and silhouette scores to determine an appropriate k.
+5. Visualize the clusters using pair plots or a scatter plot of the first two principal components (PCA).
+6. Compare the resulting clusters with the known failure types. Do the clusters align with any specific failure?
+:::
+
+---
+
+## Exercise B: DBSCAN and density-based clustering
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+::::{#exr-basics-mv-space}
+## Finding dense regions with DBSCAN
+::::
+1. Apply DBSCAN to the standardized AI4I features. Experiment with different `eps` and `min_samples` values.
+2. DBSCAN can identify outliers as noise points. How many data points are classified as noise?
+3. Visualize the DBSCAN results alongside the k-Means results from the previous exercise.
+4. Discuss: Which algorithm better separates the different failure types? What are the limitations of each approach?
+:::
+
+---
+
+## Exercise C: Anomaly detection
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+::::{#exr-basics-mv-space}
+## Detecting anomalous machine behavior
+::::
+1. Train an isolation forest or one-class SVM on the AI4I data (you can use only the "normal" or non-failure samples as training data).
+2. Predict anomalies on the full dataset and visualize the results.
+3. Compare the detected anomalies with the known failure labels. Do anomalies correspond to specific failure types?
+4. What threshold would you set for an early warning system in a real manufacturing environment?
+:::
+
+---
+
+## Exercise D: Reflection and reporting
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+::::{#exr-basics-mv-space}
+## Synthesizing unsupervised insights
+::::
+1. Summarize your findings from all three exercises. Which clustering or anomaly detection approach performed best?
+2. How could unsupervised methods complement the supervised approaches we studied earlier in @{sec-act2}?
+3. In a real-world predictive maintenance scenario, what would be the practical value of these unsupervised techniques?
+4. Document your reflections in a short report (using Quarto or a Jupyter notebook export).
 :::

@@ -1,59 +1,64 @@
 # Self study - Session 2 {#sec-act2-selfstudy2}
-In this session, we will explore the dataset in @{sec-act2} further.
 
-When comparing our findings in @{sec-act2-1-int-pp} and @{sec-act2-1-int-dt} with the failure description in @{sec-act2-1-reveal}, we can see that we did a pretty good job in identifying failure reasons.
-However, we could have done better for `OSF`.
+In this session, we will revisit the dataset from @{sec-act2}, the **Explainable AI (XAI) Drilling Dataset** by @{wallsberger2023}.
+We will explore it in depth, splitting our analysis into four milestones, each building on the previous one.
+
+---
+
+## Milestone 1: Data Acquisition and Understanding {#sec-act2-selfstudy2-m1}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Overstrain failure
+::::{#exr-basics-mv-space}
+## Register and download the dataset
 ::::
-According to @{sec-act2-1-reveal}, the failure type _overstrain failure_ (`OSF`) occurs when the machine is subjected to excessive torque when a worn-out tool is used.
-Also the product variant is associated to the failure rate: When the product of torque and tool wear exceeds 11.000 minNm for the L product variant (12.000 for M, 13.000 for H), the process fails due to overstrain.
-
-Are you able to verify this relationship by visualizations?
+1. Register on [Kaggle](https://www.kaggle.com).
+1. Read the description of the [**Explainable AI (XAI) Drilling Dataset**](https://www.kaggle.com/datasets/raphaelwallsberger/xai-drilling-dataset/).
+1. Download the dataset.
+1. Load the dataset into your environment and inspect its structure: number of rows, columns, data types, and any obvious issues.
+1. Identify the target variable(s) and any class imbalances.
 :::
 
-Also, it seems that the description of `TWF` in @{sec-act2-1-reveal} is contradicting our observations.
+---
+
+## Milestone 2: Exploratory Data Analysis {#sec-act2-selfstudy2-m2}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Tool wear failure
+::::{#exr-basics-mv-space}
+## Explore the dataset
 ::::
-Identify where the description of `TWF` in @{sec-act2-1-reveal} does not align with your findings.
+1. Pretend that you did not read the _Subgroup failures_ paragraph in the description. Explore the dataset and find insights related to the different failure types.
+1. Do your findings align with the description given in the _Subgroup failures_ paragraph?
+1. Compute summary statistics for each feature grouped by failure type.
+1. Create at least two visualizations (e.g., histograms, box plots) that reveal differences between failure types.
 :::
 
-So far we have used `seaborn` to visualize the data.
-`seaborn` is based on `matplotlib` and provides a high-level interface for drawing statistical graphics.
-While `matplotlib` supports interactive figures that can zoom, pan and update (see [here](https://mybinder.org/v2/gh/matplotlib/mpl-brochure-binder/main?labpath=MatplotlibExample.ipynb)), for richer interactive visualizations we can use `plotly`.
-`plotly` is open-source and built on top of the Plotly JavaScript library `plotly.js`.
-It enables users to create interactive web-based visualizations that can be displayed in `Jupyter` notebooks as well as in standalone HTML files.
-Especially for explorative data analysis, `plotly` offers a more user-friendly and flexible approach to create and explore complex visualizations.
+---
+
+## Milestone 3: Deep Dive Visualization {#sec-act2-selfstudy2-m3}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Introducing Plotly
+::::{#exr-basics-mv-space}
+## Visualize failure patterns with plotly
 ::::
-Consult the [Plotly documentation](https://plotly.com/python/) for more information on how to use the library.
-Start with the notebook from @{sec-act2-selfstudy1}, recreate the visualizations from @{sec-act2} using `plotly`, and explore the data interactively.
+1. Recreate the key visualizations from milestone 2 using `plotly` for interactivity.
+1. Create a parallel coordinates plot to explore relationships between multiple features and failure types.
+1. Use dropdown widgets to filter the plot by failure type and observe how feature relationships change.
+1. Document any new patterns or anomalies discovered through the interactive exploration.
 :::
 
-In @{sec-act2-1-machinefailures}, we used pair plots, boxplots, and decision trees to investigate the relationship between different features and the machine failure types.
-Another approach could be to use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/).
+---
+
+## Milestone 4: Reporting Findings {#sec-act2-selfstudy2-m4}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
-## Parallel coordinates plots
+::::{#exr-basics-mv-space}
+## Generate a polished report with Quarto
 ::::
-Use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/) to visualize the relationships between multiple features and the machine failure types:
-
-1. Display every available continuous variable along with one selected failure type.
-1. Also add `Type` as a categorical variable to the plot.
-1. Make the failure type categorical.
-1. Color the lines according to the selected failure type.
-1. Allow for choosing the failure type interactively using a Dropdown widget (see [Jupyter widgets](https://ipywidgets.readthedocs.io/en/stable/)) with the available failure types.
-1. The parallel coordinate plot allows for dragging columns (just click and drag the title of a column) and reordering them.
-   It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points.
-   Use these two features to get insights into the relationships between different features and the selected failure type.
-   Can you identify the patterns which we have exploited in our previous analyses?
+1. Polish your document: keep relevant insights, remove unnecessary details, focus on key findings.
+1. Document with markdown cells and export the result as HTML or PDF (since your management most likely will not have JupyterLab installed).
+   - PDF: The document will be a static version of your notebook, so make sure to include all relevant information and insights directly in the document.
+   - HTML: The document will also be a static version of your notebook (the Dropdown would not work e.g.), but the interactivity of the `plotly` plots will still be available, since the HTML export retains the JavaScript functionality.
+1. Use Quarto to generate a more polished report. Export your report as a PDF and HTML document.
+   Use [this documentation](https://quarto.org/docs/tools/jupyter-lab.html) as a starting point.
+1. Reflect on the entire analysis: What were the key findings? What surprised you? What would you investigate next?
 :::
