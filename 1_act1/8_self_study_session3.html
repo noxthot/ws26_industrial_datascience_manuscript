@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -669,6 +688,20 @@ Note
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> pd.Series(y_test).astype(<span class="st">"category"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+<p><code>sktime</code> is not the sole source of time series based algorithms. Besides <code>sktime</code>, there are numerous others, e.g.&nbsp;<code>aeon</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>aeon</code> is quite strict about dependencies. In case you have problems installing it, consider to initialize a new project and first install <code>aeon</code> before adding further packages.</p>
+</div>
+</div>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -676,15 +709,17 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.1 (Clustering with time series DBScan)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 12.1 (Clustering of univariate time series)</strong></span> &nbsp;</p>
 </div>
 <ul>
 <li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=GesturePebbleZ1"><code>GesturePebbleZ1</code></a> data set. Note that it is a variable-length time series dataset and you need to either use <code>ret_type="df-list"</code> or <code>ret_type="nested_univ"</code> to load it (using the example above).</li>
 <li>Bring the data into a suitable format and explore the data set visually (using plots).</li>
 <li>Use the Time Series <span class="math inline">\(k\)</span> means algorithm to cluster the data. Do you need to reshape the data for this algorithm?</li>
-<li>Now, try to use the time series DBScan algorithm for clustering. Do you need to reshape the data for this algorithm?</li>
+<li>Use the KASBA <span class="citation" data-cites="holder2026">Holder and Bagnall (<a href="../5_references.html#ref-holder2026" role="doc-biblioref">2026</a>)</span> algorithm to cluster the data (e.g.&nbsp;implemented in <code>aeon</code>).</li>
+<li>Include useful (!) visualizations.</li>
 <li>How do the results compare?</li>
 </ul>
+<p>After the exercise, you should be able to answer the following questions: - How does KASBA differ from the commonly used <span class="math inline">\(k\)</span> means algorithm? - In you will find MSM defined. You should be able to illustrate how MSM is calculated.</p>
 </div>
 </div>
 </div>
@@ -701,26 +736,13 @@ Note
 <ul>
 <li>Load the <a href="https://timeseriesclassification.com/description.php?Dataset=UWaveGestureLibrary"><code>UWaveGestureLibrary</code></a> data set.</li>
 <li>Use the time series <span class="math inline">\(k\)</span> nearest neighbour algorithm to classify the time series.</li>
-<li>Use the CNN classifier to classify the time series (make sure to have <code>sktime&gt;=0.40.0</code> installed).</li>
+<li>Use the CNN classifier to classify the time series.</li>
 <li>How do the results compare?</li>
 </ul>
 </div>
 </div>
 </div>
 <p>Note that not all of the algorithms have implementations for multivariate time series, e.g.&nbsp;<code>sktime</code>’s <code>TimeSeriesForestClassifier</code> only works for univariate time series (and raises an exception when used with a multivariate series). Luckily, there are other implementations available, e.g.&nbsp;<code>aeon</code> offers a <code>TimeSeriesForestClassifier</code> that is compatible with multivariate time series.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>aeon</code> is quite strict about dependencies. In case you have problems installing it, consider to initialize a new project and first install <code>aeon</code> before adding further packages.</p>
-</div>
-</div>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -770,7 +792,7 @@ Note
 <li>Load the <a href="https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction"><code>AppliancesEnergy</code></a> data set.</li>
 <li>Use the time series <span class="math inline">\(k\)</span> nearest neighbour algorithm to predict the energy consumption of the appliances.</li>
 <li>Use the time series random forest tree algorithm to predict the energy consumption of the appliances.</li>
-<li>Use the CNN regressor to predict the energy consumption of the appliances (make sure to have <code>sktime&gt;=0.40.0</code> installed).</li>
+<li>Use the CNN regressor to predict the energy consumption of the appliances.</li>
 <li>How do the results compare?</li>
 </ul>
 </div>
@@ -778,6 +800,11 @@ Note
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-holder2026" class="csl-entry" role="listitem">
+Holder, Christopher, and Anthony Bagnall. 2026. <span>“Rock the KASBA: Blazingly Fast and Accurate Time Series Clustering.”</span> <em>Data Mining and Knowledge Discovery</em> 40 (2): 21. <a href="https://doi.org/10.1007/s10618-026-01189-9">https://doi.org/10.1007/s10618-026-01189-9</a>.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

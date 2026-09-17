@@ -655,8 +655,7 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Exercise 10.3 (Visualizing the AI4I data with seaborn)</strong></span> &nbsp;</p>
 </div>
 <p>In this exercise you will explore the AI4I dataset (columns <code>UDI</code>, <code>Torque</code>, <code>Rotational speed</code> and <code>Air temperature</code>) using <code>seaborn</code>.</p>
-<section id="basic-plots" class="level3" data-number="10.0.1">
-<h3 data-number="10.0.1" class="anchored" data-anchor-id="basic-plots"><span class="header-section-number">10.0.1</span> Basic plots</h3>
+<p><em>Basic plots</em></p>
 <ol type="1">
 <li>Load the AI4I dataset (keeping only <code>Torque</code>, <code>Rotational speed</code> and <code>Air temperature</code>).</li>
 <li>Create a <strong>line plot</strong> of <code>Torque</code> over <code>UDI</code>.</li>
@@ -664,25 +663,19 @@ window.Quarto = {
 <li>Create <strong>box plots</strong> of each column to identify outliers and understand the spread of the data.</li>
 <li>Create <strong>violin plots</strong> of each column and discuss how they differ from box plots.</li>
 </ol>
-</section>
-<section id="relationships-between-variables" class="level3" data-number="10.0.2">
-<h3 data-number="10.0.2" class="anchored" data-anchor-id="relationships-between-variables"><span class="header-section-number">10.0.2</span> Relationships between variables</h3>
+<p><em>Relationships between variables</em></p>
 <ol type="1">
 <li>Create a <strong>scatter plot</strong> of <code>Torque</code> vs <code>Rotational speed</code> using <code>sns.scatterplot</code>. Add <code>Air temperature</code> as the <code>hue</code> parameter to see how the third variable influences the relationship.</li>
 <li>Create a <strong>pair plot</strong> (<code>sns.pairplot</code>) of all three numeric columns to observe pairwise relationships and distributions on the diagonal.</li>
 <li>Create a <strong>correlation heatmap</strong> using <code>sns.heatmap</code> on the correlation matrix of the three columns. Discuss which variables are most strongly correlated.</li>
 </ol>
-</section>
-<section id="advanced-plots" class="level3" data-number="10.0.3">
-<h3 data-number="10.0.3" class="anchored" data-anchor-id="advanced-plots"><span class="header-section-number">10.0.3</span> Advanced plots</h3>
+<p><em>Advanced plots</em></p>
 <ol type="1">
 <li>Create a <strong>joint plot</strong> of <code>Torque</code> vs <code>Air temperature</code> with a regression line overlay.</li>
 <li>Create a <strong>strip plot</strong> or <strong>swarm plot</strong> of <code>Torque</code> colored by a binned version of <code>Rotational speed</code> (e.g., low/medium/high using <code>pd.cut</code>).</li>
 <li>Create a <strong>count plot</strong> showing the distribution of data points across bins of <code>Torque</code> (e.g., binned into 10 intervals).</li>
 </ol>
-</section>
-<section id="observations" class="level3" data-number="10.0.4">
-<h3 data-number="10.0.4" class="anchored" data-anchor-id="observations"><span class="header-section-number">10.0.4</span> Observations</h3>
+<p><em>Observations</em></p>
 <ol type="1">
 <li>Based on all the plots above, answer the following:
 <ul>
@@ -692,14 +685,13 @@ window.Quarto = {
 <li>How are the distributions shaped?</li>
 </ul></li>
 </ol>
-<p>After this exercise you should be able to:</p>
+<p><em>After this exercise you should be able to:</em></p>
 <ol type="1">
 <li>Create a wide range of static statistical plots with <code>seaborn</code>.</li>
 <li>Use parameters to add additional dimensions to your plots.</li>
 <li>Compare and discuss different plot types for different analytical questions.</li>
 <li>Draw meaningful observations from statistical visualizations.</li>
 </ol>
-</section>
 </div>
 </div>
 </div>
