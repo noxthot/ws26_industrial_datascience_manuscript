@@ -41,15 +41,28 @@ y_test = pd.Series(y_test).astype("category")
 ```
 :::
 
+`sktime` is not the sole source of time series based algorithms.
+Besides `sktime`, there are numerous others, e.g. `aeon`.
+
+::: {.callout-note}
+`aeon` is quite strict about dependencies.
+In case you have problems installing it, consider to initialize a new project and first install `aeon` before adding further packages.
+:::
+
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
-## Clustering with time series DBScan
+## Clustering of univariate time series
 ::::
 - Load the [`GesturePebbleZ1`](https://timeseriesclassification.com/description.php?Dataset=GesturePebbleZ1) data set. Note that it is a variable-length time series dataset and you need to either use `ret_type="df-list"` or `ret_type="nested_univ"` to load it (using the example above).
 - Bring the data into a suitable format and explore the data set visually (using plots).
 - Use the Time Series $k$ means algorithm to cluster the data. Do you need to reshape the data for this algorithm?
-- Now, try to use the time series DBScan algorithm for clustering. Do you need to reshape the data for this algorithm?
+- Use the KASBA @{holder2026} algorithm to cluster the data (e.g. implemented in `aeon`).
+- Include useful (!) visualizations.
 - How do the results compare?
+
+After the exercise, you should be able to answer the following questions:
+    - How does KASBA differ from the commonly used $k$ means algorithm?
+    - In \cite{holder2026} you will find MSM defined. You should be able to illustrate how MSM is calculated.
 :::
 
 In @{sec-act1-classification} and @{sec-act1-regression}, our input was univariate, meaning each sample consisted of exactly one time series.
@@ -67,12 +80,6 @@ Now, we will work with multivariate time series, which are more common in real-w
 
 Note that not all of the algorithms have implementations for multivariate time series, e.g. `sktime`'s `TimeSeriesForestClassifier` only works for univariate time series (and raises an exception when used with a multivariate series).
 Luckily, there are other implementations available, e.g. `aeon` offers a `TimeSeriesForestClassifier` that is compatible with multivariate time series.
-
-
-::: {.callout-note}
-`aeon` is quite strict about dependencies.
-In case you have problems installing it, consider to initialize a new project and first install `aeon` before adding further packages.
-:::
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
