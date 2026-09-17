@@ -1,5 +1,12 @@
 # Levels of system integration
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 | Level                                                  | Access & Action                            | Description                                                                                                                       |
 | ------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | **1. Historical Analysis (Passive Insight)**           | Data only -- no machine or data stream access | Work from static CSVs or logs, providing insights, trends, or recommendations based solely on historical data.                    |

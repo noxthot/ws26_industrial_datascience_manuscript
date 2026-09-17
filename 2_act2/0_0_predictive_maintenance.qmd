@@ -1,5 +1,12 @@
 # Predictive Maintenance via Exploratory Data Analysis {#sec-act2}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In this section, we will explore the concept of predictive maintenance using a synthetic dataset that reflects real predictive maintenance data encountered in industry.
 
 You can download the dataset @{ai4i2020} at [this link](https://doi.org/10.24432/C5HS5C).

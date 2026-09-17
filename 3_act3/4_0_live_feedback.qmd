@@ -1,5 +1,12 @@
 # Process optimization via Live Feedback {#sec-act3-livefeedback}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In this section, we will have a look at a simulated example of a live feedback system in an industrial manufacturing context.
 
 ## Setting the stage

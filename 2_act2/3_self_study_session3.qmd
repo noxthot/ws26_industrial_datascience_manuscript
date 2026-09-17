@@ -1,5 +1,12 @@
 # Self study - Session 3 {#sec-act2-selfstudy3}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In this session, we will have a look at clustering and anomaly detection applied to the AI4I predictive maintenance dataset from @{sec-act2}.
 
 So far we have focused on supervised learning (classification and regression) for predicting failures. However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain. Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.

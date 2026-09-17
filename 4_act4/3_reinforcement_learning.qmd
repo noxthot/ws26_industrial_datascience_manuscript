@@ -1,5 +1,12 @@
 # Reinforcement Learning {#sec-rl}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 _Reinforcement Learning_ (RL) is a machine learning paradigm where an **agent** learns to make decisions by interacting with an **environment**.
 Unlike supervised learning, which relies on labeled datasets, RL agents learn through trial and error, receiving **rewards** or penalties based on their actions.
 This makes RL particularly suitable for industrial applications where optimal control strategies need to be discovered through experimentation.

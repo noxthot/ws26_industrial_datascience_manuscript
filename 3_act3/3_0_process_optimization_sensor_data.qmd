@@ -1,4 +1,12 @@
 # Process optimization on sensor data via EDA {#sec-act3-eda}
+
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In this section, we will have a look at a more realistic example of industrial data.
 
 ## Setting the stage

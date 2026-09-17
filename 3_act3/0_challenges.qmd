@@ -1,5 +1,12 @@
 # Challenges {#sec-act3}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 Real machine data is often messy and requires substantial preprocessing before it can be used for analysis.
 Challenges from a data engineering perspective that often arise include:
 

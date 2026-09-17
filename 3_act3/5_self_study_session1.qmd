@@ -1,5 +1,12 @@
 # Self study - Session 1 {#sec-act3-selfstudy1}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In this session, we will revisit @{sec-act3-eda} and continue where we left off, trying to improve the process.
 
 The findings in @{sec-act3-eda-summary} were not sufficient to explain all defects, but we found a correlation between elevated pressure during the epoxy application step and excessive epoxy application (`NOK_1`).

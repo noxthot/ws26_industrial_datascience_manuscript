@@ -1,5 +1,12 @@
 # Multimodal Machine Learning {#sec-multimodal}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In industrial settings, data often comes from multiple sources and modalities. A production line might generate time series data from sensors (temperature, vibration, pressure) alongside visual data from cameras inspecting products, or thermal imaging systems monitoring equipment health.
 Multimodal machine learning combines these different data types to make more informed predictions than would be possible using a single modality alone.
 

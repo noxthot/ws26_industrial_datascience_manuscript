@@ -1,5 +1,12 @@
 # Self study - Session 2 {#sec-act3-selfstudy2}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In this session, we will revisit @{sec-act3-livefeedback} and try to optimize the placement accuracy of the pick-and-place machine.
 
 Before we are touching the live machine, we will first try to find a suitable model based on the provided dataset.

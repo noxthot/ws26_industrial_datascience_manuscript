@@ -1,5 +1,12 @@
 # Batch vs Stream Processing
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 |                    | **Batch Processing**                                                   | **Stream Processing**                                             |
 | ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | **Definition**     | Processes datasets in periodic chunks                                  | Continuously processes data arriving in a stream                  |

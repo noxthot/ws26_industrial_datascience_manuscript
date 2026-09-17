@@ -1,5 +1,12 @@
 # Optional Self study Session {#sec-act4-selfstudy}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 Real-world applications on industrial data face many challenges.
 One of them being that the data from machines is usually retrieved via communication protocols from _programmable logic controllers_ (PLC).
 These communication protocols often lack standardization and can vary significantly between different manufacturers and even different models of PLCs.

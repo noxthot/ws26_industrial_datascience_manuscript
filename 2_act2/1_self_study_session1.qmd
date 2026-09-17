@@ -1,5 +1,12 @@
 # Self study - Session 1 {#sec-act2-selfstudy1}
 
+::: {.callout-caution}
+## Still under construction
+
+This section is still under construction and will be completed in the near future.
+Please do not go beyond this point for now.
+:::
+
 In this session, we will explore the dataset in @{sec-act2} further.
 
 When comparing our findings in @{sec-act2-1-int-pp} and @{sec-act2-1-int-dt} with the failure description in @{sec-act2-1-reveal}, we can see that we did a pretty good job in identifying failure reasons.
