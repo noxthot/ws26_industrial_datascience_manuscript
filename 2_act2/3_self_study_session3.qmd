@@ -61,14 +61,22 @@ You can load the AI4I dataset using the link provided in @{sec-act2}. The datase
 
 ---
 
-## Exercise D: Reflection and reporting
+## Exercise D: Feature spaces and alarm thresholds
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
-## Synthesizing unsupervised insights
+## Does the feature space matter?
 ::::
-1. Summarize your findings from all three exercises. Which clustering or anomaly detection approach performed best?
-2. How could unsupervised methods complement the supervised approaches we studied earlier in @{sec-act2}?
-3. In a real-world predictive maintenance scenario, what would be the practical value of these unsupervised techniques?
-4. Document your reflections in a short report (using Quarto or a Jupyter notebook export).
+In Exercise C, you treated the anomaly detector as a yes/no decision.
+Now, use the anomaly score as a continuous ranking and evaluate it quantitatively.
+
+1. Build three standardized feature sets: (i) the five raw sensor features, (ii) the engineered features `power`, `temp_diff`, `Tool wear`, and `strain` $= \text{torque} \cdot \text{tool wear}$, and (iii) the union of both.
+2. For each feature set, fit an isolation forest and a Gaussian mixture model (a distribution-based method, compare @{sec-act1-clustering}) on the non-failure samples only.
+   Use the negative log-likelihood of the Gaussian mixture model as its anomaly score.
+3. For each failure type, compute the average precision (`sklearn.metrics.average_precision_score`) of the anomaly scores and collect the results in a table (rows: detector and feature set, columns: failure types).
+   Compare against the baseline of a random ranking, which equals the failure rate.
+4. Which failure types can be detected as anomalies, and which cannot? Use the failure descriptions in @{sec-act2-1-reveal} to explain why a failure is not necessarily an anomaly.
+5. Assume that a missed failure costs 100 times as much as a false alarm.
+   Choose the threshold of your best detector that minimizes the total cost and report how many alarms per 1,000 processes an operator would have to handle.
+   Compare with the threshold you proposed in Exercise C.
 :::

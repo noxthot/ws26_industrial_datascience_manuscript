@@ -7,7 +7,7 @@ This section is still under construction and will be completed in the near futur
 Please do not go beyond this point for now.
 :::
 
-In this session, we will revisit the dataset from @{sec-act2}, the **Explainable AI (XAI) Drilling Dataset** by @{wallsberger2023}.
+In this session, we will transfer what we learned in @{sec-act2} to a new dataset, the **Explainable AI (XAI) Drilling Dataset** by @{wallsberger2023}.
 We will explore it in depth, splitting our analysis into four milestones, each building on the previous one.
 
 ---
@@ -23,6 +23,9 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 1. Download the dataset.
 1. Load the dataset into your environment and inspect its structure: number of rows, columns, data types, and any obvious issues.
 1. Identify the target variable(s) and any class imbalances.
+1. Check the consistency of the labels: does the main failure flag coincide with the union of the subgroup failure flags?
+   Are there samples with more than one subgroup failure?
+   Run the same check on the AI4I dataset from @{sec-act2}. What do you find, and how would you handle inconsistent labels when training a model?
 :::
 
 ---
@@ -47,25 +50,25 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 ::::{#exr-basics-mv-space}
 ## Visualize failure patterns with plotly
 ::::
-1. Recreate the key visualizations from milestone 2 using `plotly` for interactivity.
 1. Create a parallel coordinates plot to explore relationships between multiple features and failure types.
 1. Use dropdown widgets to filter the plot by failure type and observe how feature relationships change.
+1. For each failure type, use the brushing feature (select a range on an axis) to isolate the failing samples and read off approximate thresholds of the features involved.
+   Note these thresholds down, you will need them in milestone 4.
 1. Document any new patterns or anomalies discovered through the interactive exploration.
 :::
 
 ---
 
-## Milestone 4: Reporting Findings {#sec-act2-selfstudy2-m4}
+## Milestone 4: Distilling Findings into Rules {#sec-act2-selfstudy2-m4}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
-## Generate a polished report with Quarto
+## From exploration to a rule-based failure model
 ::::
-1. Polish your document: keep relevant insights, remove unnecessary details, focus on key findings.
-1. Document with markdown cells and export the result as HTML or PDF (since your management most likely will not have JupyterLab installed).
-   - PDF: The document will be a static version of your notebook, so make sure to include all relevant information and insights directly in the document.
-   - HTML: The document will also be a static version of your notebook (the Dropdown would not work e.g.), but the interactivity of the `plotly` plots will still be available, since the HTML export retains the JavaScript functionality.
-1. Use Quarto to generate a more polished report. Export your report as a PDF and HTML document.
-   Use [this documentation](https://quarto.org/docs/tools/jupyter-lab.html) as a starting point.
+1. Translate the thresholds from milestone 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.
+1. Evaluate your rules against the labels: compute the confusion matrix, precision, and recall for each failure type.
+   Inspect the misclassified samples. Are your thresholds slightly off, or is a relevant feature missing?
+1. Split the data into a training and a test set and train a shallow decision tree per failure type on the training set (as in @{sec-act2-1-int-dt}).
+   Compare the trees and your hand-crafted rules on the test set. Which one generalizes better, and which one would you rather explain to a process engineer?
 1. Reflect on the entire analysis: What were the key findings? What surprised you? What would you investigate next?
 :::
