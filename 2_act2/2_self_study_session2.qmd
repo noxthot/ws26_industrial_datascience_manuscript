@@ -25,7 +25,7 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 1. Identify the target variable(s) and any class imbalances.
 1. Check the consistency of the labels: does the main failure flag coincide with the union of the subgroup failure flags?
    Are there samples with more than one subgroup failure?
-   Run the same check on the AI4I dataset from @{sec-act2}. What do you find, and how would you handle inconsistent labels when training a model?
+1. Run the same check on the AI4I dataset from @{sec-act2}. What do you find, and how would you handle inconsistent labels when training a model?
 :::
 
 ---
@@ -70,5 +70,4 @@ We will explore it in depth, splitting our analysis into four milestones, each b
    Inspect the misclassified samples. Are your thresholds slightly off, or is a relevant feature missing?
 1. Split the data into a training and a test set and train a shallow decision tree per failure type on the training set (as in @{sec-act2-1-int-dt}).
    Compare the trees and your hand-crafted rules on the test set. Which one generalizes better, and which one would you rather explain to a process engineer?
-1. Reflect on the entire analysis: What were the key findings? What surprised you? What would you investigate next?
 :::

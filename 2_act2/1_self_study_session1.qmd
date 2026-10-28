@@ -10,7 +10,16 @@ Please do not go beyond this point for now.
 In this session, we will explore the dataset in @{sec-act2} further.
 
 When comparing our findings in @{sec-act2-1-int-pp} and @{sec-act2-1-int-dt} with the failure description in @{sec-act2-1-reveal}, we can see that we did a pretty good job in identifying failure reasons.
-However, we could have done better for `OSF`.
+However, it seems that the description of `TWF` in @{sec-act2-1-reveal} is contradicting our observations.
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+::::{#exr-basics-mv-space}
+## Tool wear failure
+::::
+Identify where the description of `TWF` in @{sec-act2-1-reveal} does not align with our findings.
+:::
+
+Also, we could have done better for `OSF`.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
@@ -19,40 +28,35 @@ However, we could have done better for `OSF`.
 According to @{sec-act2-1-reveal}, the failure type _overstrain failure_ (`OSF`) occurs when the machine is subjected to excessive torque when a worn-out tool is used.
 Also the product variant is associated to the failure rate: When the product of torque and tool wear exceeds 11.000 minNm for the L product variant (12.000 for M, 13.000 for H), the process fails due to overstrain.
 
-Are you able to verify this relationship by visualizations?
-:::
-
-Also, it seems that the description of `TWF` in @{sec-act2-1-reveal} is contradicting our observations.
-
-::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
-## Tool wear failure
-::::
-Identify where the description of `TWF` in @{sec-act2-1-reveal} does not align with your findings.
-:::
+1. Are you able to verify this relationship by visualizations?
 
 In @{sec-act2-1-int-dt}, the decision tree of depth 3 was not able to model `OSF`, since a decision tree can only split along one feature at a time (horizontal or vertical cuts).
 A product such as torque times tool wear can only be approximated by a staircase of such cuts.
 This is where domain knowledge comes into play: a well-chosen feature can turn a hard problem into a trivial one.
 
-::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
-## Helping the decision tree
-::::
 1. Visualize the limitation: train decision trees of depth 1, 2, 4, and 8 on `Torque [Nm]` and `Tool wear [min]` only, with `OSF` as target.
    Plot the resulting decision boundaries using `sklearn.inspection.DecisionBoundaryDisplay` and compare them to the hyperbola $\text{torque} \cdot \text{tool wear} = 11{,}000$.
 1. Engineer the feature `strain` $= \text{torque} \cdot \text{tool wear}$ and retrain the tree from @{sec-act2-1-int-dt} with `strain` as an additional feature.
    How does the structure of the tree change?
 1. The threshold depends on the product variant `Type`.
-   Engineer a feature that takes this into account (e.g. `strain` divided by the variant-specific threshold).
-   What is the smallest tree depth that separates `OSF` (almost) perfectly, and which threshold does the tree learn?
-1. Repeat the comparison for `HDF` and `PWF`: train trees of increasing depth with and without the engineered features `temp_diff` and `power`.
-   Report the F1 score instead of the accuracy and explain why accuracy is a misleading metric for this dataset.
+   Also make this a feature.
+1. What is the smallest tree depth that separates `OSF` (almost) perfectly, and which threshold does the tree learn?
 
 After this exercise you should be able to:
 
 1. Explain why decision trees struggle with interactions and rotated decision boundaries.
 1. Use domain knowledge to engineer features that simplify a model.
+:::
+
+::: {.callout-caution appearance="simple" collapse="true" icon=false}
+::::{#exr-basics-mv-space}
+## Engineered features and model performance
+::::
+Repeat the comparison for `HDF` and `PWF`: train trees of increasing depth with and without the engineered features `temp_diff` and `power`.
+Report the F1 score instead of the accuracy and explain why accuracy is a misleading metric for this dataset.
+
+After this exercise you should be able to:
+
 1. Choose an appropriate metric for heavily imbalanced classification tasks.
 :::
 
@@ -66,12 +70,9 @@ Another approach could be to use [parallel coordinates plots](https://plotly.com
 Use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/) to visualize the relationships between multiple features and the machine failure types:
 
 1. Display every available continuous variable along with one selected failure type.
-2. Also add `Type` as a categorical variable to the plot.
-3. Make the failure type categorical.
-4. Color the lines according to the selected failure type.
-5. Allow for choosing the failure type interactively using a Dropdown widget (see [Jupyter widgets](https://ipywidgets.readthedocs.io/en/stable/)) with the available failure types.
-6. The parallel coordinate plot allows for dragging columns (just click and drag the title of a column) and reordering them.
-   It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points.
-   Use these two features to get insights into the relationships between different features and the selected failure type.
-   Can you identify the patterns which we have exploited in our previous analyses?
+1. Also add `Type` as a categorical variable to the plot.
+1. Make the failure type categorical.
+1. Color the lines according to the selected failure type.
+1. Allow for choosing the failure type interactively using a Dropdown widget (see [Jupyter widgets](https://ipywidgets.readthedocs.io/en/stable/)) with the available failure types.
+1. The parallel coordinate plot allows for dragging columns (just click and drag the title of a column) and reordering them. It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points. Use these two features to get insights into the relationships between different features and the selected failure type. Can you identify the patterns which we have exploited in our previous analyses?
 :::

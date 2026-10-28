@@ -9,10 +9,12 @@ Please do not go beyond this point for now.
 
 In this session, we will have a look at clustering and anomaly detection applied to the AI4I predictive maintenance dataset from @{sec-act2}.
 
-So far we have focused on supervised learning (classification and regression) for predicting failures. However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain. Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.
+In @{sec-act2} we have focused on supervised learning (classification) for predicting failures.
+However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain.
+Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.
 
 ::: {.callout-note}
-You can load the AI4I dataset using the link provided in @{sec-act2}. The dataset contains features such as air temperature, process temperature, rotational speed, torque, and tool wear, along with multiple failure type labels.
+This section will again use the AI4I dataset described in @{sec-act2}.
 :::
 
 ---
@@ -24,11 +26,9 @@ You can load the AI4I dataset using the link provided in @{sec-act2}. The datase
 ## k-Means clustering on machine data
 ::::
 1. Load the AI4I dataset and select the continuous sensor features (`Air temperature`, `Process temperature`, `Rotational speed`, `Torque`, `Tool wear`).
-2. Standardize the features using `StandardScaler` (important for distance-based methods).
-3. Apply k-Means clustering with different values of k (e.g., 2 to 8).
-4. Use the elbow method and silhouette scores to determine an appropriate k.
-5. Visualize the clusters using pair plots or a scatter plot of the first two principal components (PCA).
-6. Compare the resulting clusters with the known failure types. Do the clusters align with any specific failure?
+1. Use k-Means clustering with different values of $k$ to cluster the data and the elbow method to determine an appropriate $k$.
+1. Visualize the clusters using pair plots.
+1. Compare the resulting clusters with the known failure types. Do the clusters align with any specific failure?
 :::
 
 ---
