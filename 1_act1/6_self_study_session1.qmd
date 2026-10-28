@@ -21,6 +21,7 @@ It installs and manages Python versions and packages in isolated environments (`
 1. Verify the environment works by creating a simple Python script that creates a simple plot of $f(t) = (16 (\sin(t))^3, 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t))$ using the `numpy` and `matplotlib` package. (Hint: Use `numpy.linspace` to create a range of values for `t`, the function produces the $x$ and $y$ coordinates of the plot.)
 
 After this exercise you should be able to
+
 1. Create and manage isolated Python environments using `uv`.
 1. Install and manage Python packages within these environments.
 1. Additionally be able to explain what `uv` does and why it is useful.
@@ -50,9 +51,9 @@ As we are only using the data to explore a couple of libraries and tools, we are
 After this exercise you should be able to:
 
 1. Create and organize notebooks in JupyterLab.
-2. Differentiate between code, markdown, and raw cells.
-3. Export notebooks to other formats (HTML, PDF).
-4. Structure a notebook with self-contained, readable code cells.
+1. Differentiate between code, markdown, and raw cells.
+1. Export notebooks to other formats (HTML, PDF).
+1. Structure a notebook with self-contained, readable code cells.
 :::
 
 

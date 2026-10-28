@@ -61,8 +61,9 @@ In case you have problems installing it, consider to initialize a new project an
 - How do the results compare?
 
 After the exercise, you should be able to answer the following questions:
-    - How does KASBA differ from the commonly used $k$ means algorithm?
-    - In \cite{holder2026} you will find MSM defined. You should be able to illustrate how MSM is calculated.
+
+- How does KASBA differ from the commonly used $k$ means algorithm?
+- In \cite{holder2026} you will find MSM defined. You should be able to illustrate how MSM is calculated.
 :::
 
 In @{sec-act1-classification} and @{sec-act1-regression}, our input was univariate, meaning each sample consisted of exactly one time series.
