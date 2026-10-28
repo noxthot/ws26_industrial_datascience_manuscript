@@ -49,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7d4071c68b36564a5423fc4363fb6a85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-01690d59a55b3168f64111865e92c620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-7d4071c68b36564a5423fc4363fb6a85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-da875b874087c46905d10cd89286c697.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0b32c233c7773ea2ee253040283fde35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-da875b874087c46905d10cd89286c697.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -86,6 +86,35 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -574,7 +603,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>In this session, we will explore the dataset in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> further.</p>
-<p>When comparing our findings in <a href="0_0_predictive_maintenance.html#sec-act2-1-int-pp" class="quarto-xref"><span>Section 13.1.6.1</span></a> and <a href="0_0_predictive_maintenance.html#sec-act2-1-int-dt" class="quarto-xref"><span>Section 13.1.6.2</span></a> with the failure description in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a>, we can see that we did a pretty good job in identifying failure reasons. However, we could have done better for <code>OSF</code>.</p>
+<p>When comparing our findings in <a href="0_0_predictive_maintenance.html#sec-act2-1-int-pp" class="quarto-xref"><span>Section 13.1.6.1</span></a> and <a href="0_0_predictive_maintenance.html#sec-act2-1-int-dt" class="quarto-xref"><span>Section 13.1.6.2</span></a> with the failure description in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a>, we can see that we did a pretty good job in identifying failure reasons. However, it seems that the description of <code>TWF</code> in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> is contradicting our observations.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -582,14 +611,41 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.1 (Overstrain failure)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 14.1 (Tool wear failure)</strong></span> &nbsp;</p>
+</div>
+<p>Identify where the description of <code>TWF</code> in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> does not align with our findings.</p>
+</div>
+</div>
+</div>
+<p>Also, we could have done better for <code>OSF</code>.</p>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-basics-mv-space" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.2 (Overstrain failure)</strong></span> &nbsp;</p>
 </div>
 <p>According to <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a>, the failure type <em>overstrain failure</em> (<code>OSF</code>) occurs when the machine is subjected to excessive torque when a worn-out tool is used. Also the product variant is associated to the failure rate: When the product of torque and tool wear exceeds 11.000 minNm for the L product variant (12.000 for M, 13.000 for H), the process fails due to overstrain.</p>
-<p>Are you able to verify this relationship by visualizations?</p>
+<ol type="1">
+<li>Are you able to verify this relationship by visualizations?</li>
+</ol>
+<p>In <a href="0_0_predictive_maintenance.html#sec-act2-1-int-dt" class="quarto-xref"><span>Section 13.1.6.2</span></a>, the decision tree of depth 3 was not able to model <code>OSF</code>, since a decision tree can only split along one feature at a time (horizontal or vertical cuts). A product such as torque times tool wear can only be approximated by a staircase of such cuts. This is where domain knowledge comes into play: a well-chosen feature can turn a hard problem into a trivial one.</p>
+<ol type="1">
+<li>Visualize the limitation: train decision trees of depth 1, 2, 4, and 8 on <code>Torque [Nm]</code> and <code>Tool wear [min]</code> only, with <code>OSF</code> as target. Plot the resulting decision boundaries using <code>sklearn.inspection.DecisionBoundaryDisplay</code> and compare them to the hyperbola <span class="math inline">\(\text{torque} \cdot \text{tool wear} = 11{,}000\)</span>.</li>
+<li>Engineer the feature <code>strain</code> <span class="math inline">\(= \text{torque} \cdot \text{tool wear}\)</span> and retrain the tree from <a href="0_0_predictive_maintenance.html#sec-act2-1-int-dt" class="quarto-xref"><span>Section 13.1.6.2</span></a> with <code>strain</code> as an additional feature. How does the structure of the tree change?</li>
+<li>The threshold depends on the product variant <code>Type</code>. Also make this a feature.</li>
+<li>What is the smallest tree depth that separates <code>OSF</code> (almost) perfectly, and which threshold does the tree learn?</li>
+</ol>
+<p>After this exercise you should be able to:</p>
+<ol type="1">
+<li>Explain why decision trees struggle with interactions and rotated decision boundaries.</li>
+<li>Use domain knowledge to engineer features that simplify a model.</li>
+</ol>
 </div>
 </div>
 </div>
-<p>Also, it seems that the description of <code>TWF</code> in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> is contradicting our observations.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -597,27 +653,17 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.2 (Tool wear failure)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 14.3 (Engineered features and model performance)</strong></span> &nbsp;</p>
 </div>
-<p>Identify where the description of <code>TWF</code> in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> does not align with your findings.</p>
-</div>
-</div>
-</div>
-<p>So far we have used <code>seaborn</code> to visualize the data. <code>seaborn</code> is based on <code>matplotlib</code> and provides a high-level interface for drawing statistical graphics. While <code>matplotlib</code> supports interactive figures that can zoom, pan and update (see <a href="https://mybinder.org/v2/gh/matplotlib/mpl-brochure-binder/main?labpath=MatplotlibExample.ipynb">here</a>), for richer interactive visualizations we can use <code>plotly</code>. <code>plotly</code> is open-source and built on top of the Plotly JavaScript library <code>plotly.js</code>. It enables users to create interactive web-based visualizations that can be displayed in <code>Jupyter</code> notebooks as well as in standalone HTML files. Especially for explorative data analysis, <code>plotly</code> offers a more user-friendly and flexible approach to create and explore complex visualizations.</p>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.3 (Introducing Plotly)</strong></span> &nbsp;</p>
-</div>
-<p>Consult the <a href="https://plotly.com/python/">Plotly documentation</a> for more information on how to use the library. Start with the notebook from <a href="../1_act1/6_self_study_session1.html" class="quarto-xref"><span>Chapter 10</span></a>, recreate the visualizations from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> using <code>plotly</code>, and explore the data interactively.</p>
+<p>Repeat the comparison for <code>HDF</code> and <code>PWF</code>: train trees of increasing depth with and without the engineered features <code>temp_diff</code> and <code>power</code>. Report the F1 score instead of the accuracy and explain why accuracy is a misleading metric for this dataset.</p>
+<p>After this exercise you should be able to:</p>
+<ol type="1">
+<li>Choose an appropriate metric for heavily imbalanced classification tasks.</li>
+</ol>
 </div>
 </div>
 </div>
-<p>In <a href="0_0_predictive_maintenance.html#sec-act2-1-machinefailures" class="quarto-xref"><span>Section 13.1.6</span></a>, we used pair plots, boxplots, and decision trees to investigate the relationship between different features and the machine failure types. Another approach could be to use <a href="https://plotly.com/python/parallel-coordinates-plot/">parallel coordinates plots</a>.</p>
+<p>In <a href="0_0_predictive_maintenance.html#sec-act2-1-machinefailures" class="quarto-xref"><span>Section 13.1.6</span></a>, we used pair plots, boxplots, and decision trees to investigate the relationship between different features and the machine failure types. Another approach could be to use <a href="https://plotly.com/python/parallel-coordinates-plot/">parallel coordinates plots</a> from <code>plotly</code>, which we already used for the interactive plots in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">

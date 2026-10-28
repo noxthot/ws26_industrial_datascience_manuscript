@@ -68,9 +68,9 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7d4071c68b36564a5423fc4363fb6a85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-01690d59a55b3168f64111865e92c620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-7d4071c68b36564a5423fc4363fb6a85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-da875b874087c46905d10cd89286c697.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0b32c233c7773ea2ee253040283fde35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-da875b874087c46905d10cd89286c697.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -561,7 +561,7 @@ div.csl-indent {
   <li><a href="#sec-act2-selfstudy2-m1" id="toc-sec-act2-selfstudy2-m1" class="nav-link active" data-scroll-target="#sec-act2-selfstudy2-m1"><span class="header-section-number">15.1</span> Milestone 1: Data Acquisition and Understanding</a></li>
   <li><a href="#sec-act2-selfstudy2-m2" id="toc-sec-act2-selfstudy2-m2" class="nav-link" data-scroll-target="#sec-act2-selfstudy2-m2"><span class="header-section-number">15.2</span> Milestone 2: Exploratory Data Analysis</a></li>
   <li><a href="#sec-act2-selfstudy2-m3" id="toc-sec-act2-selfstudy2-m3" class="nav-link" data-scroll-target="#sec-act2-selfstudy2-m3"><span class="header-section-number">15.3</span> Milestone 3: Deep Dive Visualization</a></li>
-  <li><a href="#sec-act2-selfstudy2-m4" id="toc-sec-act2-selfstudy2-m4" class="nav-link" data-scroll-target="#sec-act2-selfstudy2-m4"><span class="header-section-number">15.4</span> Milestone 4: Reporting Findings</a></li>
+  <li><a href="#sec-act2-selfstudy2-m4" id="toc-sec-act2-selfstudy2-m4" class="nav-link" data-scroll-target="#sec-act2-selfstudy2-m4"><span class="header-section-number">15.4</span> Milestone 4: Distilling Findings into Rules</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/2_self_study_session2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -601,7 +601,7 @@ div.csl-indent {
 <p>This section is still under construction and will be completed in the near future. Please do not go beyond this point for now.</p>
 </div>
 </div>
-<p>In this session, we will revisit the dataset from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>, the <strong>Explainable AI (XAI) Drilling Dataset</strong> by <span class="citation" data-cites="wallsberger2023">Wallsberger et al. (<a href="../5_references.html#ref-wallsberger2023" role="doc-biblioref">2023</a>)</span>. We will explore it in depth, splitting our analysis into four milestones, each building on the previous one.</p>
+<p>In this session, we will transfer what we learned in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> to a new dataset, the <strong>Explainable AI (XAI) Drilling Dataset</strong> by <span class="citation" data-cites="wallsberger2023">Wallsberger et al. (<a href="../5_references.html#ref-wallsberger2023" role="doc-biblioref">2023</a>)</span>. We will explore it in depth, splitting our analysis into four milestones, each building on the previous one.</p>
 <hr>
 <section id="sec-act2-selfstudy2-m1" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="sec-act2-selfstudy2-m1"><span class="header-section-number">15.1</span> Milestone 1: Data Acquisition and Understanding</h2>
@@ -620,6 +620,8 @@ div.csl-indent {
 <li>Download the dataset.</li>
 <li>Load the dataset into your environment and inspect its structure: number of rows, columns, data types, and any obvious issues.</li>
 <li>Identify the target variable(s) and any class imbalances.</li>
+<li>Check the consistency of the labels: does the main failure flag coincide with the union of the subgroup failure flags? Are there samples with more than one subgroup failure?</li>
+<li>Run the same check on the AI4I dataset from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>. What do you find, and how would you handle inconsistent labels when training a model?</li>
 </ol>
 </div>
 </div>
@@ -660,9 +662,9 @@ div.csl-indent {
 <p><span class="theorem-title"><strong>Exercise 15.3 (Visualize failure patterns with plotly)</strong></span> &nbsp;</p>
 </div>
 <ol type="1">
-<li>Recreate the key visualizations from milestone 2 using <code>plotly</code> for interactivity.</li>
 <li>Create a parallel coordinates plot to explore relationships between multiple features and failure types.</li>
 <li>Use dropdown widgets to filter the plot by failure type and observe how feature relationships change.</li>
+<li>For each failure type, use the brushing feature (select a range on an axis) to isolate the failing samples and read off approximate thresholds of the features involved. Note these thresholds down, you will need them in milestone 4.</li>
 <li>Document any new patterns or anomalies discovered through the interactive exploration.</li>
 </ol>
 </div>
@@ -671,7 +673,7 @@ div.csl-indent {
 <hr>
 </section>
 <section id="sec-act2-selfstudy2-m4" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="sec-act2-selfstudy2-m4"><span class="header-section-number">15.4</span> Milestone 4: Reporting Findings</h2>
+<h2 data-number="15.4" class="anchored" data-anchor-id="sec-act2-selfstudy2-m4"><span class="header-section-number">15.4</span> Milestone 4: Distilling Findings into Rules</h2>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -679,17 +681,12 @@ div.csl-indent {
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.4 (Generate a polished report with Quarto)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 15.4 (From exploration to a rule-based failure model)</strong></span> &nbsp;</p>
 </div>
 <ol type="1">
-<li>Polish your document: keep relevant insights, remove unnecessary details, focus on key findings.</li>
-<li>Document with markdown cells and export the result as HTML or PDF (since your management most likely will not have JupyterLab installed).
-<ul>
-<li>PDF: The document will be a static version of your notebook, so make sure to include all relevant information and insights directly in the document.</li>
-<li>HTML: The document will also be a static version of your notebook (the Dropdown would not work e.g.), but the interactivity of the <code>plotly</code> plots will still be available, since the HTML export retains the JavaScript functionality.</li>
-</ul></li>
-<li>Use Quarto to generate a more polished report. Export your report as a PDF and HTML document. Use <a href="https://quarto.org/docs/tools/jupyter-lab.html">this documentation</a> as a starting point.</li>
-<li>Reflect on the entire analysis: What were the key findings? What surprised you? What would you investigate next?</li>
+<li>Translate the thresholds from milestone 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.</li>
+<li>Evaluate your rules against the labels: compute the confusion matrix, precision, and recall for each failure type. Inspect the misclassified samples. Are your thresholds slightly off, or is a relevant feature missing?</li>
+<li>Split the data into a training and a test set and train a shallow decision tree per failure type on the training set (as in <a href="0_0_predictive_maintenance.html#sec-act2-1-int-dt" class="quarto-xref"><span>Section 13.1.6.2</span></a>). Compare the trees and your hand-crafted rules on the test set. Which one generalizes better, and which one would you rather explain to a process engineer?</li>
 </ol>
 </div>
 </div>

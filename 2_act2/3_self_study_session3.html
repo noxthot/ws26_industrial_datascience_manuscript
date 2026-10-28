@@ -49,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7d4071c68b36564a5423fc4363fb6a85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-01690d59a55b3168f64111865e92c620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-7d4071c68b36564a5423fc4363fb6a85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-da875b874087c46905d10cd89286c697.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0b32c233c7773ea2ee253040283fde35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-da875b874087c46905d10cd89286c697.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -86,6 +86,35 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -542,7 +571,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#exercise-a-clustering-the-ai4i-dataset" id="toc-exercise-a-clustering-the-ai4i-dataset" class="nav-link active" data-scroll-target="#exercise-a-clustering-the-ai4i-dataset"><span class="header-section-number">16.1</span> Exercise A: Clustering the AI4I dataset</a></li>
   <li><a href="#exercise-b-dbscan-and-density-based-clustering" id="toc-exercise-b-dbscan-and-density-based-clustering" class="nav-link" data-scroll-target="#exercise-b-dbscan-and-density-based-clustering"><span class="header-section-number">16.2</span> Exercise B: DBSCAN and density-based clustering</a></li>
   <li><a href="#exercise-c-anomaly-detection" id="toc-exercise-c-anomaly-detection" class="nav-link" data-scroll-target="#exercise-c-anomaly-detection"><span class="header-section-number">16.3</span> Exercise C: Anomaly detection</a></li>
-  <li><a href="#exercise-d-reflection-and-reporting" id="toc-exercise-d-reflection-and-reporting" class="nav-link" data-scroll-target="#exercise-d-reflection-and-reporting"><span class="header-section-number">16.4</span> Exercise D: Reflection and reporting</a></li>
+  <li><a href="#exercise-d-feature-spaces-and-alarm-thresholds" id="toc-exercise-d-feature-spaces-and-alarm-thresholds" class="nav-link" data-scroll-target="#exercise-d-feature-spaces-and-alarm-thresholds"><span class="header-section-number">16.4</span> Exercise D: Feature spaces and alarm thresholds</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/3_self_study_session3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -583,7 +612,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>In this session, we will have a look at clustering and anomaly detection applied to the AI4I predictive maintenance dataset from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
-<p>So far we have focused on supervised learning (classification and regression) for predicting failures. However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain. Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.</p>
+<p>In <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> we have focused on supervised learning (classification) for predicting failures. However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain. Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -594,7 +623,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can load the AI4I dataset using the link provided in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>. The dataset contains features such as air temperature, process temperature, rotational speed, torque, and tool wear, along with multiple failure type labels.</p>
+<p>This section will again use the AI4I dataset described in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
 </div>
 </div>
 <hr>
@@ -611,10 +640,8 @@ Note
 </div>
 <ol type="1">
 <li>Load the AI4I dataset and select the continuous sensor features (<code>Air temperature</code>, <code>Process temperature</code>, <code>Rotational speed</code>, <code>Torque</code>, <code>Tool wear</code>).</li>
-<li>Standardize the features using <code>StandardScaler</code> (important for distance-based methods).</li>
-<li>Apply k-Means clustering with different values of k (e.g., 2 to 8).</li>
-<li>Use the elbow method and silhouette scores to determine an appropriate k.</li>
-<li>Visualize the clusters using pair plots or a scatter plot of the first two principal components (PCA).</li>
+<li>Use k-Means clustering with different values of <span class="math inline">\(k\)</span> to cluster the data and the elbow method to determine an appropriate <span class="math inline">\(k\)</span>.</li>
+<li>Visualize the clusters using pair plots.</li>
 <li>Compare the resulting clusters with the known failure types. Do the clusters align with any specific failure?</li>
 </ol>
 </div>
@@ -666,8 +693,8 @@ Note
 </div>
 <hr>
 </section>
-<section id="exercise-d-reflection-and-reporting" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="exercise-d-reflection-and-reporting"><span class="header-section-number">16.4</span> Exercise D: Reflection and reporting</h2>
+<section id="exercise-d-feature-spaces-and-alarm-thresholds" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="exercise-d-feature-spaces-and-alarm-thresholds"><span class="header-section-number">16.4</span> Exercise D: Feature spaces and alarm thresholds</h2>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -675,13 +702,15 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.4 (Synthesizing unsupervised insights)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 16.4 (Does the feature space matter?)</strong></span> &nbsp;</p>
 </div>
+<p>In Exercise C, you treated the anomaly detector as a yes/no decision. Now, use the anomaly score as a continuous ranking and evaluate it quantitatively.</p>
 <ol type="1">
-<li>Summarize your findings from all three exercises. Which clustering or anomaly detection approach performed best?</li>
-<li>How could unsupervised methods complement the supervised approaches we studied earlier in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>?</li>
-<li>In a real-world predictive maintenance scenario, what would be the practical value of these unsupervised techniques?</li>
-<li>Document your reflections in a short report (using Quarto or a Jupyter notebook export).</li>
+<li>Build three standardized feature sets: (i) the five raw sensor features, (ii) the engineered features <code>power</code>, <code>temp_diff</code>, <code>Tool wear</code>, and <code>strain</code> <span class="math inline">\(= \text{torque} \cdot \text{tool wear}\)</span>, and (iii) the union of both.</li>
+<li>For each feature set, fit an isolation forest and a Gaussian mixture model (a distribution-based method, compare <a href="../1_act1/3_1_timeseries_clustering.html" class="quarto-xref"><span>Chapter 7</span></a>) on the non-failure samples only. Use the negative log-likelihood of the Gaussian mixture model as its anomaly score.</li>
+<li>For each failure type, compute the average precision (<code>sklearn.metrics.average_precision_score</code>) of the anomaly scores and collect the results in a table (rows: detector and feature set, columns: failure types). Compare against the baseline of a random ranking, which equals the failure rate.</li>
+<li>Which failure types can be detected as anomalies, and which cannot? Use the failure descriptions in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> to explain why a failure is not necessarily an anomaly.</li>
+<li>Assume that a missed failure costs 100 times as much as a false alarm. Choose the threshold of your best detector that minimizes the total cost and report how many alarms per 1,000 processes an operator would have to handle. Compare with the threshold you proposed in Exercise C.</li>
 </ol>
 </div>
 </div>
