@@ -36,7 +36,7 @@ This is where domain knowledge comes into play: a well-chosen feature can turn a
 
 1. Visualize the limitation: train decision trees of depth 1, 2, 4, and 8 on `Torque [Nm]` and `Tool wear [min]` only, with `OSF` as target.
    Plot the resulting decision boundaries using `sklearn.inspection.DecisionBoundaryDisplay` and compare them to the hyperbola $\text{torque} \cdot \text{tool wear} = 11{,}000$.
-1. Engineer the feature `strain` $= \text{torque} \cdot \text{tool wear}$ and retrain the tree from @{sec-act2-1-int-dt} with `strain` as an additional feature.
+1. Engineer the feature `wearadjTorque` $= \text{torque} \cdot \text{tool wear}$ and retrain the tree from @{sec-act2-1-int-dt} with `wearadjTorque` as an additional feature.
    How does the structure of the tree change?
 1. The threshold depends on the product variant `Type`.
    Also make this a feature.
@@ -71,8 +71,8 @@ Use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-
 
 1. Display every available continuous variable along with one selected failure type.
 1. Also add `Type` as a categorical variable to the plot.
-1. Make the failure type categorical.
-1. Color the lines according to the selected failure type.
+1. Make the failure type a categorical column.
+1. Color the lines according to `Type`.
 1. Allow for choosing the failure type interactively using a Dropdown widget (see [Jupyter widgets](https://ipywidgets.readthedocs.io/en/stable/)) with the available failure types.
 1. The parallel coordinate plot allows for dragging columns (just click and drag the title of a column) and reordering them. It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points. Use these two features to get insights into the relationships between different features and the selected failure type. Can you identify the patterns which we have exploited in our previous analyses?
 :::

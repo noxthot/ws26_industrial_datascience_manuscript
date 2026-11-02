@@ -24,8 +24,7 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 1. Load the dataset into your environment and inspect its structure: number of rows, columns, data types, and any obvious issues.
 1. Identify the target variable(s) and any class imbalances.
 1. Check the consistency of the labels: does the main failure flag coincide with the union of the subgroup failure flags?
-   Are there samples with more than one subgroup failure?
-1. Run the same check on the AI4I dataset from @{sec-act2}. What do you find, and how would you handle inconsistent labels when training a model?
+   Are there samples with more than one subgroup failure? In case you find any, how would you handle such inconsistencies when training a model?
 :::
 
 ---
@@ -66,8 +65,6 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 ## From exploration to a rule-based failure model
 ::::
 1. Translate the thresholds from milestone 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.
-1. Evaluate your rules against the labels: compute the confusion matrix, precision, and recall for each failure type.
-   Inspect the misclassified samples. Are your thresholds slightly off, or is a relevant feature missing?
-1. Split the data into a training and a test set and train a shallow decision tree per failure type on the training set (as in @{sec-act2-1-int-dt}).
-   Compare the trees and your hand-crafted rules on the test set. Which one generalizes better, and which one would you rather explain to a process engineer?
+1. Evaluate your rules against the labels: compute the confusion matrix for each failure type.
+1. Train a shallow decision tree per failure type. Compare the trees and your hand-crafted rules. Which one would you rather explain to a process engineer?
 :::
