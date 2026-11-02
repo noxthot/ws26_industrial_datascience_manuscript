@@ -620,8 +620,7 @@ div.csl-indent {
 <li>Download the dataset.</li>
 <li>Load the dataset into your environment and inspect its structure: number of rows, columns, data types, and any obvious issues.</li>
 <li>Identify the target variable(s) and any class imbalances.</li>
-<li>Check the consistency of the labels: does the main failure flag coincide with the union of the subgroup failure flags? Are there samples with more than one subgroup failure?</li>
-<li>Run the same check on the AI4I dataset from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>. What do you find, and how would you handle inconsistent labels when training a model?</li>
+<li>Check the consistency of the labels: does the main failure flag coincide with the union of the subgroup failure flags? Are there samples with more than one subgroup failure? In case you find any, how would you handle such inconsistencies when training a model?</li>
 </ol>
 </div>
 </div>
@@ -685,8 +684,8 @@ div.csl-indent {
 </div>
 <ol type="1">
 <li>Translate the thresholds from milestone 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.</li>
-<li>Evaluate your rules against the labels: compute the confusion matrix, precision, and recall for each failure type. Inspect the misclassified samples. Are your thresholds slightly off, or is a relevant feature missing?</li>
-<li>Split the data into a training and a test set and train a shallow decision tree per failure type on the training set (as in <a href="0_0_predictive_maintenance.html#sec-act2-1-int-dt" class="quarto-xref"><span>Section 13.1.6.2</span></a>). Compare the trees and your hand-crafted rules on the test set. Which one generalizes better, and which one would you rather explain to a process engineer?</li>
+<li>Evaluate your rules against the labels: compute the confusion matrix for each failure type.</li>
+<li>Train a shallow decision tree per failure type. Compare the trees and your hand-crafted rules. Which one would you rather explain to a process engineer?</li>
 </ol>
 </div>
 </div>
