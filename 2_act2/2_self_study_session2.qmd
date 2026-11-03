@@ -1,12 +1,5 @@
 # Self study - Session 2 {#sec-act2-selfstudy2}
 
-::: {.callout-caution}
-## Still under construction
-
-This section is still under construction and will be completed in the near future.
-Please do not go beyond this point for now.
-:::
-
 In this session, we will transfer what we learned in @{sec-act2} to a new dataset, the **Explainable AI (XAI) Drilling Dataset** by @{wallsberger2023}.
 We will explore it in depth, splitting our analysis into four milestones, each building on the previous one.
 
@@ -39,6 +32,7 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 1. Do your findings align with the description given in the _Subgroup failures_ paragraph?
 1. Compute summary statistics for each feature grouped by failure type.
 1. Create at least two visualizations (e.g., histograms, box plots) that reveal differences between failure types.
+1. If you are able to isolate failing samples, note the thresholds down, you will need them in milestone 4.
 :::
 
 ---
@@ -64,7 +58,7 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 ::::{#exr-basics-mv-space}
 ## From exploration to a rule-based failure model
 ::::
-1. Translate the thresholds from milestone 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.
+1. Translate the thresholds from milestone 2 and/or 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.
 1. Evaluate your rules against the labels: compute the confusion matrix for each failure type.
 1. Train a shallow decision tree per failure type. Compare the trees and your hand-crafted rules. Which one would you rather explain to a process engineer?
 :::
