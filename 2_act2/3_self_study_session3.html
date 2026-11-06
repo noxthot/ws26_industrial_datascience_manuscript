@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -49,9 +84,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4ad1c15d97f96b137ffc38c46b723e7e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-309a52ebac9c7cf83a29a4a4b4657bb2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4ad1c15d97f96b137ffc38c46b723e7e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-acad86198d9692e9a407cd1a977dee05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-4d884cbed0445ae3840902c453104bb2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-acad86198d9692e9a407cd1a977dee05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -534,20 +569,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4_act4/2_0_multimodal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Multimodal Machine Learning</span></span></a>
+  <a href="../4_act4/2_reinforcement_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Reinforcement Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4_act4/3_reinforcement_learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Reinforcement Learning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../4_act4/4_self_study_session.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Optional Self study Session</span></span></a>
+  <a href="../4_act4/3_self_study_session.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Optional Self study Session</span></span></a>
   </div>
 </li>
       </ul>
@@ -568,10 +597,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise-a-clustering-the-ai4i-dataset" id="toc-exercise-a-clustering-the-ai4i-dataset" class="nav-link active" data-scroll-target="#exercise-a-clustering-the-ai4i-dataset"><span class="header-section-number">16.1</span> Exercise A: Clustering the AI4I dataset</a></li>
-  <li><a href="#exercise-b-dbscan-and-density-based-clustering" id="toc-exercise-b-dbscan-and-density-based-clustering" class="nav-link" data-scroll-target="#exercise-b-dbscan-and-density-based-clustering"><span class="header-section-number">16.2</span> Exercise B: DBSCAN and density-based clustering</a></li>
-  <li><a href="#exercise-c-anomaly-detection" id="toc-exercise-c-anomaly-detection" class="nav-link" data-scroll-target="#exercise-c-anomaly-detection"><span class="header-section-number">16.3</span> Exercise C: Anomaly detection</a></li>
-  <li><a href="#exercise-d-feature-spaces-and-alarm-thresholds" id="toc-exercise-d-feature-spaces-and-alarm-thresholds" class="nav-link" data-scroll-target="#exercise-d-feature-spaces-and-alarm-thresholds"><span class="header-section-number">16.4</span> Exercise D: Feature spaces and alarm thresholds</a></li>
+  <li><a href="#sec-act2-selfstudy3-data" id="toc-sec-act2-selfstudy3-data" class="nav-link active" data-scroll-target="#sec-act2-selfstudy3-data"><span class="header-section-number">16.1</span> The dataset</a></li>
+  <li><a href="#milestone-1-two-modalities-one-health-status" id="toc-milestone-1-two-modalities-one-health-status" class="nav-link" data-scroll-target="#milestone-1-two-modalities-one-health-status"><span class="header-section-number">16.2</span> Milestone 1: Two modalities, one health status</a></li>
+  <li><a href="#milestone-2-a-2d-cnn-for-the-thermal-images" id="toc-milestone-2-a-2d-cnn-for-the-thermal-images" class="nav-link" data-scroll-target="#milestone-2-a-2d-cnn-for-the-thermal-images"><span class="header-section-number">16.3</span> Milestone 2: A 2D CNN for the thermal images</a></li>
+  <li><a href="#milestone-3-early-and-late-fusion" id="toc-milestone-3-early-and-late-fusion" class="nav-link" data-scroll-target="#milestone-3-early-and-late-fusion"><span class="header-section-number">16.4</span> Milestone 3: Early and late fusion</a></li>
+  <li><a href="#milestone-4-intermediate-fusion" id="toc-milestone-4-intermediate-fusion" class="nav-link" data-scroll-target="#milestone-4-intermediate-fusion"><span class="header-section-number">16.5</span> Milestone 4: Intermediate fusion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/edit/main/2_act2/3_self_study_session3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/noxthot/ws26_mci_industrial_ds_manuscript/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -598,37 +628,349 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>In <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> to <a href="2_self_study_session2.html" class="quarto-xref"><span>Chapter 15</span></a>, every sample was a single row of tabular measurements. However, in industrial settings equipment is often monitored with several kinds of sensors at once, and each kind of sensor produces a different <em>modality</em> of data.</p>
+<p>A production line might generate time series data from sensors (temperature, vibration, pressure) alongside visual data from cameras inspecting products, or thermal imaging systems monitoring equipment health. Multimodal machine learning combines these different data types to make more informed predictions than would be possible using a single modality alone. For instance, a temperature sensor might report elevated readings while a camera image shows visible wear; taken together, the two signals are stronger evidence of impending failure than either one alone.</p>
+<p>In this session, we monitor the health of a simulated machine with two sensors:</p>
+<ul>
+<li>A <strong>vibration sensor</strong> that records a short time series (80 time steps) of the vibration amplitude.</li>
+<li>A <strong>thermal camera</strong> that takes a <span class="math inline">\(32 \times 32\)</span> pixel thermal image (in °C) of the machine.</li>
+</ul>
+<p>Our task is to classify the health status of the machine as <strong>Normal</strong> (0), <strong>Warning</strong> (1), or <strong>Critical</strong> (2). We will first train one model per modality and then combine the modalities with three <em>fusion</em> strategies:</p>
+<ol type="1">
+<li><strong>Early fusion</strong>: Concatenate the raw inputs of all modalities and train a single model on the combined input.</li>
+<li><strong>Late fusion</strong>: Train one model per modality and combine their predictions.</li>
+<li><strong>Intermediate fusion</strong>: Learn a compact representation (a feature vector) per modality and train a joint classifier on the concatenated features.</li>
+</ol>
+<p>In this session, we will solely work with convolutional neural networks (CNNs) built with PyTorch, since they are well suited for both, time series and image data, as well as for combining multiple modalities with the different fusion strategies.</p>
+<section id="sec-act2-selfstudy3-data" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="sec-act2-selfstudy3-data"><span class="header-section-number">16.1</span> The dataset</h2>
+<p>The dataset is simulated and consists of 500 samples. You can download it from <a href="../data/assets/act2/selfstudysessions/sss3_multimodal.json">here</a> or with the provided function <code>load_multimodal_data</code> below.</p>
+<p>The thermal image shows a rectangular machine housing of random size, position, and orientation in front of a room at ambient temperature. The housing is slightly warmer than the room. Inside, the parts of the machine are visible as hot spots: the motor (large, left), the gearbox (center), the bearing (small, right), and the controller (top). The air inlet of the cooler (bottom) is a cold spot. Note that the size, the position, and the orientation of the housing vary slightly from image to image (it is rotated by up to 15° in either direction), so the parts are never at exactly the same pixel positions. The motor, the gearbox, and the bearing all get warmer with the current <em>load</em> of the machine, which varies from sample to sample. A thermal problem means that the gearbox and/or the bearing is warmer than the load (visible at the motor) explains.</p>
+<p>Behind the scenes, each sample has a hidden <em>thermal level</em> and a hidden <em>vibration level</em> (0 = fine, 1 = moderate, 2 = severe), and the overall health status is defined by their <strong>combination</strong>:</p>
+<div id="tbl-act2-sss3-status" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-act2-sss3-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.1: Health status as a function of the hidden thermal and vibration level
+</figcaption>
+<div aria-describedby="tbl-act2-sss3-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>vibration level 0</strong></th>
+<th><strong>vibration level 1</strong></th>
+<th><strong>vibration level 2</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>thermal level 0</strong></td>
+<td><strong>Normal</strong></td>
+<td><strong>Normal</strong></td>
+<td><strong>Warning</strong></td>
+</tr>
+<tr class="even">
+<td><strong>thermal level 1</strong></td>
+<td><strong>Warning</strong></td>
+<td><strong>Warning</strong></td>
+<td><strong>Critical</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>thermal level 2</strong></td>
+<td><strong>Critical</strong></td>
+<td><strong>Critical</strong></td>
+<td><strong>Critical</strong></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Still under construction
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This section is still under construction and will be completed in the near future. Please do not go beyond this point for now.</p>
-</div>
-</div>
-<p>In this session, we will have a look at clustering and anomaly detection applied to the AI4I predictive maintenance dataset from <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
-<p>In <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a> we have focused on supervised learning (classification) for predicting failures. However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain. Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.</p>
+<p>The vibration level affects the amplitude, the frequency, the noise, and the number of spikes of the vibration signal, but the ranges of neighboring levels overlap.</p>
+<p>The hidden levels are part of the dataset, so that you can check what your models actually learn. Do not use them as model inputs: in practice, you would not know them.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Loading the data
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This section will again use the AI4I dataset described in <a href="0_0_predictive_maintenance.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
+<p>The following function loads the dataset either from the manuscript (default) or from a local copy of the <code>json</code> file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>DATA_URL <span class="op">=</span> <span class="st">"https://noxthot.github.io/ws26_industrial_datascience_manuscript/data/assets/act2/selfstudysessions/sss3_multimodal.json"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_multimodal_data(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    source: <span class="bu">str</span> <span class="op">=</span> DATA_URL,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="bu">tuple</span>[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Load the equipment monitoring dataset from a local file or a URL.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">        ts_data: vibration time series (n_samples, 80)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">        img_data: thermal images in °C (n_samples, 32, 32)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">        labels: health status, 0 = Normal, 1 = Warning, 2 = Critical (n_samples,)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">        levels: hidden levels (n_samples, 2), column 0 = thermal level, column 1 = vibration level</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">                0 = fine, 1 = moderate, 2 = severe</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> source.startswith(<span class="st">"http"</span>):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> urllib.request.urlopen(source) <span class="im">as</span> f:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> json.load(f)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(source) <span class="im">as</span> f:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> json.load(f)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        np.array(data[<span class="st">"time_series"</span>]),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        np.array(data[<span class="st">"images"</span>]),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        np.array(data[<span class="st">"labels"</span>]),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        np.array(data[<span class="st">"levels"</span>]),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ts_data, img_data, labels, levels <span class="op">=</span> load_multimodal_data()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>PyTorch in a nutshell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <a href="../1_act1/5_1_timeseries_regression.html" class="quarto-xref"><span>Chapter 9</span></a>, we used a convolutional neural network (CNN) through <code>sktime</code>. In this session, we build the networks ourselves with <a href="https://pytorch.org/">PyTorch</a> (<code>torch</code>), one of the most widely used deep learning libraries. Neural network models are well-suited for easy fusion of different modalities.</p>
+<p>The <a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">Learn the Basics</a> tutorial is a good starting point for understanding PyTorch fundamentals. <a href="https://docs.pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html">Deep Learning with PyTorch: A 60 Minute Blitz</a> is a brief introduction to building and training (convolutional) neural networks. For this session, you will need the following ingredients:</p>
+<ul>
+<li><p><strong>Tensors</strong>: <code>torch.FloatTensor(array)</code> turns a <code>numpy</code> array into a tensor. Convolutional layers expect images of the shape (batch, channels, height, width) and time series of the shape (batch, channels, length). The <em>batch</em> dimension counts the samples that the network processes at once, e.g., the 16 samples of a mini-batch or all 100 test samples. The <em>channels</em> dimension holds several values per pixel or time step: a color image has 3 channels (red, green, blue), a multivariate time series one channel per sensor. Our thermal images and vibration signals have a single channel each. A convolutional layer applies several filters, and each filter produces one output channel (a <em>feature map</em>): <code>Conv1d(1, 16, ...)</code> has 16 filters and thus turns 1 input channel into 16 output channels. More channels within the inner layers let the network detect more patterns in parallel: each filter learns its own pattern (e.g., a spike, an oscillation, or the edge of a hot spot), and the next layer combines these patterns into more complex ones.</p></li>
+<li><p><strong>Layers</strong>: <code>nn.Conv2d</code>, <code>nn.Conv1d</code>, <code>nn.MaxPool2d</code>, <code>nn.MaxPool1d</code>, <code>nn.AvgPool1d</code>, <code>nn.Flatten</code>, <code>nn.Linear</code>, <code>nn.ReLU</code>, and <code>nn.Dropout</code> from <code>torch.nn</code>. <code>nn.Sequential(layer1, layer2, ...)</code> chains layers into one module that applies them one after another.</p></li>
+<li><p><strong>A model</strong>: a subclass of <code>nn.Module</code> that creates its layers in <code>__init__</code> and defines the data flow in <code>forward</code>. Calling <code>model(x)</code> runs <code>forward</code>.</p></li>
+<li><p><strong>Mini-batches</strong>: <code>DataLoader(TensorDataset(inputs, targets), batch_size=16, shuffle=True)</code> from <code>torch.utils.data</code> yields mini-batches taken from the full dataset. A <code>TensorDataset</code> can hold several input tensors per sample.</p></li>
+<li><p><strong>Training</strong>: the network outputs one raw score (called <em>logit</em>) per class. The training minimizes the cross-entropy loss between the logits and the true classes with the Adam optimizer, one mini-batch at a time. <code>torch.softmax(logits, dim=1)</code> turns logits into class probabilities.</p></li>
+</ul>
+<p>The networks and data volume in this session are small enough to train on a CPU within seconds. Set <code>torch.manual_seed</code> at the top of your notebook for reproducibility.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>One notebook for all exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Solve the four exercises in a single notebook. Mark the beginning of each exercise’s solution with a clear markdown header, e.g., <code>## Exercise 16.x</code>. Each exercise builds on the previous ones: the networks of Milestones 1 and 2 become the building blocks of Milestones 3 and 4, and the training and prediction functions serve all networks. The code below provides the technical frame (data preparation, training loop, and the skeletons of the networks), so that you can concentrate on the architectures and on the fusion strategies. You only fill in the parts marked with <code>TODO</code>. Keep the names of the frame, since later exercises reuse them.</p>
 </div>
 </div>
 <hr>
-<section id="exercise-a-clustering-the-ai4i-dataset" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="exercise-a-clustering-the-ai4i-dataset"><span class="header-section-number">16.1</span> Exercise A: Clustering the AI4I dataset</h2>
+</section>
+<section id="milestone-1-two-modalities-one-health-status" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="milestone-1-two-modalities-one-health-status"><span class="header-section-number">16.2</span> Milestone 1: Two modalities, one health status</h2>
+<p>In <a href="../1_act1/5_1_timeseries_regression.html" class="quarto-xref"><span>Chapter 9</span></a>, we used 1D convolutions through <code>sktime</code> to detect local patterns in time series. Now we build such a network ourselves. It consists of two parts: a <em>feature extractor</em> (<code>features</code>) that turns the time series into a compact feature vector of 32 values, and a <em>classifier</em> (<code>classifier</code>) that maps the feature vector to one logit per class. In Milestones 1 and 2, we use both parts; in Milestone 4, we reuse the feature extractor in Milestone 4.</p>
+<div id="tbl-act2-sss3-cnn1d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-act2-sss3-cnn1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.2: Time series network (the batch dimension is omitted)
+</figcaption>
+<div aria-describedby="tbl-act2-sss3-cnn1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Layer</th>
+<th>Output shape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Input (standardized time series)</td>
+<td>(1, 80)</td>
+</tr>
+<tr class="even">
+<td><code>features</code></td>
+<td><code>Conv1d(1, 16, kernel_size=5, padding="same")</code> + ReLU</td>
+<td>(16, 80)</td>
+</tr>
+<tr class="odd">
+<td><code>features</code></td>
+<td><code>MaxPool1d(2)</code></td>
+<td>(16, 40)</td>
+</tr>
+<tr class="even">
+<td><code>features</code></td>
+<td><code>Conv1d(16, 32, kernel_size=5, padding="same")</code> + ReLU</td>
+<td>(32, 40)</td>
+</tr>
+<tr class="odd">
+<td><code>features</code></td>
+<td><code>MaxPool1d(2)</code></td>
+<td>(32, 20)</td>
+</tr>
+<tr class="even">
+<td><code>features</code></td>
+<td><code>AvgPool1d(20)</code> + Flatten</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td><code>features</code></td>
+<td><code>Linear(32, 32)</code> + ReLU + <code>Dropout(0.3)</code></td>
+<td>32</td>
+</tr>
+<tr class="even">
+<td><code>classifier</code></td>
+<td><code>Linear(32, 3)</code></td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Preparing the data for PyTorch
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Splitting, standardizing, and reshaping the data is rather technical, so here is the code. Run it after loading the data and make sure you understand each step and the resulting shapes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Train-test split</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 80 % of the samples are used for training, 20 % for testing. All four arrays are</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># split with the same random permutation, so that the time series, the image, the</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># label, and the hidden levels of a sample stay together.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># stratify=labels keeps the class proportions (48 % Normal, 37 % Warning,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 15 % Critical) equal in both sets. Without it, the 100 test samples could</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># contain, e.g., only 8 or 22 critical samples just by chance.</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    ts_train, ts_test,          <span class="co"># (400, 80) and (100, 80)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    img_train, img_test,        <span class="co"># (400, 32, 32) and (100, 32, 32)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    y_train, y_test,            <span class="co"># (400,) and (100,)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    levels_train, levels_test,  <span class="co"># (400, 2) and (100, 2)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>) <span class="op">=</span> train_test_split(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    ts_data, img_data, labels, levels, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>labels</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Standardization</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Neural networks train best on inputs of the order of 1, but the images are in</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># °C (roughly 10 to 70) and the vibration signals range from about -5 to 7.</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># We subtract the mean and divide by the standard deviation. Both are computed</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># on the training set only (one value per modality, over all samples and time</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># steps or pixels) and then applied to both sets: the test set must not</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># influence the training in any way, otherwise the test results are too optimistic.</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Using a single value per modality (instead of one per pixel) keeps the</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># temperature differences between the parts of the machine intact.</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>ts_mean, ts_std <span class="op">=</span> ts_train.mean(), ts_train.std()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>img_mean, img_std <span class="op">=</span> img_train.mean(), img_train.std()</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ts_train_norm <span class="op">=</span> (ts_train <span class="op">-</span> ts_mean) <span class="op">/</span> ts_std  <span class="co"># (400, 80), mean 0, std 1</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>ts_test_norm <span class="op">=</span> (ts_test <span class="op">-</span> ts_mean) <span class="op">/</span> ts_std  <span class="co"># (100, 80), mean and std close to 0 and 1</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>img_train_norm <span class="op">=</span> (img_train <span class="op">-</span> img_mean) <span class="op">/</span> img_std  <span class="co"># (400, 32, 32)</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>img_test_norm <span class="op">=</span> (img_test <span class="op">-</span> img_mean) <span class="op">/</span> img_std  <span class="co"># (100, 32, 32)</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Conversion to PyTorch tensors</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Convolutional layers expect a channel dimension right after the batch</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># dimension: (batch, channels, length) for Conv1d and (batch, channels, height,</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># width) for Conv2d. A color image would have 3 channels (red, green, blue), a</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># multivariate time series one channel per sensor. Our data has a single</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># channel, which unsqueeze(1) inserts as a new axis at position 1.</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># FloatTensor converts to 32-bit floats, the default type of PyTorch layers.</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ts_train_tensor <span class="op">=</span> torch.FloatTensor(ts_train_norm).unsqueeze(<span class="dv">1</span>)  <span class="co"># (400, 1, 80)</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ts_test_tensor <span class="op">=</span> torch.FloatTensor(ts_test_norm).unsqueeze(<span class="dv">1</span>)  <span class="co"># (100, 1, 80)</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>img_train_tensor <span class="op">=</span> torch.FloatTensor(img_train_norm).unsqueeze(<span class="dv">1</span>)  <span class="co"># (400, 1, 32, 32)</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>img_test_tensor <span class="op">=</span> torch.FloatTensor(img_test_norm).unsqueeze(<span class="dv">1</span>)  <span class="co"># (100, 1, 32, 32)</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co"># The cross-entropy loss expects the class labels as 64-bit integers (0, 1, 2).</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># The test labels stay a numpy array, since we only need them for sklearn metrics.</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>y_train_tensor <span class="op">=</span> torch.LongTensor(y_train)  <span class="co"># (400,)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Training, prediction, and evaluation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The following functions work for every network of this session, also for networks with several inputs. Copy them into your notebook after the data preparation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch <span class="im">import</span> nn, optim</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader, TensorDataset</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_model(model: nn.Module, loader: DataLoader, epochs: <span class="bu">int</span>) <span class="op">-&gt;</span> nn.Module:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Train a classifier with Adam and the cross-entropy loss.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Each element of the loader is a mini-batch (*inputs, targets): one or more</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    input tensors, followed by the class labels.</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    optimizer <span class="op">=</span> optim.Adam(model.parameters())</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    criterion <span class="op">=</span> nn.CrossEntropyLoss()  <span class="co"># expects logits, not probabilities</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    model.train()  <span class="co"># switches dropout on</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(epochs):  <span class="co"># one epoch = one pass over the training set</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">*</span>inputs, targets <span class="kw">in</span> loader:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>            optimizer.zero_grad()  <span class="co"># reset the gradients of the previous batch</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> criterion(model(<span class="op">*</span>inputs), targets)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>            loss.backward()  <span class="co"># compute the gradients of the loss</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            optimizer.step()  <span class="co"># update the weights</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">eval</span>()  <span class="co"># switches dropout off</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict_proba(model: nn.Module, <span class="op">*</span>inputs: torch.Tensor) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Class probabilities (n_samples, 3) of a trained classifier."""</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():  <span class="co"># no gradients needed for predictions</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.softmax(model(<span class="op">*</span>inputs), dim<span class="op">=</span><span class="dv">1</span>).numpy()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> levels_vs_status(</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    level: np.ndarray, pred: np.ndarray, level_name: <span class="bu">str</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Cross tables of a hidden level against the true and the predicted status."""</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.concat(</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>            pd.crosstab(level, y_test, colnames<span class="op">=</span>[<span class="st">"status"</span>]),</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>            pd.crosstab(level, pred, colnames<span class="op">=</span>[<span class="st">"status"</span>]),</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        axis<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        keys<span class="op">=</span>[<span class="st">"true health status"</span>, <span class="st">"predicted health status"</span>],</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    ).rename_axis(level_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -636,21 +978,137 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.1 (k-Means clustering on machine data)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 16.1 (Explore the data and train a 1D CNN on the vibration signals)</strong></span> &nbsp;</p>
 </div>
 <ol type="1">
-<li>Load the AI4I dataset and select the continuous sensor features (<code>Air temperature</code>, <code>Process temperature</code>, <code>Rotational speed</code>, <code>Torque</code>, <code>Tool wear</code>).</li>
-<li>Use k-Means clustering with different values of <span class="math inline">\(k\)</span> to cluster the data and the elbow method to determine an appropriate <span class="math inline">\(k\)</span>.</li>
-<li>Visualize the clusters using pair plots.</li>
-<li>Compare the resulting clusters with the known failure types. Do the clusters align with any specific failure?</li>
+<li>Load the dataset with the function above and inspect the shapes of the four arrays and the class distribution.</li>
+<li>Plot the vibration signal and the thermal image of one sample per health status. Use the same color scale for all images (<code>vmin</code> and <code>vmax</code> of <code>imshow</code>), so that the temperatures are comparable. Can you spot the parts of the machine? Can you tell the classes apart by eye?</li>
+<li>Prepare the data with the code above and print the shapes of all resulting arrays and tensors.</li>
+<li>The network uses dropout. Read the documentation of <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html"><code>nn.Dropout</code></a> and explain in your own words what it does during training and during prediction, and why it helps against overfitting. Why does the training function call <code>model.train()</code> and <code>model.eval()</code>?</li>
+<li>The network also uses average pooling. Read the documentation of <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.AvgPool1d.html"><code>nn.AvgPool1d</code></a> and compare it with <code>nn.MaxPool1d</code>.</li>
+<li>Complete the <code>TimeSeriesCNN</code> of the code frame according to <a href="#tbl-act2-sss3-cnn1d" class="quarto-xref">Table&nbsp;<span>16.2</span></a>. Hint: <em>Check the output shapes on the first four samples (PyTorch prints a shape as <code>torch.Size([4, 3])</code>): <code>TimeSeriesCNN()(ts_train_tensor[:4]).shape</code> must be (4, 3), one logit per class, and <code>TimeSeriesCNN().features(ts_train_tensor[:4]).shape</code> must be (4, 32), one feature vector per sample.</em></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Code frame
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TimeSeriesCNN(nn.Module):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""1D CNN for the vibration signals (see the table above)."""</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Feature extractor: (batch, 1, 80) -&gt; (batch, 32)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.features <span class="op">=</span> nn.Sequential(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            nn.Conv1d(<span class="dv">1</span>, <span class="dv">16</span>, kernel_size<span class="op">=</span><span class="dv">5</span>, padding<span class="op">=</span><span class="st">"same"</span>),  <span class="co"># (batch, 16, 80)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># </span><span class="al">TODO</span><span class="co">: the remaining layers of the feature extractor</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Classifier: (batch, 32) -&gt; (batch, 3)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> ...  <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x: torch.Tensor) <span class="op">-&gt;</span> torch.Tensor:</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.classifier(<span class="va">self</span>.features(x))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Mini-batches of 16 shuffled training samples</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ts_loader <span class="op">=</span> DataLoader(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    TensorDataset(ts_train_tensor, y_train_tensor), batch_size<span class="op">=</span><span class="dv">16</span>, shuffle<span class="op">=</span><span class="va">True</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>model_ts <span class="op">=</span> train_model(TimeSeriesCNN(), ts_loader, epochs<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ts_test_probs <span class="op">=</span> predict_proba(model_ts, ts_test_tensor)  <span class="co"># (100, 3), for Milestone 3</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ts_pred <span class="op">=</span> ts_test_probs.argmax(axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># (100,), the most likely class</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Train the network with the code frame and plot the confusion matrix of the test set (<code>sklearn.metrics.ConfusionMatrixDisplay.from_predictions</code>).</li>
+<li>Compare the hidden vibration level of the test samples with the true and the predicted health status: <code>levels_vs_status(levels_test[:, 1], ts_pred, "vibration level")</code>.</li>
+<li>What does the network learn, and why is this not enough to predict the health status (compare <a href="#tbl-act2-sss3-status" class="quarto-xref">Table&nbsp;<span>16.1</span></a>)? Does it ever predict <em>Critical</em>, and is that reasonable?</li>
+</ol>
+<p>After this exercise you should be able to:</p>
+<ol type="1">
+<li>Build, train, and evaluate a small CNN in <code>torch</code>.</li>
+<li>Explain what a convolutional layer, a pooling layer, and dropout do.</li>
 </ol>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="exercise-b-dbscan-and-density-based-clustering" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="exercise-b-dbscan-and-density-based-clustering"><span class="header-section-number">16.2</span> Exercise B: DBSCAN and density-based clustering</h2>
+<section id="milestone-2-a-2d-cnn-for-the-thermal-images" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="milestone-2-a-2d-cnn-for-the-thermal-images"><span class="header-section-number">16.3</span> Milestone 2: A 2D CNN for the thermal images</h2>
+<p>For images, the same idea applies with 2D convolutions: a small filter (here <span class="math inline">\(3 \times 3\)</span> pixels) slides across the image and detects local patterns such as edges and hot spots, max pooling halves the resolution in both directions, and stacking layers lets the network see larger structures. Build the following network:</p>
+<div id="tbl-act2-sss3-cnn2d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-act2-sss3-cnn2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.3: Image network (the batch dimension is omitted)
+</figcaption>
+<div aria-describedby="tbl-act2-sss3-cnn2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Layer</th>
+<th>Output shape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Input (standardized image)</td>
+<td>(1, 32, 32)</td>
+</tr>
+<tr class="even">
+<td><code>features</code></td>
+<td><code>Conv2d(1, 16, kernel_size=3, padding="same")</code> + ReLU</td>
+<td>(16, 32, 32)</td>
+</tr>
+<tr class="odd">
+<td><code>features</code></td>
+<td><code>MaxPool2d(2)</code></td>
+<td>(16, 16, 16)</td>
+</tr>
+<tr class="even">
+<td><code>features</code></td>
+<td><code>Conv2d(16, 32, kernel_size=3, padding="same")</code> + ReLU</td>
+<td>(32, 16, 16)</td>
+</tr>
+<tr class="odd">
+<td><code>features</code></td>
+<td><code>MaxPool2d(2)</code></td>
+<td>(32, 8, 8)</td>
+</tr>
+<tr class="even">
+<td><code>features</code></td>
+<td>Flatten</td>
+<td>2048</td>
+</tr>
+<tr class="odd">
+<td><code>features</code></td>
+<td><code>Linear(2048, 64)</code> + ReLU + <code>Dropout(0.3)</code></td>
+<td>64</td>
+</tr>
+<tr class="even">
+<td><code>classifier</code></td>
+<td><code>Linear(64, 3)</code></td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -658,21 +1116,62 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.2 (Finding dense regions with DBSCAN)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 16.2 (Build and train the image network)</strong></span> &nbsp;</p>
 </div>
 <ol type="1">
-<li>Apply DBSCAN to the standardized AI4I features. Experiment with different <code>eps</code> and <code>min_samples</code> values.</li>
-<li>DBSCAN can identify outliers as noise points. How many data points are classified as noise?</li>
-<li>Visualize the DBSCAN results alongside the k-Means results from the previous exercise.</li>
-<li>Discuss: Which algorithm better separates the different failure types? What are the limitations of each approach?</li>
+<li>Complete the code frame according to <a href="#tbl-act2-sss3-cnn2d" class="quarto-xref">Table&nbsp;<span>16.3</span></a> and check the output shapes as in Milestone 1.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Code frame
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ThermalCNN(nn.Module):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""2D CNN for the thermal images (see the table above)."""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, in_channels: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Feature extractor: (batch, in_channels, 32, 32) -&gt; (batch, 64)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.features <span class="op">=</span> nn.Sequential(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># </span><span class="al">TODO</span><span class="co">: the layers of the feature extractor, the first convolution</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="co"># has in_channels input channels (you will need 2 in Milestone 3)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Classifier: (batch, 64) -&gt; (batch, 3)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> ...  <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x: torch.Tensor) <span class="op">-&gt;</span> torch.Tensor:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.classifier(<span class="va">self</span>.features(x))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>img_loader <span class="op">=</span> ...  <span class="co"># </span><span class="al">TODO</span><span class="co">: as ts_loader, but with the images</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>model_img <span class="op">=</span> train_model(ThermalCNN(), img_loader, epochs<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>img_test_probs <span class="op">=</span> ...  <span class="co"># </span><span class="al">TODO</span><span class="co">: as in Milestone 1</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>img_pred <span class="op">=</span> img_test_probs.argmax(axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Train the network and plot the confusion matrix of the test set.</li>
+<li>Compare the hidden thermal level (<code>levels_test[:, 0]</code>) with the true and the predicted health status.</li>
+</ol>
+<p>After this exercise you should be able to:</p>
+<ol type="1">
+<li>Explain why a single modality cannot solve this task, no matter how good the model is.</li>
 </ol>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="exercise-c-anomaly-detection" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="exercise-c-anomaly-detection"><span class="header-section-number">16.3</span> Exercise C: Anomaly detection</h2>
+<section id="milestone-3-early-and-late-fusion" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="milestone-3-early-and-late-fusion"><span class="header-section-number">16.4</span> Milestone 3: Early and late fusion</h2>
+<p>Early fusion feeds the raw inputs of both modalities into a single network. A CNN needs one common input format, so we bring the time series into the shape of the image: we zero-pad the 80 standardized values of the vibration sensor to <span class="math inline">\(32 \times 32 = 1024\)</span> values, reshape them to <span class="math inline">\(32 \times 32\)</span>, and stack this “image” with the thermal image as a second channel. Note that this is just one way to make the time series compatible with a CNN (not necessarily the best one).</p>
+<p>Late fusion needs no new network at all: it combines the predicted class probabilities of Milestones 1 and 2.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -680,21 +1179,54 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.3 (Detecting anomalous machine behavior)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 16.3 (Combine the raw inputs, combine the predictions)</strong></span> &nbsp;</p>
 </div>
 <ol type="1">
-<li>Train an isolation forest or one-class SVM on the AI4I data (you can use only the “normal” or non-failure samples as training data).</li>
-<li>Predict anomalies on the full dataset and visualize the results.</li>
-<li>Compare the detected anomalies with the known failure labels. Do anomalies correspond to specific failure types?</li>
-<li>What threshold would you set for an early warning system in a real manufacturing environment?</li>
+<li>Early fusion: complete the code frame, train the network, and plot the confusion matrix.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Code frame
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> as_image_channel(ts: np.ndarray) <span class="op">-&gt;</span> torch.Tensor:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Zero-pad time series (n_samples, 80) to 1024 values and reshape them to</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    an image channel (n_samples, 1, 32, 32)."""</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    padded <span class="op">=</span> np.pad(ts, ((<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">32</span> <span class="op">*</span> <span class="dv">32</span> <span class="op">-</span> ts.shape[<span class="dv">1</span>])))  <span class="co"># (n_samples, 1024)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> torch.FloatTensor(padded).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">32</span>, <span class="dv">32</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Early fusion: two channels per sample, (n_samples, 2, 32, 32)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>early_train_tensor <span class="op">=</span> torch.cat(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    [img_train_tensor, as_image_channel(ts_train_norm)], dim<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>early_test_tensor <span class="op">=</span> ...  <span class="co"># </span><span class="al">TODO</span><span class="co">: as early_train_tensor, for the test set</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>model_early <span class="op">=</span> ...  <span class="co"># </span><span class="al">TODO</span><span class="co">: train a ThermalCNN with 2 input channels for 30 epochs</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>early_pred <span class="op">=</span> ...  <span class="co"># </span><span class="al">TODO</span><span class="co">: make predictions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Late fusion: average the class probabilities of the time series network and the image network, predict the class with the highest average probability, and plot the confusion matrix.</li>
+<li>Compare the four models so far.</li>
+</ol>
+<p>After this exercise you should be able to:</p>
+<ol type="1">
+<li>Explain the difference between early and late fusion and name a limitation of each.</li>
+<li>Answer what is unnatural about the early fusion input in this exercise.</li>
 </ol>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="exercise-d-feature-spaces-and-alarm-thresholds" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="exercise-d-feature-spaces-and-alarm-thresholds"><span class="header-section-number">16.4</span> Exercise D: Feature spaces and alarm thresholds</h2>
+<section id="milestone-4-intermediate-fusion" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="milestone-4-intermediate-fusion"><span class="header-section-number">16.5</span> Milestone 4: Intermediate fusion</h2>
+<p>Intermediate fusion learns a feature vector per modality and classifies the concatenated features, all trained end to end in one network. The time series branch is the feature extractor of <code>TimeSeriesCNN</code> (32 features), the image branch is the feature extractor of <code>ThermalCNN</code> (64 features). The joint classifier concatenates both feature vectors (32 + 64 = 96 values) and applies <code>Linear(96, 32)</code> + ReLU + <code>Dropout(0.3)</code>, followed by <code>Linear(32, 3)</code>.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -702,15 +1234,62 @@ Note
 </div>
 <div class="callout-body-container">
 <div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16.4 (Does the feature space matter?)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 16.4 (Build and train the multimodal network)</strong></span> &nbsp;</p>
 </div>
-<p>In Exercise C, you treated the anomaly detector as a yes/no decision. Now, use the anomaly score as a continuous ranking and evaluate it quantitatively.</p>
 <ol type="1">
-<li>Build three standardized feature sets: (i) the five raw sensor features, (ii) the engineered features <code>power</code>, <code>temp_diff</code>, <code>Tool wear</code>, and <code>strain</code> <span class="math inline">\(= \text{torque} \cdot \text{tool wear}\)</span>, and (iii) the union of both.</li>
-<li>For each feature set, fit an isolation forest and a Gaussian mixture model (a distribution-based method, compare <a href="../1_act1/3_1_timeseries_clustering.html" class="quarto-xref"><span>Chapter 7</span></a>) on the non-failure samples only. Use the negative log-likelihood of the Gaussian mixture model as its anomaly score.</li>
-<li>For each failure type, compute the average precision (<code>sklearn.metrics.average_precision_score</code>) of the anomaly scores and collect the results in a table (rows: detector and feature set, columns: failure types). Compare against the baseline of a random ranking, which equals the failure rate.</li>
-<li>Which failure types can be detected as anomalies, and which cannot? Use the failure descriptions in <a href="0_0_predictive_maintenance.html#sec-act2-1-reveal" class="quarto-xref"><span>Section 13.1.7</span></a> to explain why a failure is not necessarily an anomaly.</li>
-<li>Assume that a missed failure costs 100 times as much as a false alarm. Choose the threshold of your best detector that minimizes the total cost and report how many alarms per 1,000 processes an operator would have to handle. Compare with the threshold you proposed in Exercise C.</li>
+<li>Complete the code frame, train the network, and plot the confusion matrix.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Code frame
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultimodalNet(nn.Module):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Intermediate fusion of the thermal images and the vibration signals."""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The feature extractors of fresh (untrained) networks of Milestones 2</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># and 1, without their classifiers</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_features <span class="op">=</span> ThermalCNN().features  <span class="co"># (batch, 1, 32, 32) -&gt; (batch, 64)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ts_features <span class="op">=</span> TimeSeriesCNN().features  <span class="co"># (batch, 1, 80) -&gt; (batch, 32)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Joint classifier: (batch, 64 + 32) -&gt; (batch, 3)</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> nn.Sequential(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, img: torch.Tensor, ts: torch.Tensor) <span class="op">-&gt;</span> torch.Tensor:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: pass img and ts through their feature extractors,</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># concatenate the two feature vectors (torch.cat with dim=1) to</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, 96), and apply the classifier</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Each mini-batch holds the images, the time series, and the labels</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>multimodal_loader <span class="op">=</span> DataLoader(</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    TensorDataset(img_train_tensor, ts_train_tensor, y_train_tensor),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">16</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    shuffle<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>model_multimodal <span class="op">=</span> train_model(MultimodalNet(), multimodal_loader, epochs<span class="op">=</span><span class="dv">60</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>intermediate_pred <span class="op">=</span> predict_proba(</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    model_multimodal, img_test_tensor, ts_test_tensor</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>).argmax(axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Plot the confusion matrices of all five models side by side (Hint: <em>you can use the argument <code>ax</code> of <code>ConfusionMatrixDisplay.from_predictions</code></em>) and summarize their accuracies.</li>
+</ol>
+<p>After this exercise you should be able to:</p>
+<ol type="1">
+<li>Explain the ranking: why is each unimodal model limited by design, why does late fusion fall behind, and why does intermediate fusion perform best here? Would you expect the same ranking on every multimodal dataset?</li>
 </ol>
 </div>
 </div>
