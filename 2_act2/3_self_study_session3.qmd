@@ -1,82 +1,517 @@
 # Self study - Session 3 {#sec-act2-selfstudy3}
 
-::: {.callout-caution}
-## Still under construction
+In @{sec-act2} to @{sec-act2-selfstudy2}, every sample was a single row of tabular measurements.
+However, in industrial settings equipment is often monitored with several kinds of sensors at once, and each kind of sensor produces a different *modality* of data.
 
-This section is still under construction and will be completed in the near future.
-Please do not go beyond this point for now.
-:::
+A production line might generate time series data from sensors (temperature, vibration, pressure) alongside visual data from cameras inspecting products, or thermal imaging systems monitoring equipment health.
+Multimodal machine learning combines these different data types to make more informed predictions than would be possible using a single modality alone.
+For instance, a temperature sensor might report elevated readings while a camera image shows visible wear; taken together, the two signals are stronger evidence of impending failure than either one alone.
 
-In this session, we will have a look at clustering and anomaly detection applied to the AI4I predictive maintenance dataset from @{sec-act2}.
+In this session, we monitor the health of a simulated machine with two sensors:
 
-In @{sec-act2} we have focused on supervised learning (classification) for predicting failures.
-However, in many real-world industrial scenarios, labeled failure data is scarce or expensive to obtain.
-Unsupervised methods such as clustering and anomaly detection can help discover hidden patterns and identify unusual behavior without prior labels.
+- A **vibration sensor** that records a short time series (80 time steps) of the vibration amplitude.
+- A **thermal camera** that takes a $32 \times 32$ pixel thermal image (in °C) of the machine.
+
+Our task is to classify the health status of the machine as **Normal** (0), **Warning** (1), or **Critical** (2).
+We will first train one model per modality and then combine the modalities with three *fusion* strategies:
+
+1. **Early fusion**: Concatenate the raw inputs of all modalities and train a single model on the combined input.
+1. **Late fusion**: Train one model per modality and combine their predictions.
+1. **Intermediate fusion**: Learn a compact representation (a feature vector) per modality and train a joint classifier on the concatenated features.
+
+In this session, we will solely work with convolutional neural networks (CNNs) built with PyTorch, since they are well suited for both, time series and image data, as well as for combining multiple modalities with the different fusion strategies.
+
+## The dataset {#sec-act2-selfstudy3-data}
+
+The dataset is simulated and consists of 500 samples.
+You can download it from [here](../data/assets/act2/selfstudysessions/sss3_multimodal.json) or with the provided function `load_multimodal_data` below.
+
+The thermal image shows a rectangular machine housing of random size, position, and orientation in front of a room at ambient temperature.
+The housing is slightly warmer than the room.
+Inside, the parts of the machine are visible as hot spots: the motor (large, left), the gearbox (center), the bearing (small, right), and the controller (top).
+The air inlet of the cooler (bottom) is a cold spot.
+Note that the size, the position, and the orientation of the housing vary slightly from image to image (it is rotated by up to 15° in either direction), so the parts are never at exactly the same pixel positions.
+The motor, the gearbox, and the bearing all get warmer with the current *load* of the machine, which varies from sample to sample.
+A thermal problem means that the gearbox and/or the bearing is warmer than the load (visible at the motor) explains.
+
+Behind the scenes, each sample has a hidden *thermal level* and a hidden *vibration level* (0 = fine, 1 = moderate, 2 = severe), and the overall health status is defined by their **combination**:
+
+| | **vibration level 0** | **vibration level 1** | **vibration level 2** |
+|---|---|---|---|
+| **thermal level 0** | **Normal** | **Normal** | **Warning** |
+| **thermal level 1** | **Warning** | **Warning** | **Critical** |
+| **thermal level 2** | **Critical** | **Critical** | **Critical** |
+
+: Health status as a function of the hidden thermal and vibration level {#tbl-act2-sss3-status}
+
+The vibration level affects the amplitude, the frequency, the noise, and the number of spikes of the vibration signal, but the ranges of neighboring levels overlap.
+
+The hidden levels are part of the dataset, so that you can check what your models actually learn.
+Do not use them as model inputs: in practice, you would not know them.
 
 ::: {.callout-note}
-This section will again use the AI4I dataset described in @{sec-act2}.
+## Loading the data
+
+The following function loads the dataset either from the manuscript (default) or from a local copy of the `json` file:
+
+```python
+import json
+import urllib.request
+
+import numpy as np
+
+DATA_URL = "https://noxthot.github.io/ws26_industrial_datascience_manuscript/data/assets/act2/selfstudysessions/sss3_multimodal.json"
+
+
+def load_multimodal_data(
+    source: str = DATA_URL,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Load the equipment monitoring dataset from a local file or a URL.
+
+    Returns:
+        ts_data: vibration time series (n_samples, 80)
+        img_data: thermal images in °C (n_samples, 32, 32)
+        labels: health status, 0 = Normal, 1 = Warning, 2 = Critical (n_samples,)
+        levels: hidden levels (n_samples, 2), column 0 = thermal level, column 1 = vibration level
+                0 = fine, 1 = moderate, 2 = severe
+    """
+    if source.startswith("http"):
+        with urllib.request.urlopen(source) as f:
+            data = json.load(f)
+    else:
+        with open(source) as f:
+            data = json.load(f)
+            
+    return (
+        np.array(data["time_series"]),
+        np.array(data["images"]),
+        np.array(data["labels"]),
+        np.array(data["levels"]),
+    )
+
+
+ts_data, img_data, labels, levels = load_multimodal_data()
+```
+:::
+
+::: {.callout-note}
+## PyTorch in a nutshell
+
+In @{sec-act1-regression}, we used a convolutional neural network (CNN) through `sktime`.
+In this session, we build the networks ourselves with [PyTorch](https://pytorch.org/) (`torch`), one of the most widely used deep learning libraries.
+Neural network models are well-suited for easy fusion of different modalities.
+
+
+The [Learn the Basics](https://docs.pytorch.org/tutorials/beginner/basics/intro.html) tutorial is a good starting point for understanding PyTorch fundamentals. [Deep Learning with PyTorch: A 60 Minute Blitz](https://docs.pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html) is a brief introduction to building and training (convolutional) neural networks.
+For this session, you will need the following ingredients:
+
+- **Tensors**: `torch.FloatTensor(array)` turns a `numpy` array into a tensor.
+  Convolutional layers expect images of the shape (batch, channels, height, width) and time series of the shape (batch, channels, length).
+  The *batch* dimension counts the samples that the network processes at once, e.g., the 16 samples of a mini-batch or all 100 test samples.
+  The *channels* dimension holds several values per pixel or time step: a color image has 3 channels (red, green, blue), a multivariate time series one channel per sensor.
+  Our thermal images and vibration signals have a single channel each.
+  A convolutional layer applies several filters, and each filter produces one output channel (a *feature map*): `Conv1d(1, 16, ...)` has 16 filters and thus turns 1 input channel into 16 output channels.
+  More channels within the inner layers let the network detect more patterns in parallel: each filter learns its own pattern (e.g., a spike, an oscillation, or the edge of a hot spot), and the next layer combines these patterns into more complex ones.
+
+- **Layers**: `nn.Conv2d`, `nn.Conv1d`, `nn.MaxPool2d`, `nn.MaxPool1d`, `nn.AvgPool1d`, `nn.Flatten`, `nn.Linear`, `nn.ReLU`, and `nn.Dropout` from `torch.nn`.
+  `nn.Sequential(layer1, layer2, ...)` chains layers into one module that applies them one after another.
+
+- **A model**: a subclass of `nn.Module` that creates its layers in `__init__` and defines the data flow in `forward`.
+  Calling `model(x)` runs `forward`.
+
+- **Mini-batches**: `DataLoader(TensorDataset(inputs, targets), batch_size=16, shuffle=True)` from `torch.utils.data` yields mini-batches taken from the full dataset.
+  A `TensorDataset` can hold several input tensors per sample.
+
+- **Training**: the network outputs one raw score (called *logit*) per class.
+  The training minimizes the cross-entropy loss between the logits and the true classes with the Adam optimizer, one mini-batch at a time.
+  `torch.softmax(logits, dim=1)` turns logits into class probabilities.
+
+The networks and data volume in this session are small enough to train on a CPU within seconds.
+Set `torch.manual_seed` at the top of your notebook for reproducibility.
+:::
+
+::: {.callout-important}
+## One notebook for all exercises
+
+Solve the four exercises in a single notebook.
+Mark the beginning of each exercise's solution with a clear markdown header, e.g., `## Exercise 16.x`.
+Each exercise builds on the previous ones: the networks of Milestones 1 and 2 become the building blocks of Milestones 3 and 4, and the training and prediction functions serve all networks.
+The code below provides the technical frame (data preparation, training loop, and the skeletons of the networks), so that you can concentrate on the architectures and on the fusion strategies.
+You only fill in the parts marked with `TODO`.
+Keep the names of the frame, since later exercises reuse them.
 :::
 
 ---
 
-## Exercise A: Clustering the AI4I dataset
+## Milestone 1: Two modalities, one health status
+
+In @{sec-act1-regression}, we used 1D convolutions through `sktime` to detect local patterns in time series.
+Now we build such a network ourselves.
+It consists of two parts: a *feature extractor* (`features`) that turns the time series into a compact feature vector of 32 values, and a *classifier* (`classifier`) that maps the feature vector to one logit per class.
+In Milestones 1 and 2, we use both parts; in Milestone 4, we reuse the feature extractor in Milestone 4.
+
+| Part | Layer | Output shape |
+|---|---|---|
+| | Input (standardized time series) | (1, 80) |
+| `features` | `Conv1d(1, 16, kernel_size=5, padding="same")` + ReLU | (16, 80) |
+| `features` | `MaxPool1d(2)` | (16, 40) |
+| `features` | `Conv1d(16, 32, kernel_size=5, padding="same")` + ReLU | (32, 40) |
+| `features` | `MaxPool1d(2)` | (32, 20) |
+| `features` | `AvgPool1d(20)` + Flatten | 32 |
+| `features` | `Linear(32, 32)` + ReLU + `Dropout(0.3)` | 32 |
+| `classifier` | `Linear(32, 3)` | 3 |
+
+: Time series network (the batch dimension is omitted) {#tbl-act2-sss3-cnn1d}
+
+::: {.callout-note}
+## Preparing the data for PyTorch
+
+Splitting, standardizing, and reshaping the data is rather technical, so here is the code.
+Run it after loading the data and make sure you understand each step and the resulting shapes:
+
+```python
+import torch
+from sklearn.model_selection import train_test_split
+
+# 1. Train-test split
+# 80 % of the samples are used for training, 20 % for testing. All four arrays are
+# split with the same random permutation, so that the time series, the image, the
+# label, and the hidden levels of a sample stay together.
+# stratify=labels keeps the class proportions (48 % Normal, 37 % Warning,
+# 15 % Critical) equal in both sets. Without it, the 100 test samples could
+# contain, e.g., only 8 or 22 critical samples just by chance.
+(
+    ts_train, ts_test,          # (400, 80) and (100, 80)
+    img_train, img_test,        # (400, 32, 32) and (100, 32, 32)
+    y_train, y_test,            # (400,) and (100,)
+    levels_train, levels_test,  # (400, 2) and (100, 2)
+) = train_test_split(
+    ts_data, img_data, labels, levels, test_size=0.2, random_state=42, stratify=labels
+)
+
+# 2. Standardization
+# Neural networks train best on inputs of the order of 1, but the images are in
+# °C (roughly 10 to 70) and the vibration signals range from about -5 to 7.
+# We subtract the mean and divide by the standard deviation. Both are computed
+# on the training set only (one value per modality, over all samples and time
+# steps or pixels) and then applied to both sets: the test set must not
+# influence the training in any way, otherwise the test results are too optimistic.
+# Using a single value per modality (instead of one per pixel) keeps the
+# temperature differences between the parts of the machine intact.
+ts_mean, ts_std = ts_train.mean(), ts_train.std()
+img_mean, img_std = img_train.mean(), img_train.std()
+ts_train_norm = (ts_train - ts_mean) / ts_std  # (400, 80), mean 0, std 1
+ts_test_norm = (ts_test - ts_mean) / ts_std  # (100, 80), mean and std close to 0 and 1
+img_train_norm = (img_train - img_mean) / img_std  # (400, 32, 32)
+img_test_norm = (img_test - img_mean) / img_std  # (100, 32, 32)
+
+# 3. Conversion to PyTorch tensors
+# Convolutional layers expect a channel dimension right after the batch
+# dimension: (batch, channels, length) for Conv1d and (batch, channels, height,
+# width) for Conv2d. A color image would have 3 channels (red, green, blue), a
+# multivariate time series one channel per sensor. Our data has a single
+# channel, which unsqueeze(1) inserts as a new axis at position 1.
+# FloatTensor converts to 32-bit floats, the default type of PyTorch layers.
+ts_train_tensor = torch.FloatTensor(ts_train_norm).unsqueeze(1)  # (400, 1, 80)
+ts_test_tensor = torch.FloatTensor(ts_test_norm).unsqueeze(1)  # (100, 1, 80)
+img_train_tensor = torch.FloatTensor(img_train_norm).unsqueeze(1)  # (400, 1, 32, 32)
+img_test_tensor = torch.FloatTensor(img_test_norm).unsqueeze(1)  # (100, 1, 32, 32)
+
+# The cross-entropy loss expects the class labels as 64-bit integers (0, 1, 2).
+# The test labels stay a numpy array, since we only need them for sklearn metrics.
+y_train_tensor = torch.LongTensor(y_train)  # (400,)
+```
+:::
+
+::: {.callout-note}
+## Training, prediction, and evaluation
+
+The following functions work for every network of this session, also for networks with several inputs.
+Copy them into your notebook after the data preparation:
+
+```python
+import numpy as np
+import pandas as pd
+from torch import nn, optim
+from torch.utils.data import DataLoader, TensorDataset
+
+
+def train_model(model: nn.Module, loader: DataLoader, epochs: int) -> nn.Module:
+    """Train a classifier with Adam and the cross-entropy loss.
+
+    Each element of the loader is a mini-batch (*inputs, targets): one or more
+    input tensors, followed by the class labels.
+    """
+    optimizer = optim.Adam(model.parameters())
+
+    criterion = nn.CrossEntropyLoss()  # expects logits, not probabilities
+    model.train()  # switches dropout on
+    
+    for _ in range(epochs):  # one epoch = one pass over the training set
+        for *inputs, targets in loader:
+            optimizer.zero_grad()  # reset the gradients of the previous batch
+            loss = criterion(model(*inputs), targets)
+            loss.backward()  # compute the gradients of the loss
+            optimizer.step()  # update the weights
+
+    model.eval()  # switches dropout off
+    
+    return model
+
+
+def predict_proba(model: nn.Module, *inputs: torch.Tensor) -> np.ndarray:
+    """Class probabilities (n_samples, 3) of a trained classifier."""
+    with torch.no_grad():  # no gradients needed for predictions
+        return torch.softmax(model(*inputs), dim=1).numpy()
+
+
+def levels_vs_status(
+    level: np.ndarray, pred: np.ndarray, level_name: str
+) -> pd.DataFrame:
+    """Cross tables of a hidden level against the true and the predicted status."""
+    return pd.concat(
+        [
+            pd.crosstab(level, y_test, colnames=["status"]),
+            pd.crosstab(level, pred, colnames=["status"]),
+        ],
+        axis=1,
+        keys=["true health status", "predicted health status"],
+    ).rename_axis(level_name)
+```
+:::
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
-## k-Means clustering on machine data
+## Explore the data and train a 1D CNN on the vibration signals
 ::::
-1. Load the AI4I dataset and select the continuous sensor features (`Air temperature`, `Process temperature`, `Rotational speed`, `Torque`, `Tool wear`).
-1. Use k-Means clustering with different values of $k$ to cluster the data and the elbow method to determine an appropriate $k$.
-1. Visualize the clusters using pair plots.
-1. Compare the resulting clusters with the known failure types. Do the clusters align with any specific failure?
+
+1. Load the dataset with the function above and inspect the shapes of the four arrays and the class distribution.
+2. Plot the vibration signal and the thermal image of one sample per health status.
+   Use the same color scale for all images (`vmin` and `vmax` of `imshow`), so that the temperatures are comparable.
+   Can you spot the parts of the machine? Can you tell the classes apart by eye?
+3. Prepare the data with the code above and print the shapes of all resulting arrays and tensors.
+4. The network uses dropout.
+   Read the documentation of [`nn.Dropout`](https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html) and explain in your own words what it does during training and during prediction, and why it helps against overfitting.
+   Why does the training function call `model.train()` and `model.eval()`?
+5. The network also uses average pooling.
+   Read the documentation of [`nn.AvgPool1d`](https://docs.pytorch.org/docs/stable/generated/torch.nn.AvgPool1d.html) and compare it with `nn.MaxPool1d`.
+6. Complete the `TimeSeriesCNN` of the code frame according to @{tbl-act2-sss3-cnn1d}.
+   Hint: *Check the output shapes on the first four samples (PyTorch prints a shape as `torch.Size([4, 3])`):
+   `TimeSeriesCNN()(ts_train_tensor[:4]).shape` must be (4, 3), one logit per class, and `TimeSeriesCNN().features(ts_train_tensor[:4]).shape` must be (4, 32), one feature vector per sample.*
+
+::: {.callout-note}
+## Code frame
+
+```python
+class TimeSeriesCNN(nn.Module):
+    """1D CNN for the vibration signals (see the table above)."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        # Feature extractor: (batch, 1, 80) -> (batch, 32)
+        self.features = nn.Sequential(
+            nn.Conv1d(1, 16, kernel_size=5, padding="same"),  # (batch, 16, 80)
+            nn.ReLU(),
+            # TODO: the remaining layers of the feature extractor
+        )
+        # Classifier: (batch, 32) -> (batch, 3)
+        self.classifier = ...  # TODO
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.classifier(self.features(x))
+
+
+# Mini-batches of 16 shuffled training samples
+ts_loader = DataLoader(
+    TensorDataset(ts_train_tensor, y_train_tensor), batch_size=16, shuffle=True
+)
+model_ts = train_model(TimeSeriesCNN(), ts_loader, epochs=30)
+
+ts_test_probs = predict_proba(model_ts, ts_test_tensor)  # (100, 3), for Milestone 3
+ts_pred = ts_test_probs.argmax(axis=1)  # (100,), the most likely class
+```
+:::
+
+7. Train the network with the code frame and plot the confusion matrix of the test set (`sklearn.metrics.ConfusionMatrixDisplay.from_predictions`).
+8. Compare the hidden vibration level of the test samples with the true and the predicted health status: `levels_vs_status(levels_test[:, 1], ts_pred, "vibration level")`.
+9. What does the network learn, and why is this not enough to predict the health status (compare @{tbl-act2-sss3-status})?
+   Does it ever predict *Critical*, and is that reasonable?
+
+After this exercise you should be able to:
+
+1. Build, train, and evaluate a small CNN in `torch`.
+1. Explain what a convolutional layer, a pooling layer, and dropout do.
 :::
 
 ---
 
-## Exercise B: DBSCAN and density-based clustering
+## Milestone 2: A 2D CNN for the thermal images
+
+For images, the same idea applies with 2D convolutions: a small filter (here $3 \times 3$ pixels) slides across the image and detects local patterns such as edges and hot spots, max pooling halves the resolution in both directions, and stacking layers lets the network see larger structures.
+Build the following network:
+
+| Part | Layer | Output shape |
+|---|---|---|
+| | Input (standardized image) | (1, 32, 32) |
+| `features` | `Conv2d(1, 16, kernel_size=3, padding="same")` + ReLU | (16, 32, 32) |
+| `features` | `MaxPool2d(2)` | (16, 16, 16) |
+| `features` | `Conv2d(16, 32, kernel_size=3, padding="same")` + ReLU | (32, 16, 16) |
+| `features` | `MaxPool2d(2)` | (32, 8, 8) |
+| `features` | Flatten | 2048 |
+| `features` | `Linear(2048, 64)` + ReLU + `Dropout(0.3)` | 64 |
+| `classifier` | `Linear(64, 3)` | 3 |
+
+: Image network (the batch dimension is omitted) {#tbl-act2-sss3-cnn2d}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
-## Finding dense regions with DBSCAN
+## Build and train the image network
 ::::
-1. Apply DBSCAN to the standardized AI4I features. Experiment with different `eps` and `min_samples` values.
-2. DBSCAN can identify outliers as noise points. How many data points are classified as noise?
-3. Visualize the DBSCAN results alongside the k-Means results from the previous exercise.
-4. Discuss: Which algorithm better separates the different failure types? What are the limitations of each approach?
+1. Complete the code frame according to @{tbl-act2-sss3-cnn2d} and check the output shapes as in Milestone 1.
+
+::: {.callout-note}
+## Code frame
+
+```python
+class ThermalCNN(nn.Module):
+    """2D CNN for the thermal images (see the table above)."""
+
+    def __init__(self, in_channels: int = 1) -> None:
+        super().__init__()
+        # Feature extractor: (batch, in_channels, 32, 32) -> (batch, 64)
+        self.features = nn.Sequential(
+            # TODO: the layers of the feature extractor, the first convolution
+            # has in_channels input channels (you will need 2 in Milestone 3)
+        )
+        # Classifier: (batch, 64) -> (batch, 3)
+        self.classifier = ...  # TODO
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.classifier(self.features(x))
+
+
+img_loader = ...  # TODO: as ts_loader, but with the images
+model_img = train_model(ThermalCNN(), img_loader, epochs=30)
+
+img_test_probs = ...  # TODO: as in Milestone 1
+img_pred = img_test_probs.argmax(axis=1)
+```
+:::
+
+2. Train the network and plot the confusion matrix of the test set.
+3. Compare the hidden thermal level (`levels_test[:, 0]`) with the true and the predicted health status.
+
+After this exercise you should be able to:
+
+1. Explain why a single modality cannot solve this task, no matter how good the model is.
 :::
 
 ---
 
-## Exercise C: Anomaly detection
+## Milestone 3: Early and late fusion
+
+Early fusion feeds the raw inputs of both modalities into a single network.
+A CNN needs one common input format, so we bring the time series into the shape of the image: we zero-pad the 80 standardized values of the vibration sensor to $32 \times 32 = 1024$ values, reshape them to $32 \times 32$, and stack this "image" with the thermal image as a second channel.
+Note that this is just one way to make the time series compatible with a CNN (not necessarily the best one).
+
+Late fusion needs no new network at all: it combines the predicted class probabilities of Milestones 1 and 2.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
-## Detecting anomalous machine behavior
+## Combine the raw inputs, combine the predictions
 ::::
-1. Train an isolation forest or one-class SVM on the AI4I data (you can use only the "normal" or non-failure samples as training data).
-2. Predict anomalies on the full dataset and visualize the results.
-3. Compare the detected anomalies with the known failure labels. Do anomalies correspond to specific failure types?
-4. What threshold would you set for an early warning system in a real manufacturing environment?
+1. Early fusion: complete the code frame, train the network, and plot the confusion matrix.
+
+
+::: {.callout-note}
+## Code frame
+
+```python
+def as_image_channel(ts: np.ndarray) -> torch.Tensor:
+    """Zero-pad time series (n_samples, 80) to 1024 values and reshape them to
+    an image channel (n_samples, 1, 32, 32)."""
+    padded = np.pad(ts, ((0, 0), (0, 32 * 32 - ts.shape[1])))  # (n_samples, 1024)
+    return torch.FloatTensor(padded).reshape(-1, 1, 32, 32)
+
+
+# Early fusion: two channels per sample, (n_samples, 2, 32, 32)
+early_train_tensor = torch.cat(
+    [img_train_tensor, as_image_channel(ts_train_norm)], dim=1
+)
+early_test_tensor = ...  # TODO: as early_train_tensor, for the test set
+model_early = ...  # TODO: train a ThermalCNN with 2 input channels for 30 epochs
+early_pred = ...  # TODO: make predictions
+```
+:::
+
+
+2. Late fusion: average the class probabilities of the time series network and the image network, predict the class with the highest average probability, and plot the confusion matrix.
+3. Compare the four models so far.
+
+After this exercise you should be able to:
+
+1. Explain the difference between early and late fusion and name a limitation of each.
+2. Answer what is unnatural about the early fusion input in this exercise.
 :::
 
 ---
 
-## Exercise D: Feature spaces and alarm thresholds
+## Milestone 4: Intermediate fusion
+
+Intermediate fusion learns a feature vector per modality and classifies the concatenated features, all trained end to end in one network.
+The time series branch is the feature extractor of `TimeSeriesCNN` (32 features), the image branch is the feature extractor of `ThermalCNN` (64 features).
+The joint classifier concatenates both feature vectors (32 + 64 = 96 values) and applies `Linear(96, 32)` + ReLU + `Dropout(0.3)`, followed by `Linear(32, 3)`.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 ::::{#exr-basics-mv-space}
-## Does the feature space matter?
+## Build and train the multimodal network
 ::::
-In Exercise C, you treated the anomaly detector as a yes/no decision.
-Now, use the anomaly score as a continuous ranking and evaluate it quantitatively.
+1. Complete the code frame, train the network, and plot the confusion matrix.
 
-1. Build three standardized feature sets: (i) the five raw sensor features, (ii) the engineered features `power`, `temp_diff`, `Tool wear`, and `strain` $= \text{torque} \cdot \text{tool wear}$, and (iii) the union of both.
-2. For each feature set, fit an isolation forest and a Gaussian mixture model (a distribution-based method, compare @{sec-act1-clustering}) on the non-failure samples only.
-   Use the negative log-likelihood of the Gaussian mixture model as its anomaly score.
-3. For each failure type, compute the average precision (`sklearn.metrics.average_precision_score`) of the anomaly scores and collect the results in a table (rows: detector and feature set, columns: failure types).
-   Compare against the baseline of a random ranking, which equals the failure rate.
-4. Which failure types can be detected as anomalies, and which cannot? Use the failure descriptions in @{sec-act2-1-reveal} to explain why a failure is not necessarily an anomaly.
-5. Assume that a missed failure costs 100 times as much as a false alarm.
-   Choose the threshold of your best detector that minimizes the total cost and report how many alarms per 1,000 processes an operator would have to handle.
-   Compare with the threshold you proposed in Exercise C.
+::: {.callout-note}
+## Code frame
+
+```python
+class MultimodalNet(nn.Module):
+    """Intermediate fusion of the thermal images and the vibration signals."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        # The feature extractors of fresh (untrained) networks of Milestones 2
+        # and 1, without their classifiers
+        self.img_features = ThermalCNN().features  # (batch, 1, 32, 32) -> (batch, 64)
+        self.ts_features = TimeSeriesCNN().features  # (batch, 1, 80) -> (batch, 32)
+        
+        # Joint classifier: (batch, 64 + 32) -> (batch, 3)
+        self.classifier = nn.Sequential(
+            # TODO
+        )
+
+    def forward(self, img: torch.Tensor, ts: torch.Tensor) -> torch.Tensor:
+        # TODO: pass img and ts through their feature extractors,
+        # concatenate the two feature vectors (torch.cat with dim=1) to
+        # (batch, 96), and apply the classifier
+        ...
+
+
+# Each mini-batch holds the images, the time series, and the labels
+multimodal_loader = DataLoader(
+    TensorDataset(img_train_tensor, ts_train_tensor, y_train_tensor),
+    batch_size=16,
+    shuffle=True,
+)
+model_multimodal = train_model(MultimodalNet(), multimodal_loader, epochs=60)
+
+intermediate_pred = predict_proba(
+    model_multimodal, img_test_tensor, ts_test_tensor
+).argmax(axis=1)
+```
+:::
+
+2. Plot the confusion matrices of all five models side by side (Hint: *you can use the argument `ax` of `ConfusionMatrixDisplay.from_predictions`*) and summarize their accuracies.
+
+After this exercise you should be able to:
+
+1.  Explain the ranking: why is each unimodal model limited by design, why does late fusion fall behind, and why does intermediate fusion perform best here?
+   Would you expect the same ranking on every multimodal dataset?
 :::
