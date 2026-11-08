@@ -28,19 +28,19 @@ Until the end of step 2, it is possible to adjust the placement parameters by pr
 The goal is to optimize the placement parameters in real-time based on the feedback received from the camera system after each placement.
 
 ## Accessible variables
-The following variables are accessible during the process:
+The following variables are accessible during the process (the name of the OPC UA variable is given in brackets):
 
-- `Air temperature [K]`: ambient temperature around the machine.
-- `Attached Weight [mg]`: weight of the component picked up by the vacuum system.
-- `Cycle`: unique identifier for each cycle.
-- `Error x [mm]`: placement error in $x$ direction (only available at the end of the cycle).
-- `Error y [mm]`: placement error in $y$ direction (only available at the end of the cycle).
-- `Position x [mm]`: target position in $x$ direction.
-- `Position y [mm]`: target position in $y$ direction.
-- `Process step`: current step in the process (0 to 3).
-- `Process temperature [K]`: temperature inside the machine.
-- `Speed [mm/s]`: speed of the current movement.
-- `Speed next [mm/s]`: speed for the next movement.
+- **Air temperature [°C]** (`air_temperature`): ambient temperature around the machine.
+- **Attached Weight [mg]** (`attached_weight`): weight of the component picked up by the vacuum system.
+- **Cycle** (`cycle`): unique identifier for each cycle.
+- **Error x [mm]** (`error_x`): placement error in $x$ direction (only available at the end of the cycle).
+- **Error y [mm]** (`error_y`): placement error in $y$ direction (only available at the end of the cycle).
+- **Position x [mm]** (`position_x`): target position in $x$ direction.
+- **Position y [mm]** (`position_y`): target position in $y$ direction.
+- **Process step** (`process_step`): current step in the process (0 to 3).
+- **Process temperature [°C]** (`process_temperature`): temperature inside the machine.
+- **Speed [mm/s]** (`speed`): speed of the current movement.
+- **Speed next [mm/s]** (`speed_next`): speed for the next movement.
 
 ## Data
 One cycle usually takes 3-6 seconds to complete and the sensor data is available in realtime via _OPC Unified Architecture_ (OPC UA).
@@ -50,7 +50,7 @@ OPC UA is a cross-platform, open-source communication protocol for data exchange
 It is a client-server architecture that allows for secure and reliable data transfer between devices and systems from different manufacturers.
 :::
 
-Luckily, the engineers already collected a dataset of 25.000 cycles coming in two files:
+Luckily, the engineers already collected a dataset of 25,000 cycles coming in two files:
 
 - `simulated_opcua_machinedata.csv` stores the sensor data.
 - `simulated_opcua_postinspection.csv` stores the placement error data.

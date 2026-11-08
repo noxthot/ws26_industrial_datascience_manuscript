@@ -14,21 +14,21 @@ Regarding the uneven distribution of applied epoxy (`NOK_4`), the operators prov
 The cleaning process happens at the end of the previous processing step, where the nozzle moves away from the product and blows out residual epoxy.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
+:::: {#exr-act3-sss1-blowout}
 ## Investigating the blow-out step
 ::::
-Investigate the pressure during the blow-out step (process step index 3 of the previous iteration) and see if you can find a correlation to `NOK_4` defects.
+Investigate the pressure during the blow-out step (`process_step_index` 2 of the previous iteration; the index starts at 0) and see if you can find a correlation to `NOK_4` defects.
 :::
 
 Having more information about `NOK_1` and `NOK_4`, we can now try to fine-tune the machine's parameters to reduce the number of defects.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
+:::: {#exr-act3-sss1-finetuning}
 ## Fine-tuning the machine parameters
 ::::
-The accompanying `readme.md` file shipped with the [`industrial_datascience_sim_machine_knifes` repository](https://github.com/noxthot/industrial_datascience_sim_machine_knifes/tree/v1.0.2) contains information on how to run the machine again with different parameters.
+The accompanying `readme.md` file shipped with the [`industrial_datascience_sim_machine_knifes` repository](https://github.com/noxthot/industrial_datascience_sim_machine_knifes/tree/v1.0.4) contains information on how to run the machine again with different parameters.
 Try to improve the parameters to reduce the number of defects.
-Keep the `night` shift and `NUM_PIECES` at the default values.
+Keep the `night` shift at its default value and set `NUM_PIECES=5000`, so that each run covers a full shift and is comparable to the original dataset.
 
 You experience new issues or want to further fine-tune the parameters?
 Feel free to have a look at the new `csv` files that the machine is producing.
@@ -52,10 +52,10 @@ The original dataset had 5000 pieces with the following distribution:
 Great job? Everything looks good on the night shift?
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
+:::: {#exr-act3-sss1-dayshift}
 ## Try the machine on day shift
 ::::
-Run the machine again with your parameters, but this time during `day` shift.
+Run the machine again with your parameters (and `NUM_PIECES=5000`), but this time during `day` shift.
 
 How do the results of the new parameters compare to the ones from the night shift?
 
@@ -63,11 +63,12 @@ Investigate the root cause of this difference by looking at the produced `csv` f
 :::
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
+:::: {#exr-act3-sss1-bothshifts}
 ## Fine-tune the parameters to work well for both shifts
 ::::
 The machine is not only telling you a defect summary, but also the duration it took to produce the parts.
 Try to fine-tune the parameters to achieve a good compromise between quality (few defects) and speed (short duration).
+Keep `NUM_PIECES=5000`, so that each run still covers a full shift.
 
 _Hints:_
 
