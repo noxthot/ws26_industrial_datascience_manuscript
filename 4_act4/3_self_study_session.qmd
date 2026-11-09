@@ -1,7 +1,7 @@
-# Optional Self study Session {#sec-act4-selfstudy}
+# Optional Self-Study Session {#sec-act4-selfstudy}
 
 Real-world applications on industrial data face many challenges.
-One of them being that the data from machines is usually retrieved via communication protocols from _programmable logic controllers_ (PLC).
+One of them is that machine data is usually retrieved via communication protocols from _programmable logic controllers_ (PLC).
 These communication protocols often lack standardization and can vary significantly between different manufacturers and even different models of PLCs.
 This heterogeneity makes it difficult to integrate data from (multiple) sources and can lead to massive complexity in data processing and analysis.
 
@@ -9,20 +9,20 @@ In the following, you will read a review paper discussing challenges in introduc
 
 ::: {.callout-warning appearance="simple" icon=true}
 ## Predatory Journals
-Predatory journals exploit the academic publishing model for profit, often lacking rigorous peer review and editorial oversight. They may present themselves as legitimate outlets but prioritize financial gain over scholarly integrity. Researchers should be cautious when selecting journals for publication, ensuring they choose reputable venues that uphold high academic standards.
+Predatory journals exploit the academic publishing model for profit, often lacking rigorous peer review and editorial oversight. They may present themselves as legitimate outlets but prioritize financial gain over scholarly integrity. When reading (and citing) research, check where it was published and read it with appropriate skepticism.
 
-[Wikipedia](https://en.wikipedia.org/wiki/MDPI) (accessed: 09 11 2026) states:
+[Wikipedia](https://en.wikipedia.org/wiki/MDPI) (accessed: 2026-11-09) states:
 _MDPI's business model is based on establishing entirely open access broad-discipline journals, with fast processing times from submission to publication and article processing charges paid by the author, their institutions or funders. MDPI's business practices have attracted controversy, with critics suggesting it sacrifices editorial and academic rigor in favor of operational speed and business interests. MDPI was included on Jeffrey Beall's list of predatory open access publishing companies in 2014; it was removed in 2015 following a successful appeal, while applying pressure on Beall's employer. Some journals published by MDPI have also been noted by the Chinese Academy of Sciences (CAS) and Norwegian Scientific Index for lack of rigor and possible predatory practices; as of 2025, CAS no longer lists any MDPI journals on its Early Warning List. In 2024, Finland's Publication Forum, which classifies publication channels for academic research, downgraded 193 MDPI journals to its lowest, level 0 rating._
 
-[PredatoryJournals.org](https://www.predatoryjournals.org/) published a [blog post discussing MDPI](https://www.predatoryjournals.org/news/is-mdpi-predatory) (accessed: 11 09 2026) in this regard.
+[PredatoryJournals.org](https://www.predatoryjournals.org/) published a [blog post discussing MDPI](https://www.predatoryjournals.org/news/is-mdpi-predatory) (accessed: 2026-09-11) in this regard.
 :::
 
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-basics-mv-space}
+:::: {#exr-act4-sss-brownfield}
 ## Data Science on Industrial Data -- Today’s Challenges in Brown Field Applications
 ::::
-Read @{klaeger2021}, published in MDPI.
+Read @{klaeger2021}, which was published in an MDPI journal.
 You should be able to discuss the following questions:
 
 - What is the typical data flow from a machine to a data store?

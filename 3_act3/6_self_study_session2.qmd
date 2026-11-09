@@ -1,13 +1,13 @@
-# Self study - Session 2 {#sec-act3-selfstudy2}
+# Self-Study Session 2 {#sec-act3-selfstudy2}
 
 In this session, we will revisit @{sec-act3-livefeedback} and try to optimize the placement accuracy of the pick-and-place machine.
 
-Before we are touching the live machine, we will first try to find a suitable model based on the provided dataset.
+Before we touch the live machine, we first try to find a suitable model based on the provided dataset.
 
 ::: {.callout-note}
 Since we are working with a live feedback system, we will need multiple terminals/consoles at the same time:
 
-1. One terminal to run the simulated pick and place machine (the OPC UA server).
+1. One terminal to run the simulated pick-and-place machine (the OPC UA server).
 2. Optionally, one terminal to run the OPC UA client that connects to the machine and provides real-time corrections.
 3. Optionally, one terminal to run the `opcua-client` GUI to visualize the live data.
 :::
@@ -29,12 +29,12 @@ Your task:
 
 3. Take a look at the model's performance on the test set by looking at certain metrics, e.g., by calculating the Mean Absolute Error (MAE).
 
-4. Visualize the predictive capabilities by e.g. plotting a histogram showing the errors and residuals (predicted - true values).
+4. Visualize the predictive capabilities, e.g., by plotting a histogram of the errors and residuals (true and predicted values).
 
 5. Persist the model to disk so that we can later load it in the live feedback system. In case you use a scaler, you will need to persist it as well.
 :::
 
-Once you have a model that performs well on the test set, we can work on integrating it in the live feedback system.
+Once you have a model that performs well on the test set, we can work on integrating it into the live feedback system.
 
 But first, let us understand how to interact with the simulator.
 The accompanying `readme.md` file shipped with the [`industrial_datascience_live_machine` repository](https://github.com/noxthot/industrial_datascience_live_machine/tree/v1.1.1) contains all necessary information.
@@ -44,8 +44,8 @@ The accompanying `readme.md` file shipped with the [`industrial_datascience_live
 :::: {#exr-act3-sss2-simulator}
 ## First encounter with the live machine simulator
 ::::
-Running the `opc-ua-server.py` or the provided docker-container will start the simulated pick and place machine that exposes the sensor data via OPC UA.
-The machine runs in real-time, meaning that one cycle takes 3-6 seconds to complete.
+Running `opc-ua-server.py` or the provided Docker container starts the simulated pick-and-place machine that exposes the sensor data via OPC UA.
+The machine runs in real time, meaning that one cycle takes 3-6 seconds to complete.
 You will see the process steps advancing in the console output.
 Simultaneously, the sensor data is streamed via the OPC UA protocol.
 
@@ -67,7 +67,7 @@ Your task:
 4. Subscribe to data changes:
     - Right-click on one of the variables (e.g. `position_x`) and select `Subscribe to data changes`.
     - Subscribed variables will appear in the `Subscriptions` tab at the bottom.
-    - Observe that the values are changing in real-time as the machine is running.
+    - Observe that the values are changing in real time as the machine is running.
     - Also observe that they are not updated at the very same time, but rather whenever there is a new measurement available.
     - Provide a screenshot of the `Subscriptions` tab showing the data changes of `position_x`, `position_y`, and `cycle`.
 
@@ -75,13 +75,13 @@ Your task:
     - This requires two more packages to be installed. If you are using `uv`, run `uv add numpy pyqtgraph` to add the necessary dependencies.
     - Switch to the `Graphs` tab at the bottom.
     - Change update interval to `1`s (unfortunately it appears that it is not possible to go below 1 second in this client).
-    - Contrary to subscribing to data changes, this graph will poll the server for new values at the specified interval (meaning that we might miss some updates if the frequency is higher).
+    - In contrast to subscribing to data changes, this graph will poll the server for new values at the specified interval (meaning that we might miss some updates if the frequency is higher).
     - Add the variables you want to visualize by right-clicking on them and selecting `Add to Graph`.
     - Provide a screenshot of the graph showing `error_x` and `error_y` over time.
 
 6. Interact with the machine by writing values:
     - While looking at the graph, click on `correction_x` in the variable tree on the left side.
-    - In the Attributes tab, double click on the `Value` field to edit it.
+    - In the Attributes tab, double-click on the `Value` field to edit it.
     - Provide a correction value (e.g. `10.0`) and hit `ENTER` to write the new value to the server.
     - Observe how the machine reacts to the provided correction in the graph (note that the server always resets the correction values to `0.0` after applying them).
     - Provide a screenshot of the graph showing the effect of your correction on `error_x`.
@@ -89,7 +89,7 @@ Your task:
     - Provide a screenshot of the console output showing the application of your correction.
 :::
 
-Now that we know how to interact with the live machine simulator, in a first step we will set up a Python script `opc-ua-client.py` that connects to the machine and subscribes to the data changes of the necessary variables.
+Now that we know how to interact with the live machine simulator, as a first step, we look at the provided Python script `opc-ua-client.py`, which connects to the machine and subscribes to the data changes of the necessary variables.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 :::: {#exr-act3-sss2-opcua-client}
@@ -109,13 +109,13 @@ Your task:
 :::
 
 Great!
-It is now time to integrate our trained model into the live feedback system and hope that the chosen model generalizes well to the live data and is fast enough to provide corrections in real-time.
+It is now time to integrate our trained model into the live feedback system and hope that the chosen model generalizes well to the live data and is fast enough to provide corrections in real time.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
 :::: {#exr-act3-sss2-integration}
 ## Integrate the trained model into the live feedback system
 ::::
-The `opc-ua-client.py` script contains various placeholders (marked with `# >>> Exercise`) where you need to integrate your trained model to provide real-time corrections to the pick and place machine.
+The `opc-ua-client.py` script contains various placeholders (marked with `## >>> EXERCISE (PART n/10)`) where you need to integrate your trained model to provide real-time corrections to the pick-and-place machine.
 
 Your task:
 
@@ -136,7 +136,7 @@ Your task:
 
 6. Part 6: Print the collected variables (this is for debugging purposes in case you need it).
 7. Part 7: Use the previously implemented function `predict_error` to get correction values for `x` and `y`.
-8. Part 8: Write the computed correction values back to the OPC UA server to adjust the placement in real-time.
+8. Part 8: Write the computed correction values back to the OPC UA server to adjust the placement in real time.
 9. Part 9: Now remove the `return` statement to enable your implementation.
 
 
@@ -161,8 +161,8 @@ Your task:
 18. Add `error_x`, `error_y` to the graph and set the update interval to `1`s.
 19. Wait for a couple of cycles to see how the placement error evolves over time.
 20. Now, start your live feedback client.
-21. Observe how the placement error changes as your model provides corrections in real-time.
-22. Provide a screenshot of the graph showing the live placement error and the effect of your corrections: It should show both, the error before the feedback loop is started as well as the reduced error once the feedback loop is active.
+21. Observe how the placement error changes as your model provides corrections in real time.
+22. Provide a screenshot of the graph showing the live placement error and the effect of your corrections: It should show both the error before the feedback loop is started and the reduced error once the feedback loop is active.
 :::
 
-This is it!
+That's it!

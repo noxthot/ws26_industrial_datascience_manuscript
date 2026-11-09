@@ -1,12 +1,12 @@
-# Self study - Session 1 {#sec-act2-selfstudy1}
+# Self-Study Session 1 {#sec-act2-selfstudy1}
 
 In this session, we will explore the dataset in @{sec-act2} further.
 
-When comparing our findings in @{sec-act2-1-int-pp} and @{sec-act2-1-int-dt} with the failure description in @{sec-act2-1-reveal}, we can see that we did a pretty good job in identifying failure reasons.
-However, it seems that the description of `TWF` in @{sec-act2-1-reveal} is contradicting our observations.
+When comparing our findings in @{sec-act2-1-int-pp} and @{sec-act2-1-int-dt} with the failure description in @{sec-act2-1-reveal}, we can see that we did a pretty good job at identifying failure reasons.
+However, it seems that the description of `TWF` in @{sec-act2-1-reveal} contradicts our observations.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss1-twf}
 ## Tool wear failure
 ::::
 Identify where the description of `TWF` in @{sec-act2-1-reveal} does not align with our findings.
@@ -15,11 +15,11 @@ Identify where the description of `TWF` in @{sec-act2-1-reveal} does not align w
 Also, we could have done better for `OSF`.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss1-osf}
 ## Overstrain failure
 ::::
 According to @{sec-act2-1-reveal}, the failure type _overstrain failure_ (`OSF`) occurs when the machine is subjected to excessive torque when a worn-out tool is used.
-Also the product variant is associated to the failure rate: When the product of torque and tool wear exceeds 11.000 minNm for the L product variant (12.000 for M, 13.000 for H), the process fails due to overstrain.
+The product variant also affects the failure rate: when the product of torque and tool wear exceeds 11,000 minNm for the L product variant (12,000 for M, 13,000 for H), the process fails due to overstrain.
 
 1. Are you able to verify this relationship by visualizations?
 
@@ -42,7 +42,7 @@ After this exercise you should be able to:
 :::
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss1-metrics}
 ## Engineered features and model performance
 ::::
 Repeat the comparison for `HDF` and `PWF`: train trees of increasing depth with and without the engineered features `temp_diff` and `power`.
@@ -53,11 +53,11 @@ After this exercise you should be able to:
 1. Choose an appropriate metric for heavily imbalanced classification tasks.
 :::
 
-In @{sec-act2-1-machinefailures}, we used pair plots, boxplots, and decision trees to investigate the relationship between different features and the machine failure types.
-Another approach could be to use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/) from `plotly`, which we already used for the interactive plots in @{sec-act2}.
+In @{sec-act2-1-machinefailures}, we used pair plots, box plots, and decision trees to investigate the relationship between different features and the machine failure types.
+Another approach is to use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/) from `plotly`, the library we already used for the interactive plots in @{sec-act2}.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss1-parcoords}
 ## Parallel coordinates plots
 ::::
 Use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-plot/) to visualize the relationships between multiple features and the machine failure types:
@@ -66,6 +66,6 @@ Use [parallel coordinates plots](https://plotly.com/python/parallel-coordinates-
 1. Also add `Type` as a categorical variable to the plot.
 1. Make the failure type a categorical column.
 1. Color the lines according to `Type`.
-1. Allow for choosing the failure type interactively using a Dropdown widget (see [Jupyter widgets](https://ipywidgets.readthedocs.io/en/stable/)) with the available failure types.
-1. The parallel coordinate plot allows for dragging columns (just click and drag the title of a column) and reordering them. It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points. Use these two features to get insights into the relationships between different features and the selected failure type. Can you identify the patterns which we have exploited in our previous analyses?
+1. Allow for choosing the failure type interactively using a dropdown widget (see [Jupyter widgets](https://ipywidgets.readthedocs.io/en/stable/)) with the available failure types.
+1. The parallel coordinates plot allows for dragging columns (just click and drag the title of a column) and reordering them. It also allows for selecting and highlighting specific lines, making it easier to focus on particular data points. Use these two features to get insights into the relationships between different features and the selected failure type. Can you identify the patterns that we exploited in our previous analyses?
 :::

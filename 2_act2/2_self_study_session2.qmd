@@ -1,4 +1,4 @@
-# Self study - Session 2 {#sec-act2-selfstudy2}
+# Self-Study Session 2 {#sec-act2-selfstudy2}
 
 In this session, we will transfer what we learned in @{sec-act2} to a new dataset, the **Explainable AI (XAI) Drilling Dataset** by @{wallsberger2023}.
 We will explore it in depth, splitting our analysis into four milestones, each building on the previous one.
@@ -8,7 +8,7 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 ## Milestone 1: Data Acquisition and Understanding {#sec-act2-selfstudy2-m1}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss2-m1}
 ## Register and download the dataset
 ::::
 1. Register on [Kaggle](https://www.kaggle.com).
@@ -25,14 +25,14 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 ## Milestone 2: Exploratory Data Analysis {#sec-act2-selfstudy2-m2}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss2-m2}
 ## Explore the dataset
 ::::
 1. Pretend that you did not read the _Subgroup failures_ paragraph in the description. Explore the dataset and find insights related to the different failure types.
 1. Do your findings align with the description given in the _Subgroup failures_ paragraph?
 1. Compute summary statistics for each feature grouped by failure type.
 1. Create at least two visualizations (e.g., histograms, box plots) that reveal differences between failure types.
-1. If you are able to isolate failing samples, note the thresholds down, you will need them in milestone 4.
+1. If you are able to isolate failing samples, note down the thresholds; you will need them in Milestone 4.
 :::
 
 ---
@@ -40,13 +40,13 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 ## Milestone 3: Deep Dive Visualization {#sec-act2-selfstudy2-m3}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss2-m3}
 ## Visualize failure patterns with plotly
 ::::
 1. Create a parallel coordinates plot to explore relationships between multiple features and failure types.
 1. Use dropdown widgets to filter the plot by failure type and observe how feature relationships change.
 1. For each failure type, use the brushing feature (select a range on an axis) to isolate the failing samples and read off approximate thresholds of the features involved.
-   Note these thresholds down, you will need them in milestone 4.
+   Note down these thresholds; you will need them in Milestone 4.
 1. Document any new patterns or anomalies discovered through the interactive exploration.
 :::
 
@@ -55,10 +55,10 @@ We will explore it in depth, splitting our analysis into four milestones, each b
 ## Milestone 4: Distilling Findings into Rules {#sec-act2-selfstudy2-m4}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss2-m4}
 ## From exploration to a rule-based failure model
 ::::
-1. Translate the thresholds from milestone 2 and/or 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.
+1. Translate the thresholds from Milestone 2 and/or 3 into explicit rules: write one Python function per failure type that predicts whether a sample fails.
 1. Evaluate your rules against the labels: compute the confusion matrix for each failure type.
 1. Train a shallow decision tree per failure type. Compare the trees and your hand-crafted rules. Which one would you rather explain to a process engineer?
 :::

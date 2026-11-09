@@ -1,15 +1,15 @@
-# Self study - Session 2 {#sec-act1-selfstudy2}
+# Self-Study Session 2 {#sec-act1-selfstudy2}
 
 In this session, we will revisit @{sec-act1-imputation} and @{sec-act1-decomposition}.
 
-In @{sec-act1-imputation}, we have explored different methods to handle missing data in time series and have seen that the choice of imputation method can significantly affect the results.
+In @{sec-act1-imputation}, we explored different methods to handle missing data in time series and saw that the choice of imputation method can significantly affect the results.
 
-The data set we will rely on in this session is the synthetic time series from the previous section which simulates weekly production data of a manufacturing plant over 20 years.
+In this session, we work with a synthetic time series that simulates the weekly production of a manufacturing plant over 20 years.
 Unfortunately, some data points are missing due to frequent outages in the data collection system and sometimes we observe huge outliers due to temporary errors in the counting process.
 
-Your task is to impute the missing values and handle the outliers appropriately to prepare the data for a 20 years jubilee management report.
+Your task is to impute the missing values and handle the outliers appropriately to prepare the data for a management report celebrating the plant's 20th anniversary.
 
-Again, you can download the data set from [here](../data/assets/act1/selfstudysessions/sss1_production_data.csv).
+You can download the dataset as a [CSV file](../data/assets/act1/selfstudysessions/sss1_production_data.csv).
 
 Additionally, here are some useful helper functions:
 
@@ -86,24 +86,24 @@ def seasonal_decompose_seaborn(decomposed_ts, title):
 ```
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act1-sss2-smoothing}
 ## Load the data with gaps and get rid of outliers
 ::::
 - Download and load the dataset.
-  It has three columns: `Date`, `pieces` and `pieces_gaps`.
-  The column `pieces` contains the full data set without gaps, while `pieces_gaps` contains the same data set with several missing values (NaNs).
-  The period covered by the data set is from 2005-01-01 to 2024-12-31 in weekly frequency.
+  It has three columns: `Date`, `pieces`, and `pieces_gaps`.
+  The column `pieces` contains the full time series without gaps, while `pieces_gaps` contains a noisier measurement of the same series in which roughly a third of the values are missing (NaNs).
+  The data covers the years 2005 to 2024 at weekly frequency.
 - Visualize both time series (`pieces` and `pieces_gaps`) using the provided `plot_production_data` function.
-- Smooth the `pieces_gaps` time series using a rolling window with appropriate window size and decide whether it is better to use `mean` or `median` as aggregation function.
+- Smooth the `pieces_gaps` time series using a rolling window with appropriate window size and decide whether it is better to use `mean` or `median` as the aggregation function.
   Discuss your choice.
-  Ideally the resulting smoothed time series should have the same gaps as the original `pieces_gaps` time series.
+  Ideally, the resulting smoothed time series should have the same gaps as the original `pieces_gaps` time series.
 - Visualize the resulting smoothed time series using `seaborn`.
 :::
 
 Let us try to impute the missing values in a second step.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act1-sss2-imputation}
 ## Impute the missing values with known methods
 ::::
 - Use the smoothed time series with gaps from the previous exercise as input.
@@ -118,11 +118,11 @@ We have had a look at STL in @{sec-act1-decomposition}, where we decomposed a ti
 Now we will use it for imputation to not lose the seasonal structure of the data while filling the gaps.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act1-sss2-stl}
 ## Impute the missing values with STL
 ::::
 - Use the smoothed time series with gaps from the first exercise as input.
-- The STL needs data that is complete, i.e., without missing values.
+- STL requires complete data, i.e., data without missing values.
   Therefore, first impute the missing values using a simple method of your choice (e.g., linear interpolation).
 - Then, apply the STL decomposition to the imputed time series.
 - Visualize the decomposed components (trend, seasonal, residual) using the provided `seasonal_decompose_seaborn` function.
@@ -133,16 +133,17 @@ Now we will use it for imputation to not lose the seasonal structure of the data
 - Discuss the results.
 :::
 
-Great job, you have provided the graphs in time for the management report and the board liked the results.
-In the meanwhile your colleagues have found the original data set without gaps on some old dusty server and would like to know the number of outliers in the data set.
+Great job!
+You delivered the graphs in time for the management report, and the board liked the results.
+Meanwhile, your colleagues found the original dataset without gaps on an old, dusty server and would like to know the number of outliers in the dataset.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
-## Count the number of outliers in the original data set
+::::{#exr-act1-sss2-outliers}
+## Count the number of outliers in the original dataset
 ::::
-- Use the original data set without gaps (`pieces` column) as input.
-- Use an appropriate method to identify the outliers in the data set.
-- Visualize the outliers and the original data set using `seaborn`.
+- Use the original dataset without gaps (`pieces` column) as input.
+- Use an appropriate method to identify the outliers in the dataset.
+- Visualize the outliers and the original dataset using `seaborn`.
 - Count the number of detected outliers.
 - Discuss the results.
 :::

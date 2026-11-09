@@ -1,4 +1,4 @@
-# Self study - Session 3 {#sec-act2-selfstudy3}
+# Self-Study Session 3 {#sec-act2-selfstudy3}
 
 In @{sec-act2} to @{sec-act2-selfstudy2}, every sample was a single row of tabular measurements.
 However, in industrial settings equipment is often monitored with several kinds of sensors at once, and each kind of sensor produces a different *modality* of data.
@@ -19,20 +19,20 @@ We will first train one model per modality and then combine the modalities with 
 1. **Late fusion**: Train one model per modality and combine their predictions.
 1. **Intermediate fusion**: Learn a compact representation (a feature vector) per modality and train a joint classifier on the concatenated features.
 
-In this session, we will solely work with convolutional neural networks (CNNs) built with PyTorch, since they are well suited for both, time series and image data, as well as for combining multiple modalities with the different fusion strategies.
+In this session, we will solely work with convolutional neural networks (CNNs) built with PyTorch, since they are well suited for both time series and image data and make it easy to combine multiple modalities with the different fusion strategies.
 
 ## The dataset {#sec-act2-selfstudy3-data}
 
 The dataset is simulated and consists of 500 samples.
-You can download it from [here](../data/assets/act2/selfstudysessions/sss3_multimodal.json) or with the provided function `load_multimodal_data` below.
+You can download it as a [JSON file](../data/assets/act2/selfstudysessions/sss3_multimodal.json) or load it with the function `load_multimodal_data` below.
 
-The thermal image shows a rectangular machine housing of random size, position, and orientation in front of a room at ambient temperature.
+The thermal image shows a rectangular machine housing of random size, position, and orientation against a background at room temperature.
 The housing is slightly warmer than the room.
 Inside, the parts of the machine are visible as hot spots: the motor (large, left), the gearbox (center), the bearing (small, right), and the controller (top).
 The air inlet of the cooler (bottom) is a cold spot.
 Note that the size, the position, and the orientation of the housing vary slightly from image to image (it is rotated by up to 15° in either direction), so the parts are never at exactly the same pixel positions.
 The motor, the gearbox, and the bearing all get warmer with the current *load* of the machine, which varies from sample to sample.
-A thermal problem means that the gearbox and/or the bearing is warmer than the load (visible at the motor) explains.
+A thermal problem means that the gearbox and/or the bearing is warmer than the load (visible at the motor) would explain.
 
 Behind the scenes, each sample has a hidden *thermal level* and a hidden *vibration level* (0 = fine, 1 = moderate, 2 = severe), and the overall health status is defined by their **combination**:
 
@@ -81,7 +81,7 @@ def load_multimodal_data(
     else:
         with open(source) as f:
             data = json.load(f)
-            
+
     return (
         np.array(data["time_series"]),
         np.array(data["images"]),
@@ -148,7 +148,7 @@ Keep the names of the frame, since later exercises reuse them.
 In @{sec-act1-regression}, we used 1D convolutions through `sktime` to detect local patterns in time series.
 Now we build such a network ourselves.
 It consists of two parts: a *feature extractor* (`features`) that turns the time series into a compact feature vector of 32 values, and a *classifier* (`classifier`) that maps the feature vector to one logit per class.
-In Milestones 1 and 2, we use both parts; in Milestone 4, we reuse the feature extractor in Milestone 4.
+We use the full network in Milestones 1, 2, and 3; in Milestone 4, we reuse only its feature extractor.
 
 | Part | Layer | Output shape |
 |---|---|---|
@@ -246,7 +246,7 @@ def train_model(model: nn.Module, loader: DataLoader, epochs: int) -> nn.Module:
 
     criterion = nn.CrossEntropyLoss()  # expects logits, not probabilities
     model.train()  # switches dropout on
-    
+
     for _ in range(epochs):  # one epoch = one pass over the training set
         for *inputs, targets in loader:
             optimizer.zero_grad()  # reset the gradients of the previous batch
@@ -255,7 +255,7 @@ def train_model(model: nn.Module, loader: DataLoader, epochs: int) -> nn.Module:
             optimizer.step()  # update the weights
 
     model.eval()  # switches dropout off
-    
+
     return model
 
 
@@ -281,7 +281,7 @@ def levels_vs_status(
 :::
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss3-m1}
 ## Explore the data and train a 1D CNN on the vibration signals
 ::::
 
@@ -364,7 +364,7 @@ Build the following network:
 : Image network (the batch dimension is omitted) {#tbl-act2-sss3-cnn2d}
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss3-m2}
 ## Build and train the image network
 ::::
 1. Complete the code frame according to @{tbl-act2-sss3-cnn2d} and check the output shapes as in Milestone 1.
@@ -417,7 +417,7 @@ Note that this is just one way to make the time series compatible with a CNN (no
 Late fusion needs no new network at all: it combines the predicted class probabilities of Milestones 1 and 2.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss3-m3}
 ## Combine the raw inputs, combine the predictions
 ::::
 1. Early fusion: complete the code frame, train the network, and plot the confusion matrix.
@@ -458,12 +458,12 @@ After this exercise you should be able to:
 
 ## Milestone 4: Intermediate fusion
 
-Intermediate fusion learns a feature vector per modality and classifies the concatenated features, all trained end to end in one network.
+Intermediate fusion learns a feature vector per modality and classifies the concatenated features, all trained end-to-end in one network.
 The time series branch is the feature extractor of `TimeSeriesCNN` (32 features), the image branch is the feature extractor of `ThermalCNN` (64 features).
 The joint classifier concatenates both feature vectors (32 + 64 = 96 values) and applies `Linear(96, 32)` + ReLU + `Dropout(0.3)`, followed by `Linear(32, 3)`.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act2-sss3-m4}
 ## Build and train the multimodal network
 ::::
 1. Complete the code frame, train the network, and plot the confusion matrix.
@@ -481,7 +481,7 @@ class MultimodalNet(nn.Module):
         # and 1, without their classifiers
         self.img_features = ThermalCNN().features  # (batch, 1, 32, 32) -> (batch, 64)
         self.ts_features = TimeSeriesCNN().features  # (batch, 1, 80) -> (batch, 32)
-        
+
         # Joint classifier: (batch, 64 + 32) -> (batch, 3)
         self.classifier = nn.Sequential(
             # TODO
@@ -512,6 +512,6 @@ intermediate_pred = predict_proba(
 
 After this exercise you should be able to:
 
-1.  Explain the ranking: why is each unimodal model limited by design, why does late fusion fall behind, and why does intermediate fusion perform best here?
+1. Explain the ranking: why is each unimodal model limited by design, why does late fusion fall behind, and why does intermediate fusion perform best here?
    Would you expect the same ranking on every multimodal dataset?
 :::

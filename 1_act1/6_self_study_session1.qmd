@@ -1,13 +1,13 @@
-# Self study - Session 1 {#sec-act1-selfstudy1}
+# Self-Study Session 1 {#sec-act1-selfstudy1}
 
-This class contains self-study sessions to reinforce your understanding of the material and explore other aspects of the topic in a self-guided manner.
+This course contains self-study sessions that reinforce your understanding of the material and let you explore further aspects of the topic at your own pace.
 
 In this specific session, we will get hands-on with some essential tools for reporting: `uv`, `JupyterLab`, `seaborn`, and `Quarto`.
 
 Each exercise focuses on a single topic.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act1-sss1-uv}
 ## Setting up an isolated environment with `uv`
 ::::
 
@@ -18,31 +18,31 @@ It installs and manages Python versions and packages in isolated environments (`
 1. Install `uv` following the [official instructions](https://docs.astral.sh/uv/getting-started/installation/).
 1. In the project directory, initialize a new project and create a virtual environment using `uv`.
 1. Install the following packages into the environment: `numpy`, `matplotlib`.
-1. Verify the environment works by creating a simple Python script that creates a simple plot of $f(t) = (16 (\sin(t))^3, 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t))$ using the `numpy` and `matplotlib` package. (Hint: Use `numpy.linspace` to create a range of values for `t`, the function produces the $x$ and $y$ coordinates of the plot.)
+1. Verify that the environment works by writing a simple Python script that plots $f(t) = (16 (\sin(t))^3, 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t))$ using the `numpy` and `matplotlib` packages. (Hint: Use `numpy.linspace` to create a range of values for `t`, the function produces the $x$ and $y$ coordinates of the plot.)
 
-After this exercise you should be able to
+After this exercise you should be able to:
 
 1. Create and manage isolated Python environments using `uv`.
 1. Install and manage Python packages within these environments.
-1. Additionally be able to explain what `uv` does and why it is useful.
+1. Explain what `uv` does and why it is useful.
 :::
 
 Now that you have a working environment, you can use it to install additional packages as needed for the exercises below.
 
-The data set we will rely on for this session is the [AI4I predictive maintenance dataset](https://doi.org/10.24432/C5HS5C), which is a synthetic dataset that tries to mirror real predictive maintenance data encountered in industry.
+The dataset we will use in this session is the [AI4I predictive maintenance dataset](https://doi.org/10.24432/C5HS5C), which is a synthetic dataset that tries to mirror real predictive maintenance data encountered in industry.
 
 As we are only using the data to explore a couple of libraries and tools, we are not going into the details of the dataset itself in this session.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act1-sss1-jupyterlab}
 ## Working with JupyterLab
 ::::
 
 [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html) is a web-based interactive development environment (IDE) for Jupyter Notebooks. It provides a flexible interface for interactive data exploration and reporting.
 
-1. Launch JupyterLab from your `uv` environment by adding it to your environment first or alternatively, using VS Code, you can also use the Jupyter extension instead.
+1. Add JupyterLab to your `uv` environment and launch it. Alternatively, you can use the Jupyter extension in VS Code.
 1. Create a new notebook called `ai4i_explore.ipynb`.
-1. Load the AI4I dataset into a `pandas` DataFrame using a code cell. Keep only the columns `UDI` (unique identifier which can be used as $x-$axis for plotting), `Torque`, `Rotational speed` and `Air temperature`.
+1. Load the AI4I dataset into a `pandas` DataFrame using a code cell. Keep only the columns `UDI` (unique identifier which can be used as $x$-axis for plotting), `Torque`, `Rotational speed` and `Air temperature`.
 1. Display the first 10 rows and print basic statistics.
 1. Create a line plot of `Torque` over `UDI` using `matplotlib`.
 1. Experiment with different cell types: code, markdown, and raw cells.
@@ -61,19 +61,19 @@ After this exercise you should be able to:
 Now we will introduce `seaborn`, which is a statistical data visualization library built on top of `matplotlib`, providing a high-level interface for drawing attractive and informative statistical graphics.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::{#exr-basics-mv-space}
+::::{#exr-act1-sss1-seaborn}
 ## Visualizing the AI4I data with seaborn
-:::
+::::
 
 In this exercise you will explore the AI4I dataset (columns `UDI`, `Torque`, `Rotational speed` and `Air temperature`) using `seaborn`.
 
 *Basic plots*
 
-1. Load the AI4I dataset (keeping only `Torque`, `Rotational speed` and `Air temperature`).
+1. Load the AI4I dataset (keeping only `UDI`, `Torque`, `Rotational speed`, and `Air temperature`).
 1. Create a **line plot** of `Torque` over `UDI`.
-1. Create a **histogram** of each column to observe the distribution of values.
-1. Create **box plots** of each column to identify outliers and understand the spread of the data.
-1. Create **violin plots** of each column and discuss how they differ from box plots.
+1. Create a **histogram** of each measurement column to observe the distribution of values.
+1. Create **box plots** of each measurement column to identify outliers and understand the spread of the data.
+1. Create **violin plots** of each measurement column and discuss how they differ from box plots.
 
 *Relationships between variables*
 
@@ -95,7 +95,7 @@ In this exercise you will explore the AI4I dataset (columns `UDI`, `Torque`, `Ro
    - Are there any non-linear patterns visible?
    - How are the distributions shaped?
 
-*After this exercise you should be able to:*
+After this exercise you should be able to:
 
 1. Create a wide range of static statistical plots with `seaborn`.
 1. Use parameters to add additional dimensions to your plots.
@@ -107,7 +107,7 @@ Congratulations, you are now able to create and manage isolated Python environme
 The next step is to integrate your code and visualizations into a comprehensive report which you can hand over to stakeholders using Quarto.
 
 ::: {.callout-caution appearance="simple" collapse="true" icon=false}
-::::{#exr-basics-mv-space}
+::::{#exr-act1-sss1-quarto}
 ## Generating a report with Quarto
 ::::
 
@@ -117,11 +117,11 @@ The material of this course itself is rendered using Quarto.
 
 1. Create a Quarto Markdown (`.qmd`) file in your project.
 1. Embed the code and plots from the previous exercise into the Quarto document.
-1. Use code chunk options to control output (e.g., `echo=FALSE` to hide code, `fig-width` to set figure dimensions).
+1. Use code chunk options to control output (e.g., `#| echo: false` to hide code, `#| fig-width: 8` to set the figure width).
 1. Render the document as HTML and PDF.
 1. Explore collapsing code chunks in your document (see [Quarto docs](https://quarto.org/docs/jupyter/authoring.html#code-chunk-options)).
-1. Quarto also allows to render Jupyter notebook files (`.ipynb`) directly to HTML and PDF (see [Quarto docs](https://quarto.org/docs/tools/jupyter-lab.html)):
-   - Prepare the notebook you created in the previous exercise for rendering with Quarto by adding additional information that makes a nice presentation.
+1. Quarto can also render Jupyter notebook files (`.ipynb`) directly to HTML and PDF (see [Quarto docs](https://quarto.org/docs/tools/jupyter-lab.html)):
+   - Prepare the notebook you created in the previous exercise for rendering with Quarto by adding a title, a YAML header, and explanatory text, so that it renders as a polished report.
    - Render the notebook you created as HTML and PDF using Quarto.
 
 After this exercise you should be able to:
