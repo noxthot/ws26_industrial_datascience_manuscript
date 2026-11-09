@@ -4230,7 +4230,7 @@ return Plotly;
 <p>In this section, we will have a look at a more realistic example of industrial data.</p>
 <section id="setting-the-stage" class="level2" data-number="20.1">
 <h2 data-number="20.1" class="anchored" data-anchor-id="setting-the-stage"><span class="header-section-number">20.1</span> Setting the stage</h2>
-<p>Imagine a manufacturing chain which is dedicated to producing knives with wooden handles. Various machines are interconnected and the process flow is as follows:</p>
+<p>Imagine a production line dedicated to producing knives with wooden handles. Various machines are interconnected and the process flow is as follows:</p>
 <ul>
 <li>Machine A prepares the steel blade and shaft.</li>
 <li>Machine B applies epoxy to the grip area.</li>
@@ -4243,32 +4243,32 @@ return Plotly;
 <li>Waste of material is not sustainable.</li>
 <li>The defect actually already happens in Machine B, but Machines C to E still process the faulty products, leading to further waste and costs, especially since the wooden handle is the most expensive part of the product and the curing oven is very energy-intensive.</li>
 </ul>
-<p>Since there is a new department focused on data science, they decide to manually inspect the epoxy application right after Machine B and label the data accordingly. Additionally the machine collects some sensor data in a CSV file. This dataset is given to the data science team and in tight collaboration with the operators the ambitious goal is to:</p>
+<p>Since the company has a new data science department, the operators decide to manually inspect the epoxy application right after Machine B and label the data accordingly. Additionally, the machine logs sensor data to a CSV file. This dataset is given to the data science team, which, in close collaboration with the operators, pursues two ambitious goals:</p>
 <ul>
 <li>Optimize the epoxy application process to reduce defects and waste.</li>
-<li>Human inspection is time-consuming and expensive. Find a way to predict defects occuring in Machine B before the product is handed over to machine C.</li>
+<li>Since human inspection is time-consuming and expensive, find a way to predict defects occurring in Machine B before the product is handed over to Machine C.</li>
 </ul>
 <p>Of course, this data science department is us.</p>
 </section>
 <section id="dataset" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="dataset"><span class="header-section-number">20.2</span> Dataset</h2>
-<p>The dataset consists of sensor readings of a simulated industrial process and consists of two files:</p>
+<p>The dataset contains sensor readings of a simulated industrial process and comes in two files:</p>
 <ul>
 <li><code>simulated_machine_data.csv</code> stores the sensor data</li>
 <li><code>simulated_inspection_data.csv</code> stores the human inspection results</li>
 </ul>
-<p>The sensor data includes the following features in a 200ms resolution:</p>
+<p>The sensor data includes the following features at a 200 ms resolution:</p>
 <ul>
+<li><code>nr_iteration</code>: Number of the process iteration, i.e., of the manufactured piece.</li>
+<li><code>process_step_index</code>: Index of the current processing step within the iteration (starting at 0). The machine performs three processing steps: moving the nozzle to the shaft, applying epoxy, and blowing out residual epoxy from the nozzle while moving away.</li>
+<li><code>timestamp</code>: Timestamp of the sensor reading.</li>
 <li><code>air_temperature_C</code>: Ambient air temperature in degrees Celsius.</li>
-<li><code>machine_temperature_C</code>: Temperature of the machine in degrees Celsius.</li>
+<li><code>process_speed_mm_s</code>: Set speed of the process in millimeters per second.</li>
 <li><code>pressure_measured_bar</code>: Measured pressure in bar.</li>
 <li><code>pressure_setting_bar</code>: Pressure setting in bar.</li>
-<li><code>process_speed_mm_s</code>: Set speed of the process in millimeters per second.</li>
-<li><code>process_step_index</code>: Index indicating the current step within the process.</li>
-<li><code>product_id</code>: Unique identifier for each product. The machine performs three processing steps: moving the nozzle to the shaft, applying epoxy, and blowing out residual epoxy from the nozzle while moving away.</li>
-<li><code>timestamp</code>: Timestamp of the sensor reading.</li>
+<li><code>machine_temperature_C</code>: Temperature of the machine in degrees Celsius.</li>
 </ul>
-<p>The inspection data includes the <code>product_id</code> and the <code>error_code</code>:</p>
+<p>The inspection data contains one row per manufactured piece:</p>
 <ul>
 <li><code>error_code</code>: Code indicating the type of error detected during inspection.</li>
 <li><code>product_id</code>: Unique identifier for each product.</li>
@@ -4299,7 +4299,7 @@ return Plotly;
 <section id="loading-the-dataset" class="level3" data-number="20.4.2">
 <h3 data-number="20.4.2" class="anchored" data-anchor-id="loading-the-dataset"><span class="header-section-number">20.4.2</span> Loading the dataset</h3>
 <p>The dataset is available online in the form of two <code>csv</code> files.</p>
-<p>It was released at <span class="citation" data-cites="ehrensperger2026">Ehrensperger (<a href="../5_references.html#ref-ehrensperger2026" role="doc-biblioref">2026</a>)</span>, but you can also clone the source repository from <a href="https://github.com/noxthot/industrial_datascience_sim_machine_knifes/tree/v1.0.4">GitHub</a>.</p>
+<p>It is published as <span class="citation" data-cites="ehrensperger2026">Ehrensperger (<a href="../5_references.html#ref-ehrensperger2026" role="doc-biblioref">2026</a>)</span>, but you can also clone the source repository from <a href="https://github.com/noxthot/industrial_datascience_sim_machine_knifes/tree/v1.0.4">GitHub</a>.</p>
 <div id="20e5ab43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:23:59.992958Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:23:59.992702Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:13.197010Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:13.196107Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_processes <span class="op">=</span> pd.read_csv(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://github.com/noxthot/industrial_datascience_sim_machine_knifes/raw/refs/tags/v1.0.4/data/simulated_machine_data.csv"</span></span>
@@ -4711,7 +4711,7 @@ NOK_2       1
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<p>NOK_2 and NOK_3 seem to be hardly ever happening. Let us mentally drop these error codes for this investigation, since &lt;= 10 samples give a very weak statistical basis and tend to distort plots.</p>
+<p><code>NOK_2</code> and <code>NOK_3</code> occur only rarely. Let us set these error codes aside for this investigation, since a handful of samples provides a very weak statistical basis and tends to distort plots.</p>
 </section>
 <section id="exploring-continuous-variables-by-simple-plots" class="level3" data-number="20.4.4">
 <h3 data-number="20.4.4" class="anchored" data-anchor-id="exploring-continuous-variables-by-simple-plots"><span class="header-section-number">20.4.4</span> Exploring continuous variables by simple plots</h3>
@@ -4791,7 +4791,7 @@ if (outputEl) {{
 </div>
 </div>
 </div>
-<p>It appears like the pressure difference is roughly normal distributed and that the mean of the three processing steps is similar.</p>
+<p>It appears that the pressure difference is roughly normally distributed and that the mean of the three processing steps is similar.</p>
 <p>Absolute counts are visually harder to compare, so let us use relative frequencies instead and normalize each of the processing steps separately.</p>
 <div id="a90cefdb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:15.097164Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:15.096899Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:15.666155Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:15.665360Z&quot;}}" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(</span>
@@ -4876,14 +4876,14 @@ if (outputEl) {{
 <section id="aggregating-plots" class="level3" data-number="20.4.5">
 <h3 data-number="20.4.5" class="anchored" data-anchor-id="aggregating-plots"><span class="header-section-number">20.4.5</span> Aggregating plots</h3>
 <p>We are looking at iterations of the same, identical process. Let us look at a plot where the processes overlap each other, colored by error code.</p>
-<p>First, we create a new index which starts at 0 for each piece that is manufactured and counts each timestamp within that process step. This index will be useful for plotting the different process iterations on top of each other.</p>
+<p>First, we create a new index which starts at 0 for each piece that is manufactured and counts each timestamp within that process iteration. This index will be useful for plotting the different process iterations on top of each other.</p>
 <div id="920b2973" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:15.798189Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:15.797980Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:15.927123Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:15.924968Z&quot;}}" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_processes[<span class="st">"process_inner_index"</span>] <span class="op">=</span> (</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    df_processes.sort_values(<span class="st">"timestamp"</span>).groupby(<span class="st">"nr_iteration"</span>).cumcount()</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="82d9446d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:15.930105Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:15.929874Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:29.989171Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:29.987893Z&quot;}}" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge error_code from df_inspections into df_processes based on 'nr_iteration'. This assigns an errorcode to the entire process iteration.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge error_code from df_inspections into df_processes based on 'nr_iteration'. This assigns an error code to the entire process iteration.</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> df_processes.merge(</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    df_inspections, left_on<span class="op">=</span><span class="st">"nr_iteration"</span>, right_index<span class="op">=</span><span class="va">True</span>, how<span class="op">=</span><span class="st">"left"</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -4903,8 +4903,8 @@ if (outputEl) {{
 <span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Set opacity: 0.01 for 'OK', 0.5 for others</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting opacity is always a bit tricky. Setting it too low makes the lines almost invisble, setting it too high makes the plot too crowded.</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># This settings were found in trial and error and work well for that case.</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting opacity is always a bit tricky. Setting it too low makes the lines almost invisible, setting it too high makes the plot too crowded.</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># These settings were found by trial and error and work well in this case.</span></span>
 <span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trace <span class="kw">in</span> fig.data:</span>
 <span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trace.name <span class="op">==</span> <span class="st">"OK"</span>:</span>
 <span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>        trace.opacity <span class="op">=</span> <span class="fl">0.01</span></span>
@@ -4964,7 +4964,7 @@ if (outputEl) {{
                         })                };            </script>        </div>
 </div>
 </div>
-<p>Keep in mind that you can (de)select lines to plot when clicking on the according legend entry. Plotly also allows you to zoom in and pan around.</p>
+<p>Keep in mind that you can (de)select lines to plot when clicking on the corresponding legend entry. Plotly also allows you to zoom in and pan around.</p>
 <p>From the plot, we can see that the second processing step’s pressure is elevated for <code>NOK_1</code>. <code>NOK_4</code> shows no obvious difference to <code>OK</code>.</p>
 <p>With this in mind, let us have a closer look at the mean pressure and its standard deviation per error code and processing step.</p>
 <div id="5e8b2ce4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:30.053218Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:30.052992Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:30.125531Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:30.124757Z&quot;}}" data-execution_count="22">
@@ -5024,8 +5024,8 @@ if (outputEl) {{
                         })                };            </script>        </div>
 </div>
 </div>
-<p>This plot confirms our previous observation that <code>NOK_1</code> has a systematic higher mean pressure during the second processing step and <code>NOK_4</code> does not differ notably from <code>OK</code>.</p>
-<p>While the first line plot shows every individual process iteration as a singe line and therefor does not accidentally filter relevant information, it is a bit crowded and hard to read. The second plot aggregates the individual lines by calculating the mean and standard deviation, therefore losing some information, but making it easier to comprehend.</p>
+<p>This plot confirms our previous observation that <code>NOK_1</code> has a systematically higher mean pressure during the second processing step and <code>NOK_4</code> does not differ notably from <code>OK</code>.</p>
+<p>While the first line plot shows every individual process iteration as a single line and therefore does not accidentally filter relevant information, it is a bit crowded and hard to read. The second plot aggregates the individual lines by calculating the mean and standard deviation, therefore losing some information, but making it easier to comprehend.</p>
 <p>Now let us also check whether the machine temperature has an influence on failures.</p>
 <div id="78767f6d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:30.127420Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:30.127239Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:30.193605Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:30.192485Z&quot;}}" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_agg <span class="op">=</span> (</span>
@@ -5071,7 +5071,7 @@ if (outputEl) {{
                         })                };            </script>        </div>
 </div>
 </div>
-<p>Also here, <code>NOK_4</code> and <code>NOK_1</code> do not show a notable difference to <code>OK</code>, while <code>NOK_2</code> and <code>NOK_3</code> can not be judged well due to the low sample size.</p>
+<p>Also here, <code>NOK_4</code> and <code>NOK_1</code> do not show a notable difference to <code>OK</code>, while <code>NOK_2</code> and <code>NOK_3</code> cannot be judged well due to the low sample size.</p>
 </section>
 <section id="sec-act3-eda-summary" class="level3" data-number="20.4.6">
 <h3 data-number="20.4.6" class="anchored" data-anchor-id="sec-act3-eda-summary"><span class="header-section-number">20.4.6</span> Summary of findings</h3>

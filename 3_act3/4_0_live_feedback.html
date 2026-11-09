@@ -651,8 +651,8 @@ window.Quarto = {
 <p>In this section, we will have a look at a simulated example of a live feedback system in an industrial manufacturing context.</p>
 <section id="setting-the-stage" class="level2" data-number="21.1">
 <h2 data-number="21.1" class="anchored" data-anchor-id="setting-the-stage"><span class="header-section-number">21.1</span> Setting the stage</h2>
-<p>Imagine a pick-and-place machine in a manufacturing line that is responsible for placing components onto a circuit board. The machine has two axes (X and Y) to position the placement head accurately over the board and a vacuum system to pick up and release components. Additionally it has a camera system to verify the placement accuracy of each component once it is placed. A couple of sensors provide real-time measurements and variables that can be used to monitor the process.</p>
-<p>Unfortunately, the machine seems to be experiencing some issues with placement accuracy, leading to an increased number of defective boards. To address this, the engineers set up sandboxing mode where the machine performs four steps:</p>
+<p>Imagine a pick-and-place machine in a manufacturing line that is responsible for placing components onto a circuit board. The machine has two axes (X and Y) to position the placement head accurately over the board and a vacuum system to pick up and release components. Additionally, it has a camera system to verify the placement accuracy of each component once it is placed. A couple of sensors provide real-time measurements and variables that can be used to monitor the process.</p>
+<p>Unfortunately, the machine seems to be experiencing some issues with placement accuracy, leading to an increased number of defective boards. To address this, the engineers set up a sandbox mode in which the machine performs four steps:</p>
 <ol start="0" type="1">
 <li>Move to pick up a component with random weight placed at a random location.</li>
 <li>Pick up the component using the vacuum system.</li>
@@ -660,11 +660,11 @@ window.Quarto = {
 <li>Place the component and measure the placement accuracy using the camera system.</li>
 </ol>
 <p>Until the end of step 2, it is possible to adjust the placement parameters by providing a correction vector that modifies the target placement location.</p>
-<p>The goal is to optimize the placement parameters in real-time based on the feedback received from the camera system after each placement.</p>
+<p>The goal is to optimize the placement parameters in real time based on the feedback received from the camera system after each placement.</p>
 </section>
 <section id="accessible-variables" class="level2" data-number="21.2">
 <h2 data-number="21.2" class="anchored" data-anchor-id="accessible-variables"><span class="header-section-number">21.2</span> Accessible variables</h2>
-<p>The following variables are accessible during the process (the name of the OPC UA variable is given in brackets):</p>
+<p>The following variables are accessible during the process (the name of the OPC UA variable is given in parentheses):</p>
 <ul>
 <li><strong>Air temperature [°C]</strong> (<code>air_temperature</code>): ambient temperature around the machine.</li>
 <li><strong>Attached Weight [mg]</strong> (<code>attached_weight</code>): weight of the component picked up by the vacuum system.</li>
@@ -681,7 +681,7 @@ window.Quarto = {
 </section>
 <section id="data" class="level2" data-number="21.3">
 <h2 data-number="21.3" class="anchored" data-anchor-id="data"><span class="header-section-number">21.3</span> Data</h2>
-<p>One cycle usually takes 3-6 seconds to complete and the sensor data is available in realtime via <em>OPC Unified Architecture</em> (OPC UA).</p>
+<p>One cycle usually takes 3-6 seconds to complete, and the sensor data is available in real time via <em>OPC Unified Architecture</em> (OPC UA).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -700,11 +700,10 @@ Note
 <li><code>simulated_opcua_machinedata.csv</code> stores the sensor data.</li>
 <li><code>simulated_opcua_postinspection.csv</code> stores the placement error data.</li>
 </ul>
-<p>The two datasets can be merged via <code>cycle</code> column.</p>
-</section>
+<p>The two datasets can be merged via the <code>cycle</code> column.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/ws26_industrial_datascience_manuscript/ws26_industrial_datascience_manuscript/3_act3/4_1_inspect_data.ipynb" data-notebook-title="Loading packages" data-notebook-cellid="ed0f92a3">
-<section id="loading-packages" class="level2" data-number="21.4">
-<h2 data-number="21.4" class="anchored" data-anchor-id="loading-packages"><span class="header-section-number">21.4</span> Loading packages</h2>
+<section id="loading-packages" class="level3" data-number="21.3.1">
+<h3 data-number="21.3.1" class="anchored" data-anchor-id="loading-packages"><span class="header-section-number">21.3.1</span> Loading packages</h3>
 <div id="ef3b093e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:35.431598Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:35.431395Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:39.771829Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:39.770886Z&quot;}}" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -716,9 +715,9 @@ Note
 </details>
 </div>
 </section>
-<section id="loading-the-dataset" class="level2" data-number="21.5">
-<h2 data-number="21.5" class="anchored" data-anchor-id="loading-the-dataset"><span class="header-section-number">21.5</span> Loading the dataset</h2>
-<p>The dataset was released alongside the simulated machine at <span class="citation" data-cites="ehrensperger_livemachine2026">Ehrensperger (<a href="../5_references.html#ref-ehrensperger_livemachine2026" role="doc-biblioref">2026</a>)</span>, but you can also clone the repository directly from <a href="https://github.com/noxthot/industrial_datascience_live_machine/tree/v1.1.1">GitHub</a>. In this section, we will look at the provided <code>csv</code> files.</p>
+<section id="loading-the-dataset" class="level3" data-number="21.3.2">
+<h3 data-number="21.3.2" class="anchored" data-anchor-id="loading-the-dataset"><span class="header-section-number">21.3.2</span> Loading the dataset</h3>
+<p>The dataset was published alongside the simulated machine as <span class="citation" data-cites="ehrensperger_livemachine2026">Ehrensperger (<a href="../5_references.html#ref-ehrensperger_livemachine2026" role="doc-biblioref">2026</a>)</span>, but you can also clone the repository directly from <a href="https://github.com/noxthot/industrial_datascience_live_machine/tree/v1.1.1">GitHub</a>. In this section, we will look at the provided <code>csv</code> files.</p>
 <div id="20e5ab43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:39.774527Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:39.774204Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:50.785210Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:50.783903Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_machinedata <span class="op">=</span> pd.read_csv(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/noxthot/industrial_datascience_live_machine/refs/tags/v1.1.1/data/simulated_opcua_machinedata.csv"</span></span>
@@ -727,8 +726,8 @@ Note
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/noxthot/industrial_datascience_live_machine/refs/tags/v1.1.1/data/simulated_opcua_postinspection.csv"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="data-integrity-check" class="level3" data-number="21.5.1">
-<h3 data-number="21.5.1" class="anchored" data-anchor-id="data-integrity-check"><span class="header-section-number">21.5.1</span> Data integrity check</h3>
+<section id="data-integrity-check" class="level4" data-number="21.3.2.1">
+<h4 data-number="21.3.2.1" class="anchored" data-anchor-id="data-integrity-check"><span class="header-section-number">21.3.2.1</span> Data integrity check</h4>
 <div id="ff2affe1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:50.788345Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:50.787991Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:50.819536Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:50.818472Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_machinedata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -1191,8 +1190,8 @@ Note
 </div>
 </section>
 </section>
-<section id="error-visualization" class="level2" data-number="21.6">
-<h2 data-number="21.6" class="anchored" data-anchor-id="error-visualization"><span class="header-section-number">21.6</span> Error Visualization</h2>
+<section id="error-visualization" class="level3" data-number="21.3.3">
+<h3 data-number="21.3.3" class="anchored" data-anchor-id="error-visualization"><span class="header-section-number">21.3.3</span> Error visualization</h3>
 <div id="1ad4655e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:50.863097Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:50.862680Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:25:12.104048Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:25:12.100780Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df_postinspection,</span>
@@ -1212,8 +1211,8 @@ Note
 </div>
 <p>This is a rather interesting error distribution.</p>
 </section>
-<section id="next-steps" class="level2" data-number="21.7">
-<h2 data-number="21.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">21.7</span> Next Steps</h2>
+<section id="next-steps" class="level3" data-number="21.3.4">
+<h3 data-number="21.3.4" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">21.3.4</span> Next steps</h3>
 <p><a href="6_self_study_session2.html" class="quarto-xref"><span>Chapter 23</span></a> will guide you through the optimization process aimed at reducing these errors and improving overall process accuracy.</p>
 </section>
 </div>
@@ -1224,6 +1223,7 @@ Note
 Ehrensperger, Gregor. 2026. <span>“Industrial_datascience_live_machine: V1.1.1.”</span> Version v1.1.1. Zenodo, November. <a href="https://doi.org/10.5281/zenodo.24059489">https://doi.org/10.5281/zenodo.24059489</a>.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
