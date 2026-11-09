@@ -61,7 +61,7 @@ book:
   license: "CC BY-NC-SA 4.0"
   page-footer:
     left: Industrial Data Science - WS 2026 - [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) - [![DOI](https://zenodo.org/badge/1368101918.svg)](https://zenodo.org/badge/latestdoi/1368101918)
-    center: "Gregor Ehrensperger"
+    center: [Gregor Ehrensperger](https://ehrensperger.dev)
     right: Manuscript designed with <a href="https://quarto.org/">Quarto</a>.
   reader-mode: true
   repo-actions: [edit, issue]
