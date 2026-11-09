@@ -1,6 +1,6 @@
 # History {#sec-act0-history}
 
-## Industry 1.0 -- Mechanisation (late 18th century)
+## Industry 1.0 -- Mechanization (late 18th century)
 The First Industrial Revolution, beginning at the end of the 18th century, introduced mechanized production systems powered by water and steam.
 
 This shift significantly increased productivity, particularly in industries like textiles, mining, transportation, and agriculture.
@@ -13,22 +13,20 @@ However, it also precipitated sociocultural shifts, replacing manual labor with 
 ## Industry 2.0 -- Electrification (late 19th century)
 During the late 19th century, the Second Industrial Revolution brought mass production enabled by electricity.
 
-This era also saw the use of electricity as a key source of energy, which was more efficient and less costly than earlier steam and water-powered systems.
-The introduction of the integrated assembly line further streamlined production.
+Electricity was more efficient and less costly than earlier steam- and water-powered systems, and the introduction of the integrated assembly line further streamlined production.
 
-Despite the efficiency gains and increased output, this industrial shift also resulted in significant job losses due to automation.
-Consequently, while productivity increased drastically and goods became cheaper, standard labor methods used in factories were replaced with new machines and again reduced jobs.
+While productivity increased drastically and goods became cheaper, machines replaced standard labor methods in factories, which again resulted in significant job losses.
 
 ## Industry 3.0 -- Automation (mid to late 20th century)
 The Digital Revolution, which began in the 1970s, marked the transition to extensive use of digital technologies such as computers, microprocessors, and the Internet.
 
-This era led to significant automation across various industries, enhancing speed, accuracy, and reducing human labor through inventions like the _Programmable Logic Controller_ (PLC).
+This era led to significant automation across various industries, increasing speed and accuracy and reducing human labor through inventions like the _Programmable Logic Controller_ (PLC).
 The integration of electronic hardware necessitated complementary advancements in software, boosting the software development industry and enabling improved management systems in enterprises, including resource planning and logistics.
 As a result, industries increasingly automated and globalized production, which contributed to the development of Supply Chain Management.
 
 However, this period also created significant environmental challenges, including substantial electronic waste and high energy consumption.
 
-## Industry 4.0 -- Digitalisation (late 20th century, 21st century)
+## Industry 4.0 -- Digitalization (late 20th century, 21st century)
 Industry 4.0 represents a significant transformation in manufacturing and production, embracing digital technologies such as the _Internet of Things_ (IoT), cloud computing, and smart devices.
 
 This evolution builds on the automation introduced in the Third Industrial Revolution but pushes further towards a fully integrated digital industrial environment, aiming for seamlessly integrated solutions.
@@ -36,15 +34,16 @@ Key features of Industry 4.0 include the interconnection of machines, devices, a
 Advanced analytics and artificial intelligence are leveraged to optimize production, improve quality, and reduce downtime.
 Industry 4.0 not only increases efficiency and productivity but also enables new business models, such as mass customization and service-oriented manufacturing.
 
-Challenges include potential job losses, particularly for blue-collar workers, due to increased automation and customization.
+Challenges include potential job losses, particularly for blue-collar workers, due to increased automation.
 The digital nature of this industrial phase also raises cybersecurity risks.
 Transitioning to these new technologies demands significant capital investment and skilled workers familiar with AI/ML, adding economic and educational challenges.
 
-## Industry 5.0 -- Personalisation (21st century onward)
-Industry 5.0 highlights a paradigm shift focused on the synergy between humans and machines, emphasizing personal focus, resilience, and sustainability as core principles.
+## Industry 5.0 -- Personalization (21st century onward)
+Industry 5.0 highlights a paradigm shift focused on the synergy between humans and machines, emphasizing human-centricity, resilience, and sustainability as core principles.
 
 This human-centric approach supports social well-being by considering workers as valuable investments and designing technology to cater to their diverse needs and rights, such as independence, dignity, and privacy.
 The shift encourages continuous skill development for better job opportunities and work-life balance, and it prioritizes sustainability through resource efficiency and recycling practices.
-In terms of technology, Industry 5.0 integrates advances like the Internet of Everything (IoE), 4D imaging technologies, smart sensors, and humanoid robots, mainly enhancing healthcare services by improving diagnostics and patient care while ensuring safety and efficiency.
+In terms of technology, Industry 5.0 integrates advances like the Internet of Everything (IoE), 4D imaging technologies, smart sensors, and humanoid robots.
+Its applications extend beyond manufacturing, e.g., to healthcare, where they can improve diagnostics and patient care.
 
 However, challenges include the need for a highly skilled workforce, increased risks of cyberattacks due to digitalization, substantial initial investments, and the complexity of regulating automated, personalized production processes.
