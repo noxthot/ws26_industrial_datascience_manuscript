@@ -10,7 +10,7 @@ Here is a summary of the variables present in the dataset:
 |---------------------|----------|-------------|:-----:|------------------------------------------------------------------------------------------------------------------------|:------:|
 | UDI                 | ID       | Integer     |       | Unique identifier                                                                                                      |        |
 | Product ID          | ID       | Categorical |       | Consists of Type and a variant-specific serial number                                                                  |        |
-| Type                | Feature  | Categorical |       | Product quality variant given by letter L (low), M (medium), or H (high) variants                                      |        |
+| Type                | Feature  | Categorical |       | Product quality variant: L (low), M (medium), or H (high)                                                              |        |
 | Air temperature     | Feature  | Continuous  | K     |                                                                                                                        |        |
 | Process temperature | Feature  | Continuous  | K     |                                                                                                                        |        |
 | Rotational speed    | Feature  | Integer     | rpm   |                                                                                                                        |        |
@@ -25,14 +25,14 @@ Here is a summary of the variables present in the dataset:
 : {.striped .hover tbl-colwidths="[15,10,15,10,40,10]"} 
 
 ::: {.callout-note}
-Unfortunately the documentation neither provides details on the type of machine that is simulated nor the product it is thought to produce.
+Unfortunately, the documentation neither provides details on the type of machine that is simulated nor the product it is supposed to produce.
 For the sake of imagination, we will think of a very simple milling machine that produces parts in three quality variants: low, medium, and high.
 :::
 
-The table shows various error types and our task is to gain insights on when they occur.
+The table shows various error types and our task is to gain insights into when they occur.
 
 ::: {.callout-note}
-This is a warmup task with a polished, synthetic dataset and luckily we are provided with a description of the nature of the different failures.
+This is a warm-up task with a polished, synthetic dataset and luckily we are provided with a description of the nature of the different failures.
 :::
 
 ## Notebook
