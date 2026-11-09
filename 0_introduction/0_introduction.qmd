@@ -10,7 +10,7 @@ According to @{peres2020}, Industrial AI distinguishes itself within the field o
   
 - **Algorithms**: Combines physical, digital, and heuristic models, requiring complex management and deployment.
 
-- **Data**: Often involves large volume diverse datasets from multiple sources.
+- **Data**: Often involves large, diverse datasets from multiple sources.
   
 - **Decision-making**: Demands high reliability, low error tolerance, and efficient handling of uncertainty.
 
@@ -18,11 +18,11 @@ According to @{peres2020}, Industrial AI distinguishes itself within the field o
 
 - **Objectives**: Targets value creation, such as reducing waste, improving quality, and boosting operational efficiency.
 
-Unlike typical courses that use clean, polished datasets, in this lecture we will get our hands dirty and work with (synthetic) raw machine data with the ultimate goal of setting up a data science product on a simulated machine using live data.
+Unlike typical courses that use clean, polished datasets, in this module we will get our hands dirty and work with (synthetic) raw machine data with the ultimate goal of setting up a data science product on a simulated machine using live data.
 
 In @{sec-act0-intro} to @{sec-act0-applications}, we will start with an introduction to Industrial Data Science, its significance, its history, and its applications.
 
-In @{sec-act1} to @{sec-act1-selfstudy2}, we will prepare ourselves by exploring time series data, including common applications and methods.
+In @{sec-act1} to @{sec-act1-selfstudy3}, we will prepare ourselves by exploring time series data, including common applications and methods.
 
 @{sec-act2} to @{sec-act2-selfstudy3} provide an overview of curated datasets of machine sensors.
 

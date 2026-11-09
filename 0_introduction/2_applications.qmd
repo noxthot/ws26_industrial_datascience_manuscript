@@ -18,7 +18,7 @@ The following is a non-exhaustive list of common application areas of Industrial
 - Detecting possible problems before they occur
 - Reducing unnecessary inspection and maintenance operations
 
-## Human-Robot collaboration and ergonomics
+## Human-robot collaboration and ergonomics
 - Workforce training
 - Task support
 - Collaborative robotics
