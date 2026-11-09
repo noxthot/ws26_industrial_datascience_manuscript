@@ -15,7 +15,7 @@ Once data is collected and transformed, additional challenges may arise during a
 - Noisy or inconsistent measurements
 - Outliers or anomalies in the data
 - Variability in operating conditions
-- There may be variables that are not captured in the data but still relevant for the process
+- Process-relevant variables that are not captured in the data
 - Complex relationships between variables
 - Lack of labeled data for supervised learning
 - Highly imbalanced datasets

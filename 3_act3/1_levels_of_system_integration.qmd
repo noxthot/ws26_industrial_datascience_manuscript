@@ -11,22 +11,22 @@
 The most basic level of system integration involves working with historical data that has been collected and stored over time.
 It may provide insights, trends, or recommendations based solely on this data, but it lacks the ability to interact with live systems or influence real-time operations.
 
-E.g. analyzing historical production data to identify trends in equipment failures and recommending maintenance schedules.
+E.g., analyzing historical production data to identify trends in equipment failures and recommending maintenance schedules.
 
 ## Monitoring & Warning
 The second level of system integration focuses on monitoring live data streams.
 Data science products at this level can analyze real-time data to identify potential issues or deviations from expected behavior, supporting operators in maintaining system performance and reliability.
 
-E.g. detecting anomalies in the machine's behaviour as it runs and alerting operators to investigate potential system failures.
+E.g., detecting anomalies in the machine's behavior as it runs and alerting operators to investigate potential system failures.
 
 ## Feedback Loop
 The third level of system integration introduces a feedback loop, allowing for more dynamic interactions with the system.
 It is not possible to achieve real-time control or immediate adjustments, but it is possible to adjust machine settings or parameters based on insights gained from the data.
 
-E.g. adjust machine parameters such as pressure, temperature, flow-rate for the next production batch based on an analysis of failures in post-inspection of previous batches.
+E.g., adjusting machine parameters such as pressure, temperature, or flow rate for the next production batch based on an analysis of failures found in the post-inspection of previous batches.
 
 ## Real-Time Autonomous Control
 The fourth level of system integration enables real-time autonomous control of machines and processes.
 At this level, data science products can make decisions and take actions in real time, allowing for immediate adjustments and optimizations.
 
-E.g. automatically adjusting machine settings in real time based on live data inputs to optimize production efficiency.
+E.g., automatically adjusting machine settings in real time based on live data inputs to optimize production efficiency.

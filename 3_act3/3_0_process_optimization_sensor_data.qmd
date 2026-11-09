@@ -3,7 +3,7 @@
 In this section, we will have a look at a more realistic example of industrial data.
 
 ## Setting the stage
-Imagine a manufacturing chain which is dedicated to producing knives with wooden handles.
+Imagine a production line dedicated to producing knives with wooden handles.
 Various machines are interconnected and the process flow is as follows:
 
 - Machine A prepares the steel blade and shaft.
@@ -22,35 +22,34 @@ But there is more to it:
 - Waste of material is not sustainable.
 - The defect actually already happens in Machine B, but Machines C to E still process the faulty products, leading to further waste and costs, especially since the wooden handle is the most expensive part of the product and the curing oven is very energy-intensive.
 
-Since there is a new department focused on data science, they decide to manually inspect the epoxy application right after Machine B and label the data accordingly.
-Additionally the machine collects some sensor data in a CSV file.
-This dataset is given to the data science team and in tight collaboration with the operators the ambitious goal is to:
+Since the company has a new data science department, the operators decide to manually inspect the epoxy application right after Machine B and label the data accordingly.
+Additionally, the machine logs sensor data to a CSV file.
+This dataset is given to the data science team, which, in close collaboration with the operators, pursues two ambitious goals:
 
 - Optimize the epoxy application process to reduce defects and waste.
-- Human inspection is time-consuming and expensive.
-Find a way to predict defects occuring in Machine B before the product is handed over to machine C.
+- Since human inspection is time-consuming and expensive, find a way to predict defects occurring in Machine B before the product is handed over to Machine C.
 
 Of course, this data science department is us.
 
 ## Dataset
-The dataset consists of sensor readings of a simulated industrial process and consists of two files:
+The dataset contains sensor readings of a simulated industrial process and comes in two files:
 
 - `simulated_machine_data.csv` stores the sensor data
 - `simulated_inspection_data.csv` stores the human inspection results
 
-The sensor data includes the following features in a 200ms resolution:
+The sensor data includes the following features at a 200 ms resolution:
 
+- `nr_iteration`: Number of the process iteration, i.e., of the manufactured piece.
+- `process_step_index`: Index of the current processing step within the iteration (starting at 0).
+  The machine performs three processing steps: moving the nozzle to the shaft, applying epoxy, and blowing out residual epoxy from the nozzle while moving away.
+- `timestamp`: Timestamp of the sensor reading.
 - `air_temperature_C`: Ambient air temperature in degrees Celsius.
-- `machine_temperature_C`: Temperature of the machine in degrees Celsius.
+- `process_speed_mm_s`: Set speed of the process in millimeters per second.
 - `pressure_measured_bar`: Measured pressure in bar.
 - `pressure_setting_bar`: Pressure setting in bar.
-- `process_speed_mm_s`: Set speed of the process in millimeters per second.
-- `process_step_index`: Index indicating the current step within the process.
-- `product_id`: Unique identifier for each product.
-                        The machine performs three processing steps: moving the nozzle to the shaft, applying epoxy, and blowing out residual epoxy from the nozzle while moving away.
-- `timestamp`: Timestamp of the sensor reading.
+- `machine_temperature_C`: Temperature of the machine in degrees Celsius.
 
-The inspection data includes the `product_id` and the `error_code`:
+The inspection data contains one row per manufactured piece:
 
 - `error_code`: Code indicating the type of error detected during inspection.
 - `product_id`: Unique identifier for each product.

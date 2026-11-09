@@ -34,11 +34,11 @@ The original dataset had 5000 pieces with the following distribution:
 
 | Error Code | Count | Percentage |
 |------------|-------|------------|
-| OK         | 4628  | 92.56%     |
-| NOK_1      |   70  |  1.40%     |
+| OK         | 4631  | 92.62%     |
+| NOK_1      |   84  |  1.68%     |
 | NOK_2      |    1  |  0.02%     |
-| NOK_3      |    5  |  0.10%     |
-| NOK_4      |  296  |  5.92%     |
+| NOK_3      |    4  |  0.08%     |
+| NOK_4      |  280  |  5.60%     |
 
 :::
 

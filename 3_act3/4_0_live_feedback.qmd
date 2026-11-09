@@ -5,11 +5,11 @@ In this section, we will have a look at a simulated example of a live feedback s
 ## Setting the stage
 Imagine a pick-and-place machine in a manufacturing line that is responsible for placing components onto a circuit board.
 The machine has two axes (X and Y) to position the placement head accurately over the board and a vacuum system to pick up and release components.
-Additionally it has a camera system to verify the placement accuracy of each component once it is placed.
+Additionally, it has a camera system to verify the placement accuracy of each component once it is placed.
 A couple of sensors provide real-time measurements and variables that can be used to monitor the process.
 
 Unfortunately, the machine seems to be experiencing some issues with placement accuracy, leading to an increased number of defective boards.
-To address this, the engineers set up sandboxing mode where the machine performs four steps:
+To address this, the engineers set up a sandbox mode in which the machine performs four steps:
 
 0. Move to pick up a component with random weight placed at a random location.
 1. Pick up the component using the vacuum system.
@@ -18,10 +18,10 @@ To address this, the engineers set up sandboxing mode where the machine performs
 
 Until the end of step 2, it is possible to adjust the placement parameters by providing a correction vector that modifies the target placement location.
 
-The goal is to optimize the placement parameters in real-time based on the feedback received from the camera system after each placement.
+The goal is to optimize the placement parameters in real time based on the feedback received from the camera system after each placement.
 
 ## Accessible variables
-The following variables are accessible during the process (the name of the OPC UA variable is given in brackets):
+The following variables are accessible during the process (the name of the OPC UA variable is given in parentheses):
 
 - **Air temperature [°C]** (`air_temperature`): ambient temperature around the machine.
 - **Attached Weight [mg]** (`attached_weight`): weight of the component picked up by the vacuum system.
@@ -36,7 +36,7 @@ The following variables are accessible during the process (the name of the OPC U
 - **Speed next [mm/s]** (`speed_next`): speed for the next movement.
 
 ## Data
-One cycle usually takes 3-6 seconds to complete and the sensor data is available in realtime via _OPC Unified Architecture_ (OPC UA).
+One cycle usually takes 3-6 seconds to complete, and the sensor data is available in real time via _OPC Unified Architecture_ (OPC UA).
 
 ::: {.callout-note}
 OPC UA is a cross-platform, open-source communication protocol for data exchange in the industrial automation space developed by the OPC Foundation.
@@ -48,7 +48,7 @@ Luckily, the engineers already collected a dataset of 25,000 cycles coming in tw
 - `simulated_opcua_machinedata.csv` stores the sensor data.
 - `simulated_opcua_postinspection.csv` stores the placement error data.
 
-The two datasets can be merged via `cycle` column.
+The two datasets can be merged via the `cycle` column.
 
 {{< embed /3_act3/4_1_inspect_data.ipynb echo=true >}}
 
