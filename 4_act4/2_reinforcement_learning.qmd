@@ -27,11 +27,11 @@ where $T$ is the final time step for episodic tasks, or more generally for conti
 $$
 G_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k+1},
 $$
-where $\gamma \in [0,1]$ is called the *discount rate* that determines how much future rewards are valued.
+where $\gamma \in [0,1)$ is called the *discount rate* that determines how much future rewards are valued.
 
 The rewards that the agent can expect to receive when starting from state $s$ and following policy $\pi$ are captured by the **value function** of a state $s$ under policy $\pi$:
 $$
-v_{\pi}(s) = \mathbb{E}_{\pi}[G_t | s_t = s].
+v_{\pi}(s) = \mathbb{E}_{\pi}[G_t \mid s_t = s].
 $$
 
 Solving a reinforcement learning problem typically involves finding an *optimal policy* $\pi^*$ that maximizes the expected cumulative reward from any state.
@@ -47,7 +47,7 @@ The interaction between the agent and the environment can be summarized in the f
 5. This process repeats until a terminal state is reached or a predefined number of steps is completed.
 
 Step 4 is where learning occurs, and different RL algorithms implement various strategies for updating the policy.
-This is a very broad field, which would be subject to a separate dedicated course, so we refer to @{sec-act4-rlliterature} for a detailed treatment of specific algorithms and theoretical foundations.
+This is a very broad field that deserves a dedicated course of its own, so we refer to @{sec-act4-rlliterature} for a detailed treatment of specific algorithms and theoretical foundations.
 
 ## Industrial Applications
 ### Advantages and Challenges
@@ -64,7 +64,7 @@ However, applying RL in industrial settings also comes with considerable challen
 - **Simulation-to-reality gap**: Training in a simulator (or digital twin) avoids the first two problems, but building an accurate simulator is costly, and policies learned in simulation may perform poorly on the real system if the simulator does not capture its dynamics well enough.
 - **Reward design**: Translating business goals (quality, throughput, energy, wear) into a single reward signal is difficult. A poorly designed reward may be exploited by the agent in unintended ways (_reward hacking_).
 - **Interpretability and trust**: Learned policies are often hard to explain and verify. This makes certification and acceptance by operators and engineers difficult.
-- **Non-stationarity**: Tool wear, changing raw materials, or seasonal effects change the environment over time, so a policy that was optimal at training time may degrade and requires monitoring and retraining.
+- **Non-stationarity**: Tool wear, changing raw materials, or seasonal effects change the environment over time, so a policy that was optimal at training time may degrade and require monitoring and retraining.
 
 ### Applications
 
