@@ -3,7 +3,7 @@
 The goal of clustering is to group similar time series together based on their characteristics or patterns.
 
 But what does **similar** mean in the context of time series data?
-Defining **similarity** is not straight forward due to the inherent subjectivity involved.
+Defining **similarity** is not straightforward due to the inherent subjectivity involved.
 
 **Difficulties are**:
 
@@ -15,8 +15,8 @@ Defining **similarity** is not straight forward due to the inherent subjectivity
 ## Clustering algorithms {#sec-act1-cluster-algorithms}
 Time series clustering algorithms can be broadly categorized into four main types:
 
-- **Distance-Based**: These algorithms rely on a distance measure to quantify the similarity between time series. Examples include $k$-means and $k$-median.
-- **Distribution-Based**: These methods model the distribution (in a very general sense) of the time series data and cluster based on statistical properties or descriptive features that represent the characteristics of the time series. Examples include _Gaussian Mixture Models_ (GMM) and DBSCAN.
+- **Distance-Based**: These algorithms rely on a distance measure to quantify the similarity between time series. Examples include $k$-means and $k$-medians.
+- **Distribution-Based**: These methods model the distribution (in a very general sense) of the time series data and cluster based on statistical properties or descriptive features that represent the characteristics of the time series. An example is _Gaussian Mixture Models_ (GMM).
 - **Subsequence-Based**: These algorithms focus on clustering representative subsequences of time series data rather than the entire series. Examples include methods based on shapelets and sliding windows.
 - **Representation-Learning-Based**: These methods use techniques like autoencoders or recurrent neural networks to learn a lower-dimensional representation of the time series data, which is then clustered using traditional clustering algorithms.
 

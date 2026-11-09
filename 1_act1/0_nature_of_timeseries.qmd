@@ -21,7 +21,7 @@ Source: [`statsmodels.datasets`](https://www.statsmodels.org/dev/datasets/genera
 ![Atmospheric CO2 concentrations](../data/assets/act1/mauna_loa_co2.png)
 
 ### Simulated Random Walk
-Just a simulated random walk time series.
+A simulated random walk.
 Code:
 ```python
 import numpy as np
@@ -37,7 +37,7 @@ Source: [Yahoo Finance](https://de.finance.yahoo.com/quote/%5EGSPC/) (downloaded
 
 ![S&P 500 index](../data/assets/act1/sandp_500_close_2020.png)
 
-### Electrocardiagram (ECG) Signal
+### Electrocardiogram (ECG) Signal
 This time series represents an electrocardiogram (ECG) signal, which measures the electrical activity of the heart over time.
 Source: [`scipy.misc.electrocardiogram`](https://docs.scipy.org/doc/scipy-1.13.0/reference/generated/scipy.misc.electrocardiogram.html).
 
