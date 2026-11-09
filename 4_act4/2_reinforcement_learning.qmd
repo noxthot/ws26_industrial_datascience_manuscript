@@ -41,7 +41,7 @@ $$
 v_{\pi}(s) = \mathbb{E}_{\pi}[G_t | s_t = s].
 $$
 
-Solving a reinforcement learning problem typically involves finding an optimal policy $\pi^*$ that maximizes the expected cumulative reward from any state.
+Solving a reinforcement learning problem typically involves finding an *optimal policy* $\pi^*$ that maximizes the expected cumulative reward from any state.
 Due to the complexity of real-world environments, RL algorithms usually rely on approximations and heuristics.
 
 ## Classic Agent-Environment Loop
@@ -63,6 +63,15 @@ Reinforcement learning offers several advantages for industrial applications:
 - **Adaptability**: RL agents can adapt to changing environments and learn optimal strategies over time.
 - **Exploration**: RL encourages exploration of different strategies, which can lead to innovative solutions.
 - **Automation**: RL can automate complex decision-making processes that are difficult to model explicitly.
+
+However, applying RL in industrial settings also comes with considerable challenges:
+
+- **Safety during exploration**: Trial and error is not acceptable on a real machine if a bad action can damage equipment, produce scrap, or endanger people. Exploration therefore often has to be constrained or moved to a simulation.
+- **Sample inefficiency**: RL agents typically need a very large number of interactions to learn a good policy. On a physical process, where each interaction costs time, material, and energy, this is often infeasible.
+- **Simulation-to-reality gap**: Training in a simulator (or digital twin) avoids the first two problems, but building an accurate simulator is costly, and policies learned in simulation may perform poorly on the real system if the simulator does not capture its dynamics well enough.
+- **Reward design**: Translating business goals (quality, throughput, energy, wear) into a single reward signal is difficult. A poorly designed reward may be exploited by the agent in unintended ways (_reward hacking_).
+- **Interpretability and trust**: Learned policies are often hard to explain and verify. This makes certification and acceptance by operators and engineers difficult.
+- **Non-stationarity**: Tool wear, changing raw materials, or seasonal effects change the environment over time, so a policy that was optimal at training time may degrade and requires monitoring and retraining.
 
 ### Applications
 
