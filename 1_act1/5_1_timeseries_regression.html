@@ -463,19 +463,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1_act1/6_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self-Study Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1_act1/7_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self-Study Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1_act1/8_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self-Study Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -498,19 +498,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/1_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self-Study Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self-Study Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self-Study Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -557,13 +557,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3_act3/5_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Self-Study Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3_act3/6_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Self-Study Session 2</span></span></a>
   </div>
 </li>
       </ul>
@@ -598,7 +598,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4_act4/3_self_study_session.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Optional Self study Session</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Optional Self-Study Session</span></span></a>
   </div>
 </li>
       </ul>
@@ -647,7 +647,7 @@ window.Quarto = {
 
 
 <p>Time series regression belongs to the class of supervised learning and is defined as the task of predicting a continuous target variable based on time series input data.</p>
-<p>The <a href="https://github.com/sktime/sktime/tree/main/sktime/regression">github repository of sktime (accessed: 16 09 26)</a> categorizes its implemented time series regression methods into the following categories:</p>
+<p>The <a href="https://github.com/sktime/sktime/tree/main/sktime/regression">GitHub repository of sktime (accessed: 2026-09-16)</a> categorizes its implemented time series regression methods into the following categories:</p>
 <ul>
 <li><strong>Distance-based</strong>: Methods that use distance measures to compare time series (e.g., <span class="math inline">\(k\)</span>-nearest neighbors).</li>
 <li><strong>Interval-based</strong>: Methods that extract features from intervals of the time series (e.g., time series forest regression).</li>
@@ -657,15 +657,15 @@ window.Quarto = {
 </ul>
 <p>Again, we observe that these categories can directly be mapped to those in <a href="3_1_timeseries_clustering.html#sec-act1-cluster-algorithms" class="quarto-xref"><span>Section 7.1</span></a> and <a href="4_1_timeseries_classification.html" class="quarto-xref"><span>Chapter 8</span></a>.</p>
 <p>An easy baseline method for time series regression is to use a <span class="math inline">\(k\)</span>-nearest neighbors regressor with a suitable distance measure for time series, e.g.&nbsp;dynamic time warping. In contrast to nearest neighbor in classification, where the predicted label is determined by e.g.&nbsp;a majority vote of the nearest neighbors, in nearest neighbor regression the predicted value is typically computed as the average (or weighted average) of the target values of the nearest neighbors. This is implemented in <code>sktime</code> as <a href="https://www.sktime.net/en/latest/api_reference/auto_generated/sktime.regression.distance_based.KNeighborsTimeSeriesRegressor.html"><code>KNeighborsTimeSeriesRegressor</code></a>.</p>
-<p>Also tree-based methods like random forests can be adapted for time series regression by simply taking e.g.&nbsp;the mean value of the target variable of the samples in a leaf node as the predicted value. This is implemented in <code>sktime</code> as <a href="https://www.sktime.net/en/latest/api_reference/auto_generated/sktime.regression.interval_based.TimeSeriesForestRegressor.html"><code>TimeSeriesForestRegressor</code></a>. Note that this is (as of <code>v1.1.0</code>) not a very parametrizable implementation; the only tunable parameter is the number of estimators (trees) and the minimum width of the intervals.</p>
+<p>Tree-based methods like random forests can also be adapted for time series regression, e.g., by taking the mean target value of the samples in a leaf node as the prediction. This is implemented in <code>sktime</code> as <a href="https://www.sktime.net/en/latest/api_reference/auto_generated/sktime.regression.interval_based.TimeSeriesForestRegressor.html"><code>TimeSeriesForestRegressor</code></a>. Note that (as of <code>v1.1.0</code>) this implementation is not very configurable; the only tunable parameters are the number of estimators (trees) and the minimum width of the intervals.</p>
 <p>In this section we will have a brief look at a deep-learning based method in the context of time series regression, namely a convolutional neural network (CNN) based regressor.</p>
 <section id="convolutional-neural-network-regressor" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="convolutional-neural-network-regressor"><span class="header-section-number">9.1</span> Convolutional Neural Network Regressor</h2>
 <p><em>Convolutional Neural Networks</em> (CNN), by design, are able to capture local patterns in time series data through the use of convolutional layers. These layers apply filters that slide over the input data, allowing the model to learn local temporal patterns that are important. At the same time, CNNs can also capture global patterns by stacking multiple convolutional layers and using pooling operations. This hierarchical structure enables the model to learn both local and global features of the time series data, making CNNs versatile for various time series tasks.</p>
-<p><span class="citation" data-cites="zhao2017">Zhao et al. (<a href="../5_references.html#ref-zhao2017" role="doc-biblioref">2017</a>)</span> propose a CNN architecture specifically designed for time series classification. The architecture consists of a series of 1D convolutional layers followed by a pooling layer. The convolutional layers are responsible for extracting local features from the time series data, while the pooling layer helps to reduce the dimensionality and capture more global patterns. After the convolutional and pooling layers, the model includes a fully connected layer (the authors refer to it as a <em>feature layer</em>) that maps the extracted features to <span class="math inline">\(n\)</span> output nodes, where <span class="math inline">\(n\)</span> is the number of classes. The node with the highest value determines the predicted class.</p>
+<p><span class="citation" data-cites="zhao2017">Zhao et al. (<a href="../5_references.html#ref-zhao2017" role="doc-biblioref">2017</a>)</span> propose a CNN architecture specifically designed for time series classification. The architecture consists of 1D convolutional layers, each followed by a pooling layer. The convolutional layers extract local features from the time series data, while the pooling layers reduce the dimensionality and capture more global patterns. After the convolutional and pooling layers, the model includes a fully connected layer (the authors refer to it as a <em>feature layer</em>) that maps the extracted features to <span class="math inline">\(n\)</span> output nodes, where <span class="math inline">\(n\)</span> is the number of classes. The node with the highest value determines the predicted class.</p>
 <p>For regression, <code>sktime</code> provides <a href="https://www.sktime.net/en/latest/api_reference/auto_generated/sktime.regression.deep_learning.cnn.CNNRegressor.html"><code>CNNRegressor</code></a>, which is based on the architecture described in <span class="citation" data-cites="zhao2017">Zhao et al. (<a href="../5_references.html#ref-zhao2017" role="doc-biblioref">2017</a>)</span>. To adapt the architecture for regression tasks, the final layer is modified to have a single output node with a linear activation function that predicts a continuous value instead of class probabilities.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/ws26_industrial_datascience_manuscript/ws26_industrial_datascience_manuscript/1_act1/5_2_timeseries_regression_examples.ipynb" data-notebook-title="Imports" data-notebook-cellid="78d053c0">
-<p>In this example, we will use the IEEEPPG dataset <span class="citation" data-cites="tan2020">Tan et al. (<a href="../5_references.html#ref-tan2020" role="doc-biblioref">2020</a>)</span>, which focuses on heart rate monitoring during physical exercise using wrist-type <em>photoplethysmographic</em> (PPG) signals. The dataset consists of two PPG signals and three-axis acceleration signals. The goal is to predict ECG values from the PPG and acceleration signals. All signals were sampled at 125 Hz.</p>
+<p>In this example, we will use the IEEEPPG dataset <span class="citation" data-cites="tan2020">Tan et al. (<a href="../5_references.html#ref-tan2020" role="doc-biblioref">2020</a>)</span>, which focuses on heart rate monitoring during physical exercise using wrist-type <em>photoplethysmographic</em> (PPG) signals. The dataset consists of two PPG signals and three-axis acceleration signals. The goal is to predict the heart rate (derived from a simultaneously recorded ECG) from the PPG and acceleration signals. All signals were sampled at 125 Hz.</p>
 <section id="imports" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="imports"><span class="header-section-number">9.1.1</span> Imports</h3>
 <div id="218cac6d" class="cell" data-execution_count="1">
@@ -904,16 +904,17 @@ window.Quarto = {
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    tensor <span class="op">=</span> np.transpose(tensor, (<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(<span class="bu">range</span>(<span class="bu">len</span>(df)), <span class="bu">range</span>(<span class="bu">len</span>(df.columns))):</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> np.array_equal(df.iloc[i, j].values, tensor[i, :, j])</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(df.shape[<span class="dv">1</span>]):</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">assert</span> np.array_equal(df.iloc[i, j].values, tensor[i, :, j])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>X_train_tensor <span class="op">=</span> convert_df_to_tensor(X_train_raw)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>X_test_tensor <span class="op">=</span> convert_df_to_tensor(X_test_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>X_train_tensor <span class="op">=</span> convert_df_to_tensor(X_train_raw)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>X_test_tensor <span class="op">=</span> convert_df_to_tensor(X_test_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Let us check the shapes orf the resulting tensors.</p>
+<p>Let us check the shapes of the resulting tensors.</p>
 <div id="976f0230" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_tensor.shape)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_test_tensor.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -922,9 +923,9 @@ window.Quarto = {
 (1328, 1000, 5)</code></pre>
 </div>
 </div>
-<p>The training data set has 1768 samples, each consisting of 5 channels (PPG and acceleration signals) with a length of 1000 time steps (which are 8 seconds at 125 Hz).</p>
-<p>Neural networks are generally trained on normalized data. We will use a leaky ReLU activation function in our CNN, which works best with input data within a [0, 1] range.</p>
-<p>Unfortunately the <code>TimeSeriesScalerMinMax</code> from <code>tslearn</code> needs the data in the shape (n_samples, n_timestamps, n_channels), while the CNN expects (n_samples, n_channels, n_timestamps), so we need to swap the last two axes again after scaling.</p>
+<p>The training dataset has 1768 samples, each consisting of 5 channels (PPG and acceleration signals) with a length of 1000 time steps (which are 8 seconds at 125 Hz).</p>
+<p>Neural networks generally train better on normalized data, so we scale all signals and the target to the range [0, 1].</p>
+<p>Unfortunately, the <code>TimeSeriesScalerMinMax</code> from <code>tslearn</code> needs the data in the shape (n_samples, n_timestamps, n_channels), while the CNN expects (n_samples, n_channels, n_timestamps), so we need to swap the last two axes again after scaling.</p>
 <div id="9617574d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>scaler_x <span class="op">=</span> TimeSeriesScalerMinMax()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> scaler_x.fit_transform(X_train_tensor, per_feature<span class="op">=</span><span class="va">True</span>)</span>
@@ -1669,7 +1670,7 @@ Epoch 80/80
 </div>
 </div>
 <p>To verify the performance of the trained model, we now predict the target values for the test set and compute the <em>root mean squared error</em> (RMSE) between the predicted and true target values.</p>
-<p>Keep in mind, that we have to inverse transform the predicted target values back to the original scale before computing the RMSE.</p>
+<p>Keep in mind that we have to inverse transform the predicted target values back to the original scale before computing the RMSE.</p>
 <div id="d87d31ab" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_pred_scaled <span class="op">=</span> regressor.predict(X_test)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> scaler_y.inverse_transform(y_pred_scaled.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
@@ -1771,8 +1772,8 @@ RMSE: 28.2592
 </div>
 </div>
 </div>
-<p>The model is able to fit the training data quite well, indicating that the code is implemented correctly and the model architecture is complex enough to capture the underlying patterns in the data. Still, the performance on the test set is significantly worse than on the training set. This suggests that the model is likely overfitting the data, which could be due to various factors such as e.g.&nbsp;insufficient training data, or lack of regularization or that the test data distribution differs significantly from the training data distribution.</p>
-<p>While these results are not fully satisfying, the results align with those reported by <span class="citation" data-cites="tan2021">Tan et al. (<a href="../5_references.html#ref-tan2021" role="doc-biblioref">2021</a>)</span> for other simpler neural network architectures on this dataset.</p>
+<p>The model is able to fit the training data quite well, indicating that the code is implemented correctly and the model architecture is complex enough to capture the underlying patterns in the data. Still, the performance on the test set is significantly worse than on the training set. This suggests that the model is likely overfitting the data, which could be due to various factors such as insufficient training data, a lack of regularization, or a test data distribution that differs significantly from the training data distribution.</p>
+<p>While these results are not fully satisfying, they align with those reported by <span class="citation" data-cites="tan2021">Tan et al. (<a href="../5_references.html#ref-tan2021" role="doc-biblioref">2021</a>)</span> for other simpler neural network architectures on this dataset.</p>
 </section>
 </div>
 
@@ -2211,8 +2212,8 @@ Zhao, Bendong, Huanzhang Lu, Shangfeng Chen, Junliang Liu, and Dongya Wu. 2017. 
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../1_act1/6_self_study_session1.html" class="pagination-link" aria-label="Self study - Session 1">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../1_act1/6_self_study_session1.html" class="pagination-link" aria-label="Self-Study Session 1">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self-Study Session 1</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

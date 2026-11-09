@@ -4070,19 +4070,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1_act1/6_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Self-Study Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1_act1/7_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Self-Study Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1_act1/8_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Self-Study Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -4105,19 +4105,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/1_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Self-Study Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/2_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Self-Study Session 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2_act2/3_self_study_session3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self study - Session 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Self-Study Session 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -4164,13 +4164,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3_act3/5_self_study_session1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Self study - Session 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Self-Study Session 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3_act3/6_self_study_session2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Self study - Session 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Self-Study Session 2</span></span></a>
   </div>
 </li>
       </ul>
@@ -4205,7 +4205,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4_act4/3_self_study_session.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Optional Self study Session</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Optional Self-Study Session</span></span></a>
   </div>
 </li>
       </ul>
@@ -4254,7 +4254,7 @@ window.Quarto = {
 
 
 <p>Time series classification belongs to the class of supervised learning and is defined as the task of assigning a label to a time series.</p>
-<p>Again, this is a very active research area and many different methods have been proposed. For a good overview, check e.g. <span class="citation" data-cites="faouzi2024">Faouzi (<a href="../5_references.html#ref-faouzi2024" role="doc-biblioref">2024</a>)</span>, which divides time series classification methods into the following categories:</p>
+<p>Again, this is a very active research area and many different methods have been proposed. For a good overview, see, e.g., <span class="citation" data-cites="faouzi2024">Faouzi (<a href="../5_references.html#ref-faouzi2024" role="doc-biblioref">2024</a>)</span>, which divides time series classification methods into the following categories:</p>
 <ul>
 <li><strong>Metric</strong>: Distance-based methods, e.g.&nbsp;nearest neighbor classifiers with different distance measures.</li>
 <li><strong>Kernels</strong>: Methods that use kernel functions to measure similarity between time series.</li>
@@ -4266,8 +4266,8 @@ window.Quarto = {
 <li><strong>Random Convolutions</strong>: Methods that use random convolutional filters.</li>
 <li><strong>Ensemble</strong>: Methods that combine multiple classifiers for improved performance.</li>
 </ul>
-<p>We can see that many of these categories already appeared in <a href="3_1_timeseries_clustering.html#sec-act1-cluster-algorithms" class="quarto-xref"><span>Section 7.1</span></a>.</p>
-<p>A simple metric-based (distance-based) baseline method for time series classification is to use a nearest neighbor classifier with a suitable distance measure for time series, e.g.&nbsp;dynamic time warping (DTW). This is implemented in <code>sktime</code> as <a href="https://www.sktime.net/en/stable/api_reference/auto_generated/sktime.classification.distance_based.KNeighborsTimeSeriesClassifier.html"><code>KNeighborsTimeSeriesClassifier</code></a> or <a href="https://www.sktime.net/en/stable/api_reference/auto_generated/sktime.classification.distance_based.KNeighborsTimeSeriesClassifierTslearn.html"><code>KNeighborsTimeSeriesClassifierTslearn</code></a> (the latter is just a wrapper for the implementation in <code>tslearn</code>). These classifiers work similar to the <code>KNeighborsClassifier</code> for tabular data from <code>sklearn</code>, but use a distance measure suitable for time series. We have learned about <code>euclidean</code> distance and <code>DTW</code> in <a href="3_1_timeseries_clustering.html#sec-act1-cluster-similaritymeasures" class="quarto-xref"><span>Section 7.2</span></a>.</p>
+<p>We can see that several of these categories already appeared in <a href="3_1_timeseries_clustering.html#sec-act1-cluster-algorithms" class="quarto-xref"><span>Section 7.1</span></a>.</p>
+<p>A simple metric-based (distance-based) baseline method for time series classification is to use a nearest neighbor classifier with a suitable distance measure for time series, e.g.&nbsp;dynamic time warping (DTW). This is implemented in <code>sktime</code> as <a href="https://www.sktime.net/en/stable/api_reference/auto_generated/sktime.classification.distance_based.KNeighborsTimeSeriesClassifier.html"><code>KNeighborsTimeSeriesClassifier</code></a> or <a href="https://www.sktime.net/en/stable/api_reference/auto_generated/sktime.classification.distance_based.KNeighborsTimeSeriesClassifierTslearn.html"><code>KNeighborsTimeSeriesClassifierTslearn</code></a> (the latter is just a wrapper for the implementation in <code>tslearn</code>). These classifiers work similarly to the <code>KNeighborsClassifier</code> for tabular data from <code>sklearn</code>, but use a distance measure suitable for time series. We have learned about the Euclidean distance and DTW in <a href="3_1_timeseries_clustering.html#sec-act1-cluster-similaritymeasures" class="quarto-xref"><span>Section 7.2</span></a>.</p>
 <p>In this section we will have a brief look at time series forests (tree-based) in the context of time series classification.</p>
 <section id="time-series-forests" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="time-series-forests"><span class="header-section-number">8.1</span> Time Series Forests</h2>
