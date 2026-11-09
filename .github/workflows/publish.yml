@@ -5,35 +5,52 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+# Only one Pages deployment at a time; don't cancel one that's in progress.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   formatlint:
     uses: ./.github/workflows/lint_and_format.yml
 
-  publish:
+  build:
     needs: formatlint
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Install uv and prepare python environment
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v10
         with:
           enable-cache: true
-          
+
       - name: Install dependencies
         run: uv sync --locked
 
       - name: Render document
         run: uv run quarto render --to html
-      
-      - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: _book
-          
+          path: _book
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
