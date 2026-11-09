@@ -1,0 +1,4 @@
+/* Add vertical spacing between bibliography entries for readability */
+.csl-bib-body .csl-entry {
+  margin-bottom: 1em;
+}
