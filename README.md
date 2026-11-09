@@ -9,20 +9,21 @@ You can find the latest version of the course material at https://noxthot.github
 If you use this material, please cite it by using the [citation information](./CITATION.cff).
 
 ## Content
-- Time series
-- Data imputation
-- Clustering
-- Classification
-- Regression
-- Batch and Stream Processing
-- Exploratory Data Analysis
-- Predictive Maintenance
+- Introduction: history and application areas of industrial data science
+- Time series: imputation, decomposition, similarity measures, clustering, classification, and regression
+- Predictive maintenance via exploratory data analysis
+- Multimodal machine learning and fusion strategies
+- Process optimization on sensor data
+- Levels of system integration, batch and stream processing
+- Live feedback via OPC UA
+- Resampling
+- Reinforcement learning
 
 
 ## Setup
-`uv` is used to manage the virtual environment and dependencies.
+[`uv`](https://docs.astral.sh/uv/) is used to manage the virtual environment and dependencies.
 
-Then install the dependencies with:
+After installing `uv`, install the dependencies with:
 ```bash
 uv sync --dev
 ```
