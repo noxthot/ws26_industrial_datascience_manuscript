@@ -94,25 +94,13 @@ Your task:
     - Provide a screenshot of the graph showing the effect of your correction on `error_x`.
     - Have a look at the console output of the running machine simulator to see how the correction was applied.
     - Provide a screenshot of the console output showing the application of your correction.
-:::
 
-Now that we know how to interact with the live machine simulator, in a first step we will set up a Python script `opc-ua-client.py` that connects to the machine and subscribes to the data changes of the necessary variables.
-
-::: {.callout-caution appearance="simple" collapse="true" icon=false}
-:::: {#exr-act3-sss2-opcua-client}
-## Set up an OPC UA client in Python
-::::
-Have a look at the provided `opc-ua-client.py` script, understand how it works and run it while the machine simulator is active.
-
-Your task:
-
-1. For understanding, it is likely best to start by studying the `main()` function at the bottom of the script and then look at the `SubHandler` class that handles the data changes.
-
-2. Explain in your own words what the script is doing (a brief summary is sufficient).
-
-3. Run the script while the machine simulator is active and observe the printed output.
-
-4. Provide a screenshot of the console output showing the data changes received from the machine.
+7. Connect to the machine from Python:
+    - Now that we know how to interact with the machine using a GUI, we want to do the same from Python. The provided `opc-ua-client.py` script connects to the machine and subscribes to the data changes of the necessary variables.
+    - Have a look at the script and understand how it works. It is likely best to start by studying the `main()` function at the bottom of the script and then look at the `SubHandler` class that handles the data changes.
+    - Explain in your own words what the script is doing (a brief summary is sufficient).
+    - Run the script while the machine simulator is active and observe the printed output.
+    - Provide a screenshot of the console output showing the data changes received from the machine.
 :::
 
 Great!
