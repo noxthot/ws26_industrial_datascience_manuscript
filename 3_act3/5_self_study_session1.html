@@ -554,19 +554,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Still under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This section is still under construction and will be completed in the near future. Please do not go beyond this point for now.</p>
-</div>
-</div>
 <p>In this session, we will revisit <a href="3_0_process_optimization_sensor_data.html" class="quarto-xref"><span>Chapter 20</span></a> and continue where we left off, trying to improve the process.</p>
 <p>The findings in <a href="3_0_process_optimization_sensor_data.html#sec-act3-eda-summary" class="quarto-xref"><span>Section 20.4.6</span></a> were not sufficient to explain all defects, but we found a correlation between elevated pressure during the epoxy application step and excessive epoxy application (<code>NOK_1</code>). Regarding the uneven distribution of applied epoxy (<code>NOK_4</code>), the operators provided the information that they suspect that this is caused by an insufficiently cleaned nozzle. The cleaning process happens at the end of the previous processing step, where the nozzle moves away from the product and blows out residual epoxy.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
@@ -575,10 +562,10 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss1-blowout" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 22.1 (Investigating the blow-out step)</strong></span> &nbsp;</p>
 </div>
-<p>Investigate the pressure during the blow-out step (process step index 3 of the previous iteration) and see if you can find a correlation to <code>NOK_4</code> defects.</p>
+<p>Investigate the pressure during the blow-out step (<code>process_step_index</code> 2 of the previous iteration; the index starts at 0) and see if you can find a correlation to <code>NOK_4</code> defects.</p>
 </div>
 </div>
 </div>
@@ -589,10 +576,10 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss1-finetuning" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 22.2 (Fine-tuning the machine parameters)</strong></span> &nbsp;</p>
 </div>
-<p>The accompanying <code>readme.md</code> file shipped with the <a href="https://github.com/noxthot/industrial_datascience_sim_machine_knifes/tree/v1.0.2"><code>industrial_datascience_sim_machine_knifes</code> repository</a> contains information on how to run the machine again with different parameters. Try to improve the parameters to reduce the number of defects. Keep the <code>night</code> shift and <code>NUM_PIECES</code> at the default values.</p>
+<p>The accompanying <code>readme.md</code> file shipped with the <a href="https://github.com/noxthot/industrial_datascience_sim_machine_knifes/tree/v1.0.4"><code>industrial_datascience_sim_machine_knifes</code> repository</a> contains information on how to run the machine again with different parameters. Try to improve the parameters to reduce the number of defects. Keep the <code>night</code> shift at its default value and set <code>NUM_PIECES=5000</code>, so that each run covers a full shift and is comparable to the original dataset.</p>
 <p>You experience new issues or want to further fine-tune the parameters? Feel free to have a look at the new <code>csv</code> files that the machine is producing.</p>
 <p><em>Hint: The process is stochastic, so you can not expect to get rid of every single defect.</em></p>
 <p>How do the results of the new parameters compare to the original ones?</p>
@@ -643,10 +630,10 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss1-dayshift" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 22.3 (Try the machine on day shift)</strong></span> &nbsp;</p>
 </div>
-<p>Run the machine again with your parameters, but this time during <code>day</code> shift.</p>
+<p>Run the machine again with your parameters (and <code>NUM_PIECES=5000</code>), but this time during <code>day</code> shift.</p>
 <p>How do the results of the new parameters compare to the ones from the night shift?</p>
 <p>Investigate the root cause of this difference by looking at the produced <code>csv</code> files.</p>
 </div>
@@ -658,10 +645,10 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss1-bothshifts" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 22.4 (Fine-tune the parameters to work well for both shifts)</strong></span> &nbsp;</p>
 </div>
-<p>The machine is not only telling you a defect summary, but also the duration it took to produce the parts. Try to fine-tune the parameters to achieve a good compromise between quality (few defects) and speed (short duration).</p>
+<p>The machine is not only telling you a defect summary, but also the duration it took to produce the parts. Try to fine-tune the parameters to achieve a good compromise between quality (few defects) and speed (short duration). Keep <code>NUM_PIECES=5000</code>, so that each run still covers a full shift.</p>
 <p><em>Hints:</em></p>
 <ul>
 <li><em>The machine’s temperature depends on the ambient temperature, the processing speed and the pressure settings.</em></li>

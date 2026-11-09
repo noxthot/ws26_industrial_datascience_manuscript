@@ -648,19 +648,6 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Still under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This section is still under construction and will be completed in the near future. Please do not go beyond this point for now.</p>
-</div>
-</div>
 <p>In this section, we will have a look at a simulated example of a live feedback system in an industrial manufacturing context.</p>
 <section id="setting-the-stage" class="level2" data-number="21.1">
 <h2 data-number="21.1" class="anchored" data-anchor-id="setting-the-stage"><span class="header-section-number">21.1</span> Setting the stage</h2>
@@ -677,19 +664,19 @@ window.Quarto = {
 </section>
 <section id="accessible-variables" class="level2" data-number="21.2">
 <h2 data-number="21.2" class="anchored" data-anchor-id="accessible-variables"><span class="header-section-number">21.2</span> Accessible variables</h2>
-<p>The following variables are accessible during the process:</p>
+<p>The following variables are accessible during the process (the name of the OPC UA variable is given in brackets):</p>
 <ul>
-<li><code>Air temperature [K]</code>: ambient temperature around the machine.</li>
-<li><code>Attached Weight [mg]</code>: weight of the component picked up by the vacuum system.</li>
-<li><code>Cycle</code>: unique identifier for each cycle.</li>
-<li><code>Error x [mm]</code>: placement error in <span class="math inline">\(x\)</span> direction (only available at the end of the cycle).</li>
-<li><code>Error y [mm]</code>: placement error in <span class="math inline">\(y\)</span> direction (only available at the end of the cycle).</li>
-<li><code>Position x [mm]</code>: target position in <span class="math inline">\(x\)</span> direction.</li>
-<li><code>Position y [mm]</code>: target position in <span class="math inline">\(y\)</span> direction.</li>
-<li><code>Process step</code>: current step in the process (0 to 3).</li>
-<li><code>Process temperature [K]</code>: temperature inside the machine.</li>
-<li><code>Speed [mm/s]</code>: speed of the current movement.</li>
-<li><code>Speed next [mm/s]</code>: speed for the next movement.</li>
+<li><strong>Air temperature [°C]</strong> (<code>air_temperature</code>): ambient temperature around the machine.</li>
+<li><strong>Attached Weight [mg]</strong> (<code>attached_weight</code>): weight of the component picked up by the vacuum system.</li>
+<li><strong>Cycle</strong> (<code>cycle</code>): unique identifier for each cycle.</li>
+<li><strong>Error x [mm]</strong> (<code>error_x</code>): placement error in <span class="math inline">\(x\)</span> direction (only available at the end of the cycle).</li>
+<li><strong>Error y [mm]</strong> (<code>error_y</code>): placement error in <span class="math inline">\(y\)</span> direction (only available at the end of the cycle).</li>
+<li><strong>Position x [mm]</strong> (<code>position_x</code>): target position in <span class="math inline">\(x\)</span> direction.</li>
+<li><strong>Position y [mm]</strong> (<code>position_y</code>): target position in <span class="math inline">\(y\)</span> direction.</li>
+<li><strong>Process step</strong> (<code>process_step</code>): current step in the process (0 to 3).</li>
+<li><strong>Process temperature [°C]</strong> (<code>process_temperature</code>): temperature inside the machine.</li>
+<li><strong>Speed [mm/s]</strong> (<code>speed</code>): speed of the current movement.</li>
+<li><strong>Speed next [mm/s]</strong> (<code>speed_next</code>): speed for the next movement.</li>
 </ul>
 </section>
 <section id="data" class="level2" data-number="21.3">
@@ -708,7 +695,7 @@ Note
 <p>OPC UA is a cross-platform, open-source communication protocol for data exchange in the industrial automation space developed by the OPC Foundation. It is a client-server architecture that allows for secure and reliable data transfer between devices and systems from different manufacturers.</p>
 </div>
 </div>
-<p>Luckily, the engineers already collected a dataset of 25.000 cycles coming in two files:</p>
+<p>Luckily, the engineers already collected a dataset of 25,000 cycles coming in two files:</p>
 <ul>
 <li><code>simulated_opcua_machinedata.csv</code> stores the sensor data.</li>
 <li><code>simulated_opcua_postinspection.csv</code> stores the placement error data.</li>
@@ -718,28 +705,31 @@ Note
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/ws26_industrial_datascience_manuscript/ws26_industrial_datascience_manuscript/3_act3/4_1_inspect_data.ipynb" data-notebook-title="Loading packages" data-notebook-cellid="ed0f92a3">
 <section id="loading-packages" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="loading-packages"><span class="header-section-number">21.4</span> Loading packages</h2>
-<div id="ef3b093e" class="cell" data-execution_count="1">
+<div id="ef3b093e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:35.431598Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:35.431395Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:39.771829Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:39.770886Z&quot;}}" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># used for data handling</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.io <span class="im">as</span> pio  <span class="co"># used to set the default plotly renderer</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns  <span class="co"># used for statistical data visualization</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>pio.renderers.default <span class="op">=</span> <span class="st">"notebook"</span>  <span class="co"># set the default plotly renderer to "notebook" (necessary for quarto to render the plots)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </section>
 <section id="loading-the-dataset" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="loading-the-dataset"><span class="header-section-number">21.5</span> Loading the dataset</h2>
-<p>The dataset was released alongside the simulated machine at <span class="citation" data-cites="ehrensperger_livemachine2026">Ehrensperger (<a href="../5_references.html#ref-ehrensperger_livemachine2026" role="doc-biblioref">2026</a>)</span>, but you can also clone the repository directly from <a href="https://github.com/noxthot/industrial_datascience_live_machine/tree/v1.0.0">GitHub</a>. In this section, we will look at the provided <code>csv</code> files.</p>
-<div id="20e5ab43" class="cell" data-execution_count="2">
+<p>The dataset was released alongside the simulated machine at <span class="citation" data-cites="ehrensperger_livemachine2026">Ehrensperger (<a href="../5_references.html#ref-ehrensperger_livemachine2026" role="doc-biblioref">2026</a>)</span>, but you can also clone the repository directly from <a href="https://github.com/noxthot/industrial_datascience_live_machine/tree/v1.1.1">GitHub</a>. In this section, we will look at the provided <code>csv</code> files.</p>
+<div id="20e5ab43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:39.774527Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:39.774204Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:50.785210Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:50.783903Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_machinedata <span class="op">=</span> pd.read_csv(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/noxthot/industrial_datascience_live_machine/refs/tags/v1.0.0/data/simulated_opcua_machinedata.csv"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/noxthot/industrial_datascience_live_machine/refs/tags/v1.1.1/data/simulated_opcua_machinedata.csv"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df_postinspection <span class="op">=</span> pd.read_csv(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/noxthot/industrial_datascience_live_machine/refs/tags/v1.0.0/data/simulated_opcua_postinspection.csv"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/noxthot/industrial_datascience_live_machine/refs/tags/v1.1.1/data/simulated_opcua_postinspection.csv"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="data-integrity-check" class="level3" data-number="21.5.1">
 <h3 data-number="21.5.1" class="anchored" data-anchor-id="data-integrity-check"><span class="header-section-number">21.5.1</span> Data integrity check</h3>
-<div id="ff2affe1" class="cell" data-execution_count="3">
+<div id="ff2affe1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:50.788345Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:50.787991Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:50.819536Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:50.818472Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_machinedata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -749,12 +739,12 @@ Note
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Air temperature [K]</th>
+<th data-quarto-table-cell-role="th">Air temperature [°C]</th>
 <th data-quarto-table-cell-role="th">Attached Weight [mg]</th>
 <th data-quarto-table-cell-role="th">Position x [mm]</th>
 <th data-quarto-table-cell-role="th">Position y [mm]</th>
 <th data-quarto-table-cell-role="th">Process step</th>
-<th data-quarto-table-cell-role="th">Process temperature [K]</th>
+<th data-quarto-table-cell-role="th">Process temperature [°C]</th>
 <th data-quarto-table-cell-role="th">Speed [mm/s]</th>
 <th data-quarto-table-cell-role="th">Speed next [mm/s]</th>
 <th data-quarto-table-cell-role="th">timestamp</th>
@@ -772,7 +762,7 @@ Note
 <td>30.385614</td>
 <td>100.000000</td>
 <td>0.000000</td>
-<td>2026-01-08T13:37:00</td>
+<td>2026-11-08T13:37:00+00:00</td>
 <td>1</td>
 </tr>
 <tr class="even">
@@ -785,7 +775,7 @@ Note
 <td>31.615630</td>
 <td>0.000000</td>
 <td>34.752639</td>
-<td>2026-01-08T13:37:01.505090</td>
+<td>2026-11-08T13:37:01.505090+00:00</td>
 <td>1</td>
 </tr>
 <tr class="odd">
@@ -798,7 +788,7 @@ Note
 <td>31.998852</td>
 <td>34.752639</td>
 <td>0.000000</td>
-<td>2026-01-08T13:37:02.025090</td>
+<td>2026-11-08T13:37:02.025090+00:00</td>
 <td>1</td>
 </tr>
 <tr class="even">
@@ -811,20 +801,20 @@ Note
 <td>33.046526</td>
 <td>0.000000</td>
 <td>100.000000</td>
-<td>2026-01-08T13:37:06.318405</td>
+<td>2026-11-08T13:37:06.318405+00:00</td>
 <td>1</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>25.129309</td>
+<td>24.924624</td>
 <td>0.000000</td>
-<td>7.960791</td>
-<td>59.651295</td>
+<td>194.965331</td>
+<td>163.482444</td>
 <td>0</td>
-<td>33.194048</td>
+<td>31.776644</td>
 <td>100.000000</td>
 <td>0.000000</td>
-<td>2026-01-08T13:37:06.338405</td>
+<td>2026-11-08T13:37:06.338405+00:00</td>
 <td>2</td>
 </tr>
 <tr class="even">
@@ -842,67 +832,67 @@ Note
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">99995</th>
-<td>8.068273</td>
+<td>9.947851</td>
 <td>0.000000</td>
 <td>150.000000</td>
 <td>150.000000</td>
 <td>3</td>
-<td>17.642248</td>
+<td>14.788669</td>
 <td>0.000000</td>
 <td>100.000000</td>
-<td>2026-01-09T21:57:12.230277</td>
+<td>2026-11-09T22:09:19.451059+00:00</td>
 <td>24999</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">99996</th>
-<td>10.301384</td>
+<td>9.595491</td>
 <td>0.000000</td>
-<td>273.977920</td>
-<td>126.801859</td>
+<td>122.561847</td>
+<td>10.960168</td>
 <td>0</td>
-<td>16.803874</td>
+<td>14.193925</td>
 <td>100.000000</td>
 <td>0.000000</td>
-<td>2026-01-09T21:57:12.250277</td>
+<td>2026-11-09T22:09:19.471059+00:00</td>
 <td>25000</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">99997</th>
-<td>9.924715</td>
-<td>193.867063</td>
-<td>273.977920</td>
-<td>126.801859</td>
+<td>10.392802</td>
+<td>970.434641</td>
+<td>122.561847</td>
+<td>10.960168</td>
 <td>1</td>
-<td>16.295092</td>
+<td>16.631963</td>
 <td>0.000000</td>
-<td>27.812182</td>
-<td>2026-01-09T21:57:13.531573</td>
+<td>50.754057</td>
+<td>2026-11-09T22:09:20.908272+00:00</td>
 <td>25000</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">99998</th>
-<td>9.452700</td>
-<td>193.867063</td>
+<td>10.187309</td>
+<td>970.434641</td>
 <td>150.000000</td>
 <td>150.000000</td>
 <td>2</td>
-<td>16.074561</td>
-<td>27.812182</td>
+<td>18.131045</td>
+<td>50.754057</td>
 <td>0.000000</td>
-<td>2026-01-09T21:57:14.051573</td>
+<td>2026-11-09T22:09:21.428272+00:00</td>
 <td>25000</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">99999</th>
-<td>10.116288</td>
+<td>9.054692</td>
 <td>0.000000</td>
 <td>150.000000</td>
 <td>150.000000</td>
 <td>3</td>
-<td>17.222515</td>
+<td>15.046789</td>
 <td>0.000000</td>
 <td>100.000000</td>
-<td>2026-01-09T21:57:18.606622</td>
+<td>2026-11-09T22:09:24.240587+00:00</td>
 <td>25000</td>
 </tr>
 </tbody>
@@ -912,7 +902,7 @@ Note
 </div>
 </div>
 </div>
-<div id="bc2cd4ea" class="cell" data-execution_count="4">
+<div id="bc2cd4ea" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:50.821595Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:50.821406Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:50.830358Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:50.829470Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_postinspection</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -931,32 +921,32 @@ Note
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>1</td>
-<td>-0.192236</td>
-<td>0.654895</td>
+<td>-0.105848</td>
+<td>0.383246</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>2</td>
-<td>1.285577</td>
-<td>0.817733</td>
+<td>-0.325068</td>
+<td>-0.270165</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>3</td>
-<td>-0.456091</td>
-<td>0.163004</td>
+<td>-0.783190</td>
+<td>-0.587635</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>4</td>
-<td>-1.734704</td>
-<td>-0.624146</td>
+<td>0.586163</td>
+<td>0.544894</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>5</td>
-<td>-0.496285</td>
-<td>0.494395</td>
+<td>0.960181</td>
+<td>0.095029</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">...</th>
@@ -967,32 +957,32 @@ Note
 <tr class="odd">
 <th data-quarto-table-cell-role="th">24995</th>
 <td>24996</td>
-<td>1.080388</td>
-<td>2.691526</td>
+<td>1.084094</td>
+<td>-0.432873</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">24996</th>
 <td>24997</td>
-<td>-0.566057</td>
-<td>-0.794911</td>
+<td>0.375197</td>
+<td>1.103503</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">24997</th>
 <td>24998</td>
-<td>-0.580030</td>
-<td>0.738004</td>
+<td>-0.746851</td>
+<td>-0.275022</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">24998</th>
 <td>24999</td>
-<td>0.773854</td>
-<td>-1.404837</td>
+<td>1.541993</td>
+<td>1.150592</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">24999</th>
 <td>25000</td>
-<td>-0.842577</td>
-<td>0.157659</td>
+<td>-0.289414</td>
+<td>1.995578</td>
 </tr>
 </tbody>
 </table>
@@ -1001,7 +991,7 @@ Note
 </div>
 </div>
 </div>
-<div id="44b7896e" class="cell" data-execution_count="5">
+<div id="44b7896e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:50.832484Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:50.832288Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:24:50.860087Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:24:50.859126Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_machinedata.merge(df_postinspection, on<span class="op">=</span><span class="st">"cycle"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -1012,12 +1002,12 @@ Note
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Air temperature [K]</th>
+<th data-quarto-table-cell-role="th">Air temperature [°C]</th>
 <th data-quarto-table-cell-role="th">Attached Weight [mg]</th>
 <th data-quarto-table-cell-role="th">Position x [mm]</th>
 <th data-quarto-table-cell-role="th">Position y [mm]</th>
 <th data-quarto-table-cell-role="th">Process step</th>
-<th data-quarto-table-cell-role="th">Process temperature [K]</th>
+<th data-quarto-table-cell-role="th">Process temperature [°C]</th>
 <th data-quarto-table-cell-role="th">Speed [mm/s]</th>
 <th data-quarto-table-cell-role="th">Speed next [mm/s]</th>
 <th data-quarto-table-cell-role="th">timestamp</th>
@@ -1037,10 +1027,10 @@ Note
 <td>30.385614</td>
 <td>100.000000</td>
 <td>0.000000</td>
-<td>2026-01-08T13:37:00</td>
+<td>2026-11-08T13:37:00+00:00</td>
 <td>1</td>
-<td>-0.192236</td>
-<td>0.654895</td>
+<td>-0.105848</td>
+<td>0.383246</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
@@ -1052,10 +1042,10 @@ Note
 <td>31.615630</td>
 <td>0.000000</td>
 <td>34.752639</td>
-<td>2026-01-08T13:37:01.505090</td>
+<td>2026-11-08T13:37:01.505090+00:00</td>
 <td>1</td>
-<td>-0.192236</td>
-<td>0.654895</td>
+<td>-0.105848</td>
+<td>0.383246</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
@@ -1067,10 +1057,10 @@ Note
 <td>31.998852</td>
 <td>34.752639</td>
 <td>0.000000</td>
-<td>2026-01-08T13:37:02.025090</td>
+<td>2026-11-08T13:37:02.025090+00:00</td>
 <td>1</td>
-<td>-0.192236</td>
-<td>0.654895</td>
+<td>-0.105848</td>
+<td>0.383246</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
@@ -1082,25 +1072,25 @@ Note
 <td>33.046526</td>
 <td>0.000000</td>
 <td>100.000000</td>
-<td>2026-01-08T13:37:06.318405</td>
+<td>2026-11-08T13:37:06.318405+00:00</td>
 <td>1</td>
-<td>-0.192236</td>
-<td>0.654895</td>
+<td>-0.105848</td>
+<td>0.383246</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>25.129309</td>
+<td>24.924624</td>
 <td>0.000000</td>
-<td>7.960791</td>
-<td>59.651295</td>
+<td>194.965331</td>
+<td>163.482444</td>
 <td>0</td>
-<td>33.194048</td>
+<td>31.776644</td>
 <td>100.000000</td>
 <td>0.000000</td>
-<td>2026-01-08T13:37:06.338405</td>
+<td>2026-11-08T13:37:06.338405+00:00</td>
 <td>2</td>
-<td>1.285577</td>
-<td>0.817733</td>
+<td>-0.325068</td>
+<td>-0.270165</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">...</th>
@@ -1119,78 +1109,78 @@ Note
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">99995</th>
-<td>8.068273</td>
+<td>9.947851</td>
 <td>0.000000</td>
 <td>150.000000</td>
 <td>150.000000</td>
 <td>3</td>
-<td>17.642248</td>
+<td>14.788669</td>
 <td>0.000000</td>
 <td>100.000000</td>
-<td>2026-01-09T21:57:12.230277</td>
+<td>2026-11-09T22:09:19.451059+00:00</td>
 <td>24999</td>
-<td>0.773854</td>
-<td>-1.404837</td>
+<td>1.541993</td>
+<td>1.150592</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">99996</th>
-<td>10.301384</td>
+<td>9.595491</td>
 <td>0.000000</td>
-<td>273.977920</td>
-<td>126.801859</td>
+<td>122.561847</td>
+<td>10.960168</td>
 <td>0</td>
-<td>16.803874</td>
+<td>14.193925</td>
 <td>100.000000</td>
 <td>0.000000</td>
-<td>2026-01-09T21:57:12.250277</td>
+<td>2026-11-09T22:09:19.471059+00:00</td>
 <td>25000</td>
-<td>-0.842577</td>
-<td>0.157659</td>
+<td>-0.289414</td>
+<td>1.995578</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">99997</th>
-<td>9.924715</td>
-<td>193.867063</td>
-<td>273.977920</td>
-<td>126.801859</td>
+<td>10.392802</td>
+<td>970.434641</td>
+<td>122.561847</td>
+<td>10.960168</td>
 <td>1</td>
-<td>16.295092</td>
+<td>16.631963</td>
 <td>0.000000</td>
-<td>27.812182</td>
-<td>2026-01-09T21:57:13.531573</td>
+<td>50.754057</td>
+<td>2026-11-09T22:09:20.908272+00:00</td>
 <td>25000</td>
-<td>-0.842577</td>
-<td>0.157659</td>
+<td>-0.289414</td>
+<td>1.995578</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">99998</th>
-<td>9.452700</td>
-<td>193.867063</td>
+<td>10.187309</td>
+<td>970.434641</td>
 <td>150.000000</td>
 <td>150.000000</td>
 <td>2</td>
-<td>16.074561</td>
-<td>27.812182</td>
+<td>18.131045</td>
+<td>50.754057</td>
 <td>0.000000</td>
-<td>2026-01-09T21:57:14.051573</td>
+<td>2026-11-09T22:09:21.428272+00:00</td>
 <td>25000</td>
-<td>-0.842577</td>
-<td>0.157659</td>
+<td>-0.289414</td>
+<td>1.995578</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">99999</th>
-<td>10.116288</td>
+<td>9.054692</td>
 <td>0.000000</td>
 <td>150.000000</td>
 <td>150.000000</td>
 <td>3</td>
-<td>17.222515</td>
+<td>15.046789</td>
 <td>0.000000</td>
 <td>100.000000</td>
-<td>2026-01-09T21:57:18.606622</td>
+<td>2026-11-09T22:09:24.240587+00:00</td>
 <td>25000</td>
-<td>-0.842577</td>
-<td>0.157659</td>
+<td>-0.289414</td>
+<td>1.995578</td>
 </tr>
 </tbody>
 </table>
@@ -1203,7 +1193,7 @@ Note
 </section>
 <section id="error-visualization" class="level2" data-number="21.6">
 <h2 data-number="21.6" class="anchored" data-anchor-id="error-visualization"><span class="header-section-number">21.6</span> Error Visualization</h2>
-<div id="1ad4655e" class="cell" data-execution_count="6">
+<div id="1ad4655e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-08T19:24:50.863097Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-08T19:24:50.862680Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-08T19:25:12.104048Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-08T19:25:12.100780Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df_postinspection,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"error_x"</span>,</span>
@@ -1231,7 +1221,7 @@ Note
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-ehrensperger_livemachine2026" class="csl-entry" role="listitem">
-Ehrensperger, Gregor. 2026. <span>“Industrial_datascience_live_machine: V1.0.0.”</span> Zenodo, January. <a href="https://doi.org/10.5281/zenodo.18183373">https://doi.org/10.5281/zenodo.18183373</a>.
+Ehrensperger, Gregor. 2026. <span>“Industrial_datascience_live_machine: V1.1.1.”</span> Version v1.1.1. Zenodo, November. <a href="https://doi.org/10.5281/zenodo.24059489">https://doi.org/10.5281/zenodo.24059489</a>.
 </div>
 </div>
 

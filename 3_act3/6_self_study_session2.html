@@ -554,19 +554,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Still under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This section is still under construction and will be completed in the near future. Please do not go beyond this point for now.</p>
-</div>
-</div>
 <p>In this session, we will revisit <a href="4_0_live_feedback.html" class="quarto-xref"><span>Chapter 21</span></a> and try to optimize the placement accuracy of the pick-and-place machine.</p>
 <p>Before we are touching the live machine, we will first try to find a suitable model based on the provided dataset.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -582,7 +569,7 @@ Note
 <p>Since we are working with a live feedback system, we will need multiple terminals/consoles at the same time:</p>
 <ol type="1">
 <li>One terminal to run the simulated pick and place machine (the OPC UA server).</li>
-<li>Optionally, one terminal to run the OPC UA client that connects to the machine and provides real-time.</li>
+<li>Optionally, one terminal to run the OPC UA client that connects to the machine and provides real-time corrections.</li>
 <li>Optionally, one terminal to run the <code>opcua-client</code> GUI to visualize the live data.</li>
 </ol>
 </div>
@@ -593,15 +580,15 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss2-model" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 23.1 (Train a model to predict placement error)</strong></span> &nbsp;</p>
 </div>
-<p>We are told that the placement can be adjusted until the end of step 2 by providing a correction vector that modifies the target placement location. This means that we need to predict the placement error (<code>Error x [mm]</code> and <code>Error y [mm]</code>) and provide the correction vector based on the available variables until the end of step 2.</p>
+<p>We are told that the placement can be adjusted until the end of step 2 by providing a correction vector that modifies the target placement location. This means that we need to predict the placement error (<code>error_x</code> and <code>error_y</code>) and provide the correction vector based on the available variables until the end of step 2.</p>
 <p>Furthermore, engineers tell us that the rows where <code>Process step</code> is 1 should contain the necessary information to predict the placement error.</p>
 <p>Your task:</p>
 <ol type="1">
 <li><p>Split the provided dataset into a training and test set (depending on the chosen model, you will also need a validation set).</p></li>
-<li><p>Train a model that predicts <code>Error x [mm]</code> and <code>Error y [mm]</code>.</p></li>
+<li><p>Train a model that predicts <code>error_x</code> and <code>error_y</code>.</p></li>
 <li><p>Take a look at the model’s performance on the test set by looking at certain metrics, e.g., by calculating the Mean Absolute Error (MAE).</p></li>
 <li><p>Visualize the predictive capabilities by e.g.&nbsp;plotting a histogram showing the errors and residuals (predicted - true values).</p></li>
 <li><p>Persist the model to disk so that we can later load it in the live feedback system. In case you use a scaler, you will need to persist it as well.</p></li>
@@ -610,14 +597,14 @@ Note
 </div>
 </div>
 <p>Once you have a model that performs well on the test set, we can work on integrating it in the live feedback system.</p>
-<p>But first, let us understand how to interact with the simulator. The accompanying <code>readme.md</code> file shipped with the <a href="https://github.com/noxthot/industrial_datascience_live_machine/tree/v1.0.0"><code>industrial_datascience_live_machine</code> repository</a> contains all necessary information.</p>
+<p>But first, let us understand how to interact with the simulator. The accompanying <code>readme.md</code> file shipped with the <a href="https://github.com/noxthot/industrial_datascience_live_machine/tree/v1.1.1"><code>industrial_datascience_live_machine</code> repository</a> contains all necessary information.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss2-simulator" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 23.2 (First encounter with the live machine simulator)</strong></span> &nbsp;</p>
 </div>
 <p>Running the <code>opc-ua-server.py</code> or the provided docker-container will start the simulated pick and place machine that exposes the sensor data via OPC UA. The machine runs in real-time, meaning that one cycle takes 3-6 seconds to complete. You will see the process steps advancing in the console output. Simultaneously, the sensor data is streamed via the OPC UA protocol.</p>
@@ -675,7 +662,7 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss2-opcua-client" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 23.3 (Set up an OPC UA client in Python)</strong></span> &nbsp;</p>
 </div>
 <p>Have a look at the provided <code>opc-ua-client.py</code> script, understand how it works and run it while the machine simulator is active.</p>
@@ -696,7 +683,7 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
+<div id="exr-act3-sss2-integration" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 23.4 (Integrate the trained model into the live feedback system)</strong></span> &nbsp;</p>
 </div>
 <p>The <code>opc-ua-client.py</code> script contains various placeholders (marked with <code># &gt;&gt;&gt; Exercise</code>) where you need to integrate your trained model to provide real-time corrections to the pick and place machine.</p>
@@ -717,7 +704,7 @@ Note
 <li>Part 6: Print the collected variables (this is for debugging purposes in case you need it).</li>
 <li>Part 7: Use the previously implemented function <code>predict_error</code> to get correction values for <code>x</code> and <code>y</code>.</li>
 <li>Part 8: Write the computed correction values back to the OPC UA server to adjust the placement in real-time.</li>
-<li>Part 9: Now remove the <code>pass</code> statement to enable your implementation.</li>
+<li>Part 9: Now remove the <code>return</code> statement to enable your implementation.</li>
 </ol>
 <p><em>Test your implementation</em>:</p>
 <ol start="10" type="1">
@@ -730,34 +717,21 @@ Note
 <li>Provide a screenshot of the client’s console output showing the computed correction values being sent to the server.</li>
 <li>Provide a screenshot of the machine simulator’s console output showing the effect of your corrections on the placement error.</li>
 </ol>
-</div>
-</div>
-</div>
-<p>This is it! Almost.</p>
-<p>Visualizations are almost always nicer to look at than raw console output.</p>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-basics-mv-space" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 23.5 (Visualize the live placement error and corrections)</strong></span> &nbsp;</p>
-</div>
-<p>Your task:</p>
-<ol type="1">
-<li><p>Ensure that the machine simulator is running.</p></li>
-<li><p>Ensure that your live feedback client is <em>not</em> running.</p></li>
-<li><p>Start the GUI client <code>opcua-client</code> once more and connect it to your machine.</p></li>
-<li><p>Add <code>error_x</code>, <code>error_y</code> to the graph and set the update interval to <code>1</code>s.</p></li>
-<li><p>Wait for a couple of cycles to see how the placement error evolves over time.</p></li>
-<li><p>Now, start your live feedback client.</p></li>
-<li><p>Observe how the placement error changes as your model provides corrections in real-time.</p></li>
-<li><p>Provide a screenshot of the graph showing the live placement error and the effect of your corrections: It should show both, the error before the feedback loop is started as well as the reduced error once the feedback loop is active.</p></li>
+<p><em>Visualize the live placement error and corrections</em> (visualizations are almost always nicer to look at than raw console output):</p>
+<ol start="15" type="1">
+<li>Ensure that the machine simulator is running.</li>
+<li>Ensure that your live feedback client is <em>not</em> running.</li>
+<li>Start the GUI client <code>opcua-client</code> once more and connect it to your machine.</li>
+<li>Add <code>error_x</code>, <code>error_y</code> to the graph and set the update interval to <code>1</code>s.</li>
+<li>Wait for a couple of cycles to see how the placement error evolves over time.</li>
+<li>Now, start your live feedback client.</li>
+<li>Observe how the placement error changes as your model provides corrections in real-time.</li>
+<li>Provide a screenshot of the graph showing the live placement error and the effect of your corrections: It should show both, the error before the feedback loop is started as well as the reduced error once the feedback loop is active.</li>
 </ol>
 </div>
 </div>
 </div>
+<p>This is it!</p>
 
 
 
