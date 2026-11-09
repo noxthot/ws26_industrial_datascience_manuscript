@@ -2,3 +2,20 @@
 
 @{sec-act0-history} is heavily based on @{mathur2022}, @{sec-act0-applications} on @{peres2020}.
 
+```{=html}
+<script>
+  // Adds a "DOI" entry to the title-block metadata (next to author, affiliation, date).
+  window.document.addEventListener("DOMContentLoaded", function () {
+    const meta = window.document.querySelector(".quarto-title-meta");
+    if (meta === null) return;
+    const entry = window.document.createElement("div");
+    entry.innerHTML =
+      '<div class="quarto-title-meta-heading">DOI</div>' +
+      '<div class="quarto-title-meta-contents"><p>' +
+      '<a href="https://zenodo.org/badge/latestdoi/1368101918">' +
+      '<img src="https://zenodo.org/badge/1368101918.svg" alt="DOI"></a>' +
+      "</p></div>";
+    meta.appendChild(entry);
+  });
+</script>
+```

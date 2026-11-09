@@ -4,7 +4,7 @@ This repository contains the course material for an Industrial Data Science cour
 You can find the latest version of the course material at https://noxthot.github.io/ws26_industrial_datascience_manuscript/.
 
 ## Citing this manuscript
-[![DOI](https://zenodo.org/badge/1035638412.svg)](https://zenodo.org/badge/latestdoi/1035638412)
+[![DOI](https://zenodo.org/badge/1368101918.svg)](https://zenodo.org/badge/latestdoi/1368101918)
 
 If you use this material, please cite it by using the [citation information](./CITATION.cff).
 
